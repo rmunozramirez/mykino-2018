@@ -36,7 +36,7 @@
 
         <div class="pt-4">       
             {!!Form::label('description', 'Category description:', array('class' => 'form-spacing-top'))!!}
-            {!!Form::textarea('description', null, array('class' => 'form-control', 'rows' => 6))!!}                       
+            {!!Form::textarea('description', null, array('id' => 'summernote','class' => 'form-control', 'rows' => 6))!!}                       
         </div>
 
         <div class="pt-4">    
@@ -49,4 +49,14 @@
 
 
 
+@endsection
+
+@section('scripts')
+<script>
+      $('#summernote').summernote({
+        placeholder: 'Hello bootstrap 4',
+        tabsize: 2,
+        height: 100
+      });
+    </script>
 @endsection

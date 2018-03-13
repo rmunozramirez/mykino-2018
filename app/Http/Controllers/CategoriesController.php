@@ -63,7 +63,7 @@ class CategoriesController extends Controller
 
         $category->save();
      
-        return redirect('admin.categories.index');
+        return redirect('categories.index');
 
     }
 
