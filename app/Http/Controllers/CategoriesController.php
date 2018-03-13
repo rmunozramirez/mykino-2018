@@ -17,7 +17,9 @@ class CategoriesController extends Controller
      */
     public function index()
     {
-        return view('admin.categories.index');
+        
+        $categories = Category::withCount('films')->get();
+        return view('admin.categories.index', compact('categories'));
     }
 
     /**
@@ -40,34 +42,32 @@ class CategoriesController extends Controller
     public function store(CategoriesRequest $request)
     {
 
-        $last_cat_id = Category::orderby('id', 'desc')->first();
+        $file = $request->file('image');
+        $name = time() . '-' . $file->getClientOriginalName();
+        $file->move('images', $name);
+       
+       $category = Category::create([
+            'category'      =>  $request->category,
+            'description'   =>  $request->description,
+            'slug'          =>  str_slug($request->category, '-'),
+            'image_id'      =>  0
+       ]);        
 
-        $input = $request->all();
+        $image = Image::create([
+            'image'             =>  $name,
+            'imageable_type'    => 'Category',
+            'imageable_id'      =>  $category->id
+        ]);
 
-        if($file = $request->file('image')){
-            $name = time() . '-' . $file->getClientOriginalName();
-            $file->move('images', $name);
-            $image = Image::create(['image'             =>  $name,
-                                    'imageable_id'      =>  $last_cat_id + 1,
-                                    'imageable_type'    => 'Category'
-                                    ]);
-            $input['image'] = $image->id;
-        }
+        $category['image_id']   =   $image->id;
 
-       Category::create([
-
-        'category' =>   $input('category'),
-        'description' => $input('description'),
-        'image_id' => $input('image'),
-        'slug'=> str_slug($input->slug, '-'),
-
-       ]);
-
+        $category->save();
+     
         return redirect('admin.categories.index');
 
     }
 
-    /**
+    /**   
      * Display the specified resource.
      *
      * @param  int  $id
