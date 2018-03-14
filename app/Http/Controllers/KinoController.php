@@ -3,15 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Http\Requests\FilmsRequest;
+use App\Category;
 use App\Film;
 use App\Image;
-use App\Category;
-use Session;
 
-
-class FilmsController extends Controller
+class KinoController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      *
@@ -19,7 +17,8 @@ class FilmsController extends Controller
      */
     public function index()
     {
-        //
+        $films = Film::all();
+        return view('kino', compact('films'));
     }
 
     /**
@@ -29,18 +28,7 @@ class FilmsController extends Controller
      */
     public function create()
     {
-        
-        $categories = Category::all();
-
-        if($categories->count() == 0 )
-        {
-            Session::flash('info', 'You must have some categories and tags before attempting to create a post.');
-
-            return redirect()->back();
-        }
-
-        return view('admin.films.create', compact('categories', 'tags'));
-
+        //
     }
 
     /**
@@ -49,9 +37,9 @@ class FilmsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(FilmsRequest $request)
+    public function store(Request $request)
     {
-
+        //
     }
 
     /**
@@ -83,7 +71,7 @@ class FilmsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(FilmsRequest $request, $id)
+    public function update(Request $request, $id)
     {
         //
     }

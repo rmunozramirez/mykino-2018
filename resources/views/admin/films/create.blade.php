@@ -78,7 +78,7 @@
 
         <div class="pt-4">       
             {!!Form::label('description', 'Film description:', array('class' => 'form-spacing-top'))!!}
-            {!!Form::textarea('description', null, array('class' => 'form-control', 'rows' => 6))!!}                       
+            {!!Form::textarea('description', null, array('id' => 'summernote', 'class' => 'form-control', 'rows' => 6))!!}                       
         </div>
 
         <div class="pt-4">    

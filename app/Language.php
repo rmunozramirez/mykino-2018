@@ -11,7 +11,6 @@ class Language extends Model
 	protected $fillable = [
 
 	    'language',
-	    'slug_language',
 	    'image_id',
         'slug',
 

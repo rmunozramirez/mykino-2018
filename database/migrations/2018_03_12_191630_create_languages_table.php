@@ -15,8 +15,8 @@ class CreateLanguagesTable extends Migration
     {
         Schema::create('languages', function (Blueprint $table) {
             $table->increments('id');
-            $table->enum('language', ['English', 'German', 'Spanish','French', 'Chinese']);
-            $table->enum('slug', ['english', 'german', 'spanish','french', 'chinese'])->unique();
+            $table->string('language')->unique();
+            $table->string('slug')->unique();
             $table->integer('image_id')->unsigned();
             $table->timestamps();
         });

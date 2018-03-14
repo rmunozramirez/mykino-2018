@@ -71,8 +71,13 @@
                         <ul class="list-group">
                         <li class="list-group-item"><a href="{{route('dashboard')}}">Dashboard</a></li>
                         <li class="list-group-item"><a href="{{route('films.create')}}">Create new Film</a></li>
+                        <hr>
                         <li class="list-group-item"><a href="{{route('categories.index')}}">Categories</a></li>
                         <li class="list-group-item"><a href="{{route('categories.create')}}">Create new Category</a></li>
+                        <hr>  
+                        <li class="list-group-item"><a href="{{route('language.index')}}">Languages</a></li>
+                        <li class="list-group-item"><a href="{{route('language.create')}}">Create new Languages</a></li>
+
                         </ul>    
                     </div>
                 @endif
@@ -95,9 +100,13 @@
     <script src="{{ asset('js/bootstrap/bootstrap.js') }}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote-bs4.js"></script>
     <script>
-        $(document).ready(function() {
-          $('#summernote').summernote();
-        });
+
+     $('#summernote').summernote({
+        placeholder: 'And the Orcars goes to...',
+        tabsize: 2,
+        height: 200
+      });
+
     </script>
 </body>
 </html>

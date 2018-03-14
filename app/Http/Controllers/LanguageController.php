@@ -3,14 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Http\Requests\FilmsRequest;
+use App\Http\Requests\LanguageRequest;
 use App\Film;
 use App\Image;
 use App\Category;
+use App\Language;
 use Session;
 
-
-class FilmsController extends Controller
+class LanguageController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,7 +19,10 @@ class FilmsController extends Controller
      */
     public function index()
     {
-        //
+        
+        $languages = Language::all();
+
+        return view('admin.language.index', compact('languages'));
     }
 
     /**
@@ -29,18 +32,7 @@ class FilmsController extends Controller
      */
     public function create()
     {
-        
-        $categories = Category::all();
-
-        if($categories->count() == 0 )
-        {
-            Session::flash('info', 'You must have some categories and tags before attempting to create a post.');
-
-            return redirect()->back();
-        }
-
-        return view('admin.films.create', compact('categories', 'tags'));
-
+        return view('admin.language.create');
     }
 
     /**
@@ -49,9 +41,29 @@ class FilmsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(FilmsRequest $request)
+    public function store(LanguageRequest $request)
     {
+        $file = $request->file('image');
+        $name = time() . '-' . $file->getClientOriginalName();
+        $file->move('images', $name);
+       
+       $language = Language::create([
+            'language'      =>  $request->language,
+            'slug'          =>  str_slug($request->language, '-'),
+            'image_id'      =>  0
+       ]);        
 
+        $image = Image::create([
+            'image'             =>  $name,
+            'imageable_type'    => 'language',
+            'imageable_id'      =>  $language->id
+        ]);
+
+        $language['image_id']   =   $image->id;
+
+        $language->save();
+     
+        return redirect('admin.language.index');
     }
 
     /**
@@ -83,7 +95,7 @@ class FilmsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(FilmsRequest $request, $id)
+    public function update(Request $request, $id)
     {
         //
     }

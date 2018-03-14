@@ -17,6 +17,16 @@ Route::get('/', function () {
 
 Auth::routes();
 
+Route::group(['middleware' => 'auth'], function() {
+
+//Just authenticated users could enter in Kino
+	Route::get('/kino', 'KinoController@index')->name('kino');
+
+
+});
+
+
+
 Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
 
 	Route::get('/dashboard', 'HomeController@index')->name('dashboard');
@@ -31,6 +41,13 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
 	Route::get('/categories/index', 'CategoriesController@index')->name('categories.index');
 	Route::get('/categories/create', 'CategoriesController@create')->name('categories.create');
 	Route::post('/categories/store', 'CategoriesController@store')->name('categories.store');
+
+	//languages
+	Route::get('/language/index', 'LanguageController@index')->name('language.index');
+	Route::get('/language/create', 'LanguageController@create')->name('language.create');
+	Route::post('/language/store', 'LanguageController@store')->name('language.store');
+
+
 
 });
 
