@@ -38,8 +38,6 @@
             {!!Form::submit('Add the New Category', array('class' => 'btn btn-success btn-block')) !!}
             {!!Form::close() !!}       
         </div>
-
-        Session::flash('message', 'Successfully created post!');
         
     </div>
 </div>

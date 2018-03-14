@@ -25,8 +25,6 @@ class LanguageRequest extends FormRequest
     {
         return [
             'language' => 'required|max:255',
-            'description' => 'required',
-            'image' => 'required|image' 
 
         ];
     }

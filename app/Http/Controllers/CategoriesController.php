@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\CategoriesRequest;
 use App\Category;
 use App\Image;
+use Session;
 
 
 class CategoriesController extends Controller
@@ -62,8 +63,10 @@ class CategoriesController extends Controller
         $category['image_id']   =   $image->id;
 
         $category->save();
+
+        Session::flash('message', 'Successfully created post!');
      
-        return redirect('admin.categories.index');
+        return redirect()->route('categories.index');
 
     }
 

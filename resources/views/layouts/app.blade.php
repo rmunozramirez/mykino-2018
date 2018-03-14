@@ -76,7 +76,7 @@
                         <li class="list-group-item"><a href="{{route('categories.create')}}">Create new Category</a></li>
                         <hr>  
                         <li class="list-group-item"><a href="{{route('language.index')}}">Languages</a></li>
-                        <li class="list-group-item"><a href="{{route('language.create')}}">Create new Languages</a></li>
+                        <li class="list-group-item"><a href="{{route('language.create')}}">Create new Language</a></li>
 
                         </ul>    
                     </div>
@@ -98,14 +98,23 @@
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
     <script src="{{ asset('js/bootstrap/bootstrap.js') }}"></script>
+    <script src="{{ asset('js/toastr.js') }}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote-bs4.js"></script>
     <script>
 
      $('#summernote').summernote({
-        placeholder: 'And the Orcars goes to...',
+        placeholder: 'And the Oscars goes to...',
         tabsize: 2,
         height: 200
       });
+
+     //toastr
+
+     @if(Session::has('success'))
+
+        toastr.success("{{Session::get('success')}}")
+
+     @endif
 
     </script>
 </body>

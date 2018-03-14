@@ -55,15 +55,17 @@ class LanguageController extends Controller
 
         $image = Image::create([
             'image'             =>  $name,
-            'imageable_type'    => 'language',
+            'imageable_type'    => 'Language',
             'imageable_id'      =>  $language->id
         ]);
 
         $language['image_id']   =   $image->id;
 
         $language->save();
+
+        Session::flash('success', 'Successfully created post!');
      
-        return redirect('admin.language.index');
+        return redirect()->route('language.index');
     }
 
     /**
