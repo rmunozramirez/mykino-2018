@@ -46,13 +46,15 @@ class CategoriesController extends Controller
         $file = $request->file('image');
         $name = time() . '-' . $file->getClientOriginalName();
         $file->move('images', $name);
+
+        $last_img = Image::orderBy('id', 'desc')->first();
        
-       $category = Category::create([
+        $category = Category::create([
             'category'      =>  $request->category,
             'description'   =>  $request->description,
             'slug'          =>  str_slug($request->category, '-'),
-            'image_id'      =>  0
-       ]);        
+            'image_id'      =>  $last_img->id + 1,
+        ]);        
 
         $image = Image::create([
             'image'             =>  $name,
@@ -60,11 +62,9 @@ class CategoriesController extends Controller
             'imageable_id'      =>  $category->id
         ]);
 
-        $category['image_id']   =   $image->id;
-
         $category->save();
 
-        Session::flash('message', 'Successfully created post!');
+        Session::flash('success', 'Category successfully created!');
      
         return redirect()->route('categories.index');
 
@@ -78,7 +78,11 @@ class CategoriesController extends Controller
      */
     public function show($id)
     {
-        //
+ 
+        $category = Category::findOrFail($id)->withCount('films')->with('films');
+
+        return view('admin.categories.show', compact('category', 'films'));
+
     }
 
     /**
@@ -89,7 +93,11 @@ class CategoriesController extends Controller
      */
     public function edit($id)
     {
-        //
+
+        $category = Category::findOrFail($id)->withCount('film')->with('films');
+
+        return view('admin.categories.show', compact('category'));
+
     }
 
     /**
@@ -101,7 +109,31 @@ class CategoriesController extends Controller
      */
     public function update(CategoriesRequest $request, $id)
     {
-        //
+
+        $file = $request->file('image');
+        $name = time() . '-' . $file->getClientOriginalName();
+        $file->move('images', $name);
+
+        $last_img = Image::orderBy('id', 'desc')->first();
+       
+        $category = Category::create([
+            'category'      =>  $request->category,
+            'description'   =>  $request->description,
+            'slug'          =>  str_slug($request->category, '-'),
+            'image_id'      =>  $last_img->id + 1,
+        ]);        
+
+        $image = Image::create([
+            'image'             =>  $name,
+            'imageable_type'    => 'Category',
+            'imageable_id'      =>  $category->id
+        ]);
+
+        $category->save();
+
+        Session::flash('success', 'Category successfully created!');
+     
+        return redirect()->route('categories.index');
     }
 
     /**

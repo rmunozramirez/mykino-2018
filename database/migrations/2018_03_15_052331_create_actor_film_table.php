@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateFsksTable extends Migration
+class CreateActorFilmTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,10 @@ class CreateFsksTable extends Migration
      */
     public function up()
     {
-        Schema::create('fsks', function (Blueprint $table) {
+        Schema::create('actor_film', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('fsk')->unique();
-            $table->string('slug')->unique();
-            $table->string('image')->unique();
+            $table->integer('actor_id');
+            $table->integer('film_id');
             $table->timestamps();
         });
     }
@@ -29,6 +28,6 @@ class CreateFsksTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('fsks');
+        Schema::dropIfExists('actor_film');
     }
 }

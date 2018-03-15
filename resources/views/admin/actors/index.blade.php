@@ -1,32 +1,30 @@
 @extends('layouts.app')
 
-
-
 @section('content')
 
 
 
 <div class="card">
     <div class="card-body">        
-        <h2>Languages</h2>
+        <h2>Actors</h2>
 
-            @if($languages)
+            @if($actors)
             <table class="table">
                <thead>
                   <tr>
-                     <th>Language</th>
+                     <th>Actor</th>
                      <th>Image</th>
                      <th>Films</th>
                   </tr>
                </thead>
                <tbody>
-                  @foreach($languages as $language)
+                  @foreach($actors as $actor)
                   <tr>
-                     <td>{{$language->language}}</td>
+                     <td><a href="{{route('actors.show', $actor->id)}}">{{$actor->name}}</a></td>
                      <td>
-                        <img height="50" src="{{$language->image ? URL::to($language->image->image) : URL::to('/images/language.png')}}" alt="{{$language->category}}" >
+                        <img height="50" src="{{$actor->images ? URL::to($actor->image->image) : URL::to('/images/user.png')}}" alt="{{$actor->name}}" >
                      </td>
-                     <td><a href="">{{$language->films_count}}</a></td>
+                     <td><a href="">{{$actor->films_count}}</a></td>
 
                   </tr>
                   @endforeach 

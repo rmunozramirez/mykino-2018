@@ -18,11 +18,11 @@ class Actor extends Model
 
     public function films()
     {
-        return $this->belongsToMany('App\Film');
+        return $this->belongsToMany('App\Film', 'actor_film');
     }
 
     public function images()
     {
-        return $this->morphMany('App\Comment', 'imageable');
+        return $this->morphMany('App\Image', 'imageable');
     }
 }

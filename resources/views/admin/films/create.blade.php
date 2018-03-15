@@ -30,11 +30,8 @@
         </div>
 
         <div class="pt-3"> 
-            {!!Form::label('category_id', 'Category:', array('class' => 'form-spacing-top')) !!}
-            <select class="form-control" name="category_id">
-
-
-            </select>
+                {!! Form::label('category_id', 'Category:') !!}
+                {!! Form::select('category_id', ['' => 'Choose a Category'] + $categories, null, array('class' => 'form-control'))!!}
         </div>
 
 
@@ -45,8 +42,8 @@
 
         <div class="pt-3 row">       
             <div class="col-md-6">       
-                {!!Form::label('year', 'Year:', array('class' => 'form-spacing-top'))!!}
-                {!!Form::text('year', null, array('class' => 'form-control date')) !!}    
+                {!!Form::label('year', 'Year:', array('class' => 'form-spacing-top'))!!} 
+                {!!Form::text('year', '', array('class' => 'form-control')) !!} 
             </div>
 
             <div class="col-md-6"> 
@@ -58,16 +55,12 @@
         <div class="pt-3 row">       
             <div class="col-md-6"> 
                 {!!Form::label('language_id', 'Language:', array('class' => 'form-spacing-top')) !!}
-                <select class="form-control" name="language_id">
-
-                </select>
+                {!! Form::select('language_id', ['' => 'Choose a Language'] + $languages, null, array('class' => 'form-control'))!!}
             </div>
 
             <div class="col-md-6"> 
-                {!!Form::label('fsk_id', 'Age:', array('class' => 'form-spacing-top')) !!}
-                <select class="form-control" name="fsk_id">
-
-                </select>
+                {!!Form::label('fsk_id', 'Age:') !!}
+                {!! Form::select('fsk_id', ['' => 'Choose Options'] + $fsks, null, array('class' => 'form-control'))!!}
             </div>    
         </div>
 
@@ -90,5 +83,9 @@
 </div>
 
 
+
+@endsection
+
+@section('scripts')
 
 @endsection

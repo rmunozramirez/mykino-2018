@@ -13,7 +13,9 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/bootstrap/bootstrap.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/toastr.css') }}" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote-bs4.css" rel="stylesheet">
+    <link href="http://code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css" rel="stylesheet">
 
 </head>
 <body>
@@ -67,9 +69,11 @@
             <div class="row">
 
                 @if(Auth::check())
-                    <div class="col-lg-4">
+                    <div class="col-lg-3">
                         <ul class="list-group">
                         <li class="list-group-item"><a href="{{route('dashboard')}}">Dashboard</a></li>
+                        <hr>
+                        <li class="list-group-item"><a href="{{route('films.index')}}">Films</a></li>
                         <li class="list-group-item"><a href="{{route('films.create')}}">Create new Film</a></li>
                         <hr>
                         <li class="list-group-item"><a href="{{route('categories.index')}}">Categories</a></li>
@@ -77,12 +81,15 @@
                         <hr>  
                         <li class="list-group-item"><a href="{{route('language.index')}}">Languages</a></li>
                         <li class="list-group-item"><a href="{{route('language.create')}}">Create new Language</a></li>
+                        <hr>  
+                        <li class="list-group-item"><a href="{{route('actors.index')}}">Actor</a></li>
+                        <li class="list-group-item"><a href="{{route('actors.create')}}">Create new Actor</a></li>
 
                         </ul>    
                     </div>
                 @endif
 
-                <div class="col-lg-8">
+                <div class="col-lg-9">
                     @yield('content')
                 </div>
 
@@ -96,9 +103,10 @@
     </div>
 
     <!-- Scripts -->
+@yield('scripts')
     <script src="{{ asset('js/app.js') }}"></script>
     <script src="{{ asset('js/bootstrap/bootstrap.js') }}"></script>
-    <script src="{{ asset('js/toastr.js') }}"></script>
+    <script src="{{ asset('js/toastr.min.js') }}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote-bs4.js"></script>
     <script>
 
@@ -108,7 +116,15 @@
         height: 200
       });
 
+    </script>
+    <script>  
      //toastr
+
+     @if(Session::has('info'))
+
+        toastr.info("{{Session::get('info')}}")
+
+     @endif
 
      @if(Session::has('success'))
 

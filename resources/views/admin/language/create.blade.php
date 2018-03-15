@@ -22,11 +22,11 @@
     <div class="card-body">        
         <h2>Create a new Language</h2>
 
-        {!!Form::open(array('route' => 'categories.store', 'files' => true)) !!}   
+        {!!Form::open(array('route' => 'language.store', 'files' => true)) !!}   
 
         <div class="pt-4">        
-            {!!Form::label('category', 'Add a Language name', array())!!}
-            {!!Form::text('category', null, array('class' => 'form-control', 'required' => '', 'maxlength' => '255'))!!}
+            {!!Form::label('language', 'Add a Language name', array())!!}
+            {!!Form::text('language', null, array('class' => 'form-control', 'required' => '', 'maxlength' => '255'))!!}
         </div>
 
         <div class="pt-4"> 
@@ -35,7 +35,7 @@
         </div>  
 
         <div class="pt-4">    
-            {!!Form::submit('Add the New Category', array('class' => 'btn btn-success btn-block')) !!}
+            {!!Form::submit('Add the New Language', array('class' => 'btn btn-success btn-block')) !!}
             {!!Form::close() !!}       
         </div>
         

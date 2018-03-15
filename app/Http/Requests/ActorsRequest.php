@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class LanguageRequest extends FormRequest
+class ActorsRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,7 +24,9 @@ class LanguageRequest extends FormRequest
     public function rules()
     {
         return [
-            'language' => 'required|max:255'
+            
+            'name'=> 'required|max:255',
+
         ];
     }
 }

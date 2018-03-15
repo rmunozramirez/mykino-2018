@@ -1,7 +1,5 @@
 @extends('layouts.app')
 
-
-
 @section('content')
 
 
@@ -23,9 +21,9 @@
                <tbody>
                   @foreach($categories as $category)
                   <tr>
-                     <td>{{$category->category}}</td>
+                     <td><a href="{{route('categories.show', $category->id)}}">{{$category->category}}</a></td>
                      <td>
-                        <img height="50" src="{{$category->image ? URL::to($category->image->image) : URL::to('/images/placeholder.jpg')}}" alt="{{$category->category}}" >
+                        <img height="50" src="{{$category->image ? URL::to($category->image->image) : URL::to('/images/category.png')}}" alt="{{$category->category}}" >
                      </td>
                      <td>{{str_limit($category->description, 100, '...')}}</td>
                      <td><a href="">{{$category->films_count}}</a></td>

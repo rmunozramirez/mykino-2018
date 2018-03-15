@@ -38,11 +38,11 @@ class Film extends Model
 
     public function actors()
     {
-        return $this->belongsToMany('App\Actor');
+        return $this->belongsToMany('App\Actor', 'actor_film');
     }
 
     public function images()
     {
-        return $this->morphMany('App\Comment', 'imageable');
+        return $this->morphMany('App\Image', 'imageable');
     }
 }

@@ -27,11 +27,11 @@ class FilmsRequest extends FormRequest
                 
             'name' => 'required|max:255',
             'trailer' => 'required|max:255',
-            'year' => 'required|max:255',
+            'year' => 'required|integer|between:1900,2050',
             'duration' => 'required|max:255',
             'category_id'   => 'required|integer',
             'language_id'   => 'required|integer',
-            'age_id'   => 'required|integer',
+            'fsk_id'   => 'required|integer',
             'description' => 'required',
             'image' => 'required|image' 
         ];

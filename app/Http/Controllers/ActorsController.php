@@ -3,14 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Http\Requests\LanguageRequest;
-use App\Film;
+use App\Http\Requests\ActorsRequest;
+use App\Actor;
 use App\Image;
-use App\Category;
-use App\Language;
 use Session;
 
-class LanguageController extends Controller
+class ActorsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,10 +17,9 @@ class LanguageController extends Controller
      */
     public function index()
     {
-        
-        $languages = Language::all();
+        $actors = Actor::with('films')->all();
 
-        return view('admin.language.index', compact('languages'));
+        return view ('admin.actors.index', compact('actors'));
     }
 
     /**
@@ -32,7 +29,8 @@ class LanguageController extends Controller
      */
     public function create()
     {
-        return view('admin.language.create');
+
+        return view('admin.actors.create');
     }
 
     /**
@@ -41,31 +39,32 @@ class LanguageController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(LanguageRequest $request)
+    public function store(ActorsRequest $request)
     {
         $file = $request->file('image');
         $name = time() . '-' . $file->getClientOriginalName();
         $file->move('images', $name);
 
         $last_img = Image::orderBy('id', 'desc')->first();
-        
-        $language = Language::create([
-            'language'      =>  $request->language,
-            'slug'          =>  str_slug($request->language, '-'),
+       
+        $actor = Actor::create([
+            'name'      =>  $request->name,
+            'genre'   =>  $request->genre,
+            'slug'          =>  str_slug($request->name, '-'),
             'image_id'      =>  $last_img->id + 1,
         ]);        
 
         $image = Image::create([
             'image'             =>  $name,
-            'imageable_type'    => 'Language',
-            'imageable_id'      =>  $language->id
+            'imageable_type'    => 'Actor',
+            'imageable_id'      =>  $actor->id
         ]);
 
-        $language->save();
+        $actor->save();
 
-        Session::flash('success', 'Successfully created post!');
+        Session::flash('success', 'Actor successfully created!');
      
-        return redirect()->route('language.index');
+        return redirect()->route('actors.index');
     }
 
     /**
