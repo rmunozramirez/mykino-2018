@@ -24,9 +24,9 @@
                   <tr>
                      <td>{{$language->language}}</td>
                      <td>
-                        <img height="50" src="{{$language->image ? URL::to($language->image->image) : URL::to('/images/language.png')}}" alt="{{$language->category}}" >
+                        <img height="50" src="{{$language->image ? URL::to('/images/' . $language->image) : URL::to('/images/language.png')}}" alt="{{$language->category}}" >
                      </td>
-                     <td><a href="">{{$language->films_count}}</a></td>
+                     <td><a href="">{{$language}}</a></td>
 
                   </tr>
                   @endforeach 

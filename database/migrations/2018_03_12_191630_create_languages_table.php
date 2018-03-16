@@ -17,7 +17,7 @@ class CreateLanguagesTable extends Migration
             $table->increments('id');
             $table->string('language')->unique();
             $table->string('slug')->unique();
-            $table->integer('image_id')->unsigned();
+            $table->string('image')->unique();
             $table->timestamps();
         });
     }

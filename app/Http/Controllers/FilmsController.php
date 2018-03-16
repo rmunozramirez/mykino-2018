@@ -21,9 +21,9 @@ class FilmsController extends Controller
      */
     public function index()
     {
-        $films = Film::with('fsk')->with('languages')->with('categories')->get();
+        $films = Film::with('image')->get();
 
-        return view('admin.films.index', compact('films', 'categories', 'languages', 'fsks'));
+        return view('admin.films.index', compact('films','image'));
     }
 
     /**
@@ -60,7 +60,7 @@ class FilmsController extends Controller
      */
     public function store(FilmsRequest $request)
     {
-       
+    
         $file = $request->file('image');
         $name = time() . '-' . $file->getClientOriginalName();
         $file->move('images', $name);
@@ -70,12 +70,12 @@ class FilmsController extends Controller
         $film = Film::create([
     
             'name'          => $request->name,
+            'fsk_id'        => $request->fsk_id,  
             'trailer'       => $request->trailer,
             'year'          => $request->year,
             'duration'      => $request->duration,
             'category_id'   => $request->category_id,
             'language_id'   => $request->language_id,
-            'fsk_id'        => $request->fsk_id,
             'description'   => $request->description,
             'slug'          => str_slug($request->name, '-'),
             'image_id'      => $last_img->id + 1,
@@ -86,6 +86,7 @@ class FilmsController extends Controller
             'imageable_type'    => 'Film',
             'imageable_id'      =>  $film->id
         ]);
+
 
         $film->save();
 

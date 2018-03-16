@@ -60,7 +60,7 @@
 
             <div class="col-md-6"> 
                 {!!Form::label('fsk_id', 'Age:') !!}
-                {!! Form::select('fsk_id', ['' => 'Choose Options'] + $fsks, null, array('class' => 'form-control'))!!}
+                {!!Form::select('fsk_id', array('' => 'Choose Age', '1' => 'Approved for 0', '2' => 'Approved for 6', '3' => 'Approved for 12', '4' => 'Approved for 16', '5' => 'Approved for 18'), null, array('class' => 'form-control'))!!}
             </div>    
         </div>
 

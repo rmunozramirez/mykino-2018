@@ -15,7 +15,7 @@ class Film extends Model
             'trailer',
             'year',
             'duration',
-			'age_id',
+			'fsk_id',
 			'language_id',
 			'category_id' 
 
@@ -26,7 +26,7 @@ class Film extends Model
         return $this->belongsTo('App\Category');
    	}
 
-    public function Fsk()
+    public function fsk()
     {
         return $this->belongsTo('App\Fsk');
     }
@@ -41,7 +41,7 @@ class Film extends Model
         return $this->belongsToMany('App\Actor', 'actor_film');
     }
 
-    public function images()
+    public function image()
     {
         return $this->morphMany('App\Image', 'imageable');
     }

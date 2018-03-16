@@ -51,9 +51,5 @@ class FskTableSeeder extends Seeder
         	'image'		=>	'fsk-18.jpg'
 
         ]);
-
-
-
-
     }
 }

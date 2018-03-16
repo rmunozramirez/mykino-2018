@@ -52,6 +52,7 @@ class LanguageController extends Controller
         $language = Language::create([
             'language'      =>  $request->language,
             'slug'          =>  str_slug($request->language, '-'),
+            'image'         =>  $name,
             'image_id'      =>  $last_img->id + 1,
         ]);        
 

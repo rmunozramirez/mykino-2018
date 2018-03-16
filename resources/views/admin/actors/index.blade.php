@@ -22,7 +22,7 @@
                   <tr>
                      <td><a href="{{route('actors.show', $actor->id)}}">{{$actor->name}}</a></td>
                      <td>
-                        <img height="50" src="{{$actor->images ? URL::to($actor->image->image) : URL::to('/images/user.png')}}" alt="{{$actor->name}}" >
+                        <img height="50" src="{{URL::to('/images/' . $actor->image)}}" alt="{{$actor->name}}" >
                      </td>
                      <td><a href="">{{$actor->films_count}}</a></td>
 

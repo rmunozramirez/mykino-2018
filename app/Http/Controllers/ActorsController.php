@@ -17,7 +17,7 @@ class ActorsController extends Controller
      */
     public function index()
     {
-        $actors = Actor::with('films')->all();
+        $actors = Actor::all();
 
         return view ('admin.actors.index', compact('actors'));
     }
