@@ -37,6 +37,8 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
 	Route::get('/films/index', 'FilmsController@index')->name('films.index');
 	Route::get('/films/create', 'FilmsController@create')->name('films.create');
 	Route::post('/films/store', 'FilmsController@store')->name('films.store');
+	Route::get('/films/show/{slug}', 'FilmsController@show')->name('films.show');
+	Route::get('/films/delete', 'FilmsController@destroy')->name('films.delete');
 
 	//categories
 	Route::get('/categories/index', 'CategoriesController@index')->name('categories.index');

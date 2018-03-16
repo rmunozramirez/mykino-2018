@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\FilmsRequest;
+use Illuminate\Support\Facades\DB;
 use App\Film;
 use App\Image;
 use App\Category;
@@ -21,9 +22,18 @@ class FilmsController extends Controller
      */
     public function index()
     {
-        $films = Film::with('image')->get();
+        $films =   Film::with('image')->get();
 
-        return view('admin.films.index', compact('films','image'));
+                    /* DB::table('films')
+                    ->join('images', 'films.image_id', '=', 'images.id')
+                    ->join('languages', 'films.language_id', '=', 'languages.id')
+                    ->join('categories', 'films.category_id', '=', 'categories.id')
+                    ->join('fsks', 'fsks.id', '=', 'films.fsk_id')
+                    ->select('films.*', 'images.image', 'languages.language', 'categories.category', 'fsks.id', 'fsks.image')
+                    ->paginate(20);
+
+                    var_dump($films); die;*/
+        return view('admin.films.index', compact('films'));
     }
 
     /**
@@ -102,9 +112,11 @@ class FilmsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($slug)
     {
-        //
+        $film = Film::findOrFail($slug);
+
+        return view('admin.films.show', compact('film'));
     }
 
     /**
@@ -113,9 +125,11 @@ class FilmsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($slug)
     {
-        //
+        $film = Film::findOrFail($slug);
+
+
     }
 
     /**
@@ -138,6 +152,12 @@ class FilmsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $film = Post::findOrFail($id);
+
+       $film->delete();
+
+       Session::flash('deleted_post', 'The post has been deleted');
+
+        return redirect('admin/posts');
     }
 }

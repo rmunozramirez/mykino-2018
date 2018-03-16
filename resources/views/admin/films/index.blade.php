@@ -24,13 +24,13 @@
                </thead>
                <tbody>
                   @foreach($films as $film)
-                  {{$film}}
+
                   <tr>
-                     <td>{{$film->name}}</td>
-                     <td><img height="50" src="{{URL::to('/images/' . $film->image)}}" ></td>
-                     <td>{{$film->category}}</td>
+                     <td><a href="{{route('films.show', $film->slug)}}">{{$film->name}}</a></td>
+                     <td>{{$film->image_id}}</td>
+                     <td>{{$film->category->category}}</td>
                      <td>{{$film->language->language}}</td>
-                     <td>{{$film->fsk->fsk}}</td>
+                     <td>{{$film->fsk_id}}</td>
                      <td>{{$film->year}}</td>
                   </tr>
                   @endforeach 
