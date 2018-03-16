@@ -16,7 +16,7 @@ class CreateActorsTable extends Migration
         Schema::create('actors', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->integer('image_id')->unsigned();
+            $table->integer('image_id')->unsigned()->index();
             $table->string('slug')->unique();
             $table->enum('genre', ['masculine', 'femenine']);
             $table->timestamps();

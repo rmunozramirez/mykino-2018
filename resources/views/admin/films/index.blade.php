@@ -24,10 +24,10 @@
                </thead>
                <tbody>
                   @foreach($films as $film)
-
+{{$film}}
                   <tr>
                      <td><a href="{{route('films.show', $film->slug)}}">{{$film->name}}</a></td>
-                     <td>{{$film->image_id}}</td>
+                     <td>{{$film->image }}</td>
                      <td>{{$film->category->category}}</td>
                      <td>{{$film->language->language}}</td>
                      <td>{{$film->fsk_id}}</td>

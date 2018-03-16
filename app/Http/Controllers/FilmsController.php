@@ -22,7 +22,7 @@ class FilmsController extends Controller
      */
     public function index()
     {
-        $films =   Film::with('image')->get();
+        $films =   Film::all();
 
                     /* DB::table('films')
                     ->join('images', 'films.image_id', '=', 'images.id')
@@ -116,7 +116,9 @@ class FilmsController extends Controller
     {
         $film = Film::findOrFail($slug);
 
-        return view('admin.films.show', compact('film'));
+        $image = $film->images;
+
+        return view('admin.films.show', compact('film', 'image'));
     }
 
     /**

@@ -16,7 +16,7 @@ class CreateFilmsTable extends Migration
         Schema::create('films', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->integer('image_id')->unsigned();
+            $table->integer('image_id')->unsigned()->index();
             $table->text('description');
             $table->string('slug')->unique();
             $table->string('trailer')->nullable;

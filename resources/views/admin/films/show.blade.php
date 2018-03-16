@@ -47,7 +47,13 @@
 				                                            <dd>Duration: {!! $film->duration !!}</dd>
 				                                            <dd>Language: {!! $film->language->language !!}</dd>
 				                                            <dd>Trailer: <a href="{!! $film->trailer !!}">{!! $film->name !!}</a></dd>
-				                                            <dd>Age: <a href=""><img height="50" src=""></a></dd>
+				                                            <dd>Age: <a href=""><img height="50" src="
+                                                                            @foreach ($film->images as $image)
+                                                                                <p>
+                                                                                  {{ $image->image }}
+                                                                                </p>
+                                                                              @endforeach">
+                                                                          </a></dd>
 			                                        	</tr>
 		                                        	</tbody>
 		                                        </table>

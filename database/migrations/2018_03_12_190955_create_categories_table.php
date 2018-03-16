@@ -18,7 +18,7 @@ class CreateCategoriesTable extends Migration
             $table->string('category')->unique();
             $table->string('slug')->unique();
             $table->text('description');
-            $table->integer('image_id')->unsigned();    
+            $table->integer('image_id')->unsigned()->index();    
             $table->timestamps();
         });
     }

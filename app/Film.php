@@ -43,6 +43,6 @@ class Film extends Model
 
     public function image()
     {
-        return $this->morphMany('App\Image', 'imageable');
+        return $this->hasOne('App\Image');
     }
 }

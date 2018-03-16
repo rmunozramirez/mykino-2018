@@ -58,8 +58,6 @@ class CategoriesController extends Controller
 
         $image = Image::create([
             'image'             =>  $name,
-            'imageable_type'    => 'Category',
-            'imageable_id'      =>  $category->id
         ]);
 
         $category->save();

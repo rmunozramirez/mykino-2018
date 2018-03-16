@@ -21,8 +21,8 @@ class Category extends Model
         return $this->hasMany('App\Film');
     }
 
-    public function images()
+    public function image()
     {
-        return $this->morphMany('App\Image', 'imageable');
+        return $this->hasOne('App\Image');
     }
 }
