@@ -23,6 +23,6 @@ class Category extends Model
 
     public function image()
     {
-        return $this->hasOne('App\Image');
+        return $this->hasOne('App\Image', 'category_id', 'id');
     }
 }

@@ -2,12 +2,18 @@
 
 @section('content')
 
-
-
 <div class="card">
+    <div class="card-header">           
+      <div class="row">  
+        <div class="col-md-9">  
+          <h2>Actors</h2>
+        </div>  
+        <div class="col-md-3"> 
+          <a class="btn btn-success pull-right" href="{{route('actors.create')}}">Create new Actor</a>
+        </div>  
+      </div>  
+    </div> 
     <div class="card-body">        
-        <h2>Actors</h2>
-
             @if($actors)
             <table class="table">
                <thead>
@@ -21,9 +27,7 @@
                   @foreach($actors as $actor)
                   <tr>
                      <td><a href="{{route('actors.show', $actor->id)}}">{{$actor->name}}</a></td>
-                     <td>
-                        <img height="50" src="{{URL::to('/images/' . $actor->image)}}" alt="{{$actor->name}}" >
-                     </td>
+                     <td>{{$actor->image_id}}</td>
                      <td><a href="">{{$actor->films_count}}</a></td>
 
                   </tr>

@@ -10,7 +10,6 @@ class Fsk extends Model
 	protected $fillable = [
 
 		'fsk',
-		'slug_fsk',
 		'image_id',
         'slug',
 		

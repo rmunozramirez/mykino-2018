@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="{{ app()->getLocale() }}">
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,22 +9,24 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('app.name', 'My Kino') }}</title>
 
     <!-- Styles -->
+    <link href="{{ asset('css/libs.css') }}" rel="stylesheet">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/bootstrap/bootstrap.css') }}" rel="stylesheet">
+    <!-- link href="{{ asset('css/bootstrap/bootstrap.css') }}" rel="stylesheet">
     <link href="{{ asset('css/toastr.css') }}" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote-bs4.css" rel="stylesheet">
-    <link href="http://code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css" rel="stylesheet">
+    <link href="http://code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css" rel="stylesheet" -->
 
 </head>
+
 <body>
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
+                    {{ config('app.name', 'My Kino') }}
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -39,99 +42,80 @@
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
                         @guest
-                            <li><a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a></li>
-                            <li><a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a></li>
+                        <li><a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a></li>
+                        <li><a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a></li>
                         @else
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+
+                        <li><a class="nav-link" href="{{route('dashboard')}}">Dashboard</a></li>
+                        <li><a class="nav-link" href="{{route('films.index')}}">Films</a></li>
+                        <li><a class="nav-link" href="{{route('categories.index')}}">Categories</a></li>
+                        <li><a class="nav-link" href="{{route('fsk.index')}}">Age</a></li>
+                        <li><a class="nav-link" href="{{route('language.index')}}">Languages</a></li>
+                        <li><a class="nav-link" href="{{route('actors.index')}}">Actor</a></li>
+
+                        <li class="nav-item dropdown">
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
 
-                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
 
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                        @csrf
-                                    </form>
-                                </div>
-                            </li>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                    @csrf
+                                </form>
+                            </div>
+                        </li>
                         @endguest
                     </ul>
+
                 </div>
             </div>
         </nav>
 
         <main class="container pt-4">
-            <div class="row">
 
-                @if(Auth::check())
-                    <div class="col-lg-3">
-                        <ul class="list-group">
-                        <li class="list-group-item"><a href="{{route('dashboard')}}">Dashboard</a></li>
-                        <hr>
-                        <li class="list-group-item"><a href="{{route('films.index')}}">Films</a></li>
-                        <li class="list-group-item"><a href="{{route('films.create')}}">Create new Film</a></li>
-                        <hr>
-                        <li class="list-group-item"><a href="{{route('categories.index')}}">Categories</a></li>
-                        <li class="list-group-item"><a href="{{route('categories.create')}}">Create new Category</a></li>
-                        <hr>  
-                        <li class="list-group-item"><a href="{{route('language.index')}}">Languages</a></li>
-                        <li class="list-group-item"><a href="{{route('language.create')}}">Create new Language</a></li>
-                        <hr>  
-                        <li class="list-group-item"><a href="{{route('actors.index')}}">Actor</a></li>
-                        <li class="list-group-item"><a href="{{route('actors.create')}}">Create new Actor</a></li>
+            <div class="col-lg-12">
+                @yield('content')
+            </div>
 
-                        </ul>    
-                    </div>
-                @endif
+        </main>
 
-                <div class="col-lg-9">
-                    @yield('content')
-                </div>
+    </div>
 
-            </main>
-
-
-        </div>
-
-
-        
     </div>
 
     <!-- Scripts -->
-@yield('scripts')
-    <script src="{{ asset('js/app.js') }}"></script>
+    @yield('scripts')
+    <!--script src="{{ asset('js/app.js') }}"></script>
     <script src="{{ asset('js/bootstrap/bootstrap.js') }}"></script>
     <script src="{{ asset('js/toastr.min.js') }}"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote-bs4.js"></script>
+    < script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote-bs4.js"></script -->
     <script>
-
-     $('#summernote').summernote({
-        placeholder: 'And the Oscars goes to...',
-        tabsize: 2,
-        height: 200
-      });
-
+        $('#summernote').summernote({
+            placeholder: 'And the Oscars goes to...',
+            tabsize: 2,
+            height: 200
+        });
     </script>
-    <script>  
-     //toastr
+    <script>
+        //toastr
 
-     @if(Session::has('info'))
+        @if(Session::has('info'))
 
         toastr.info("{{Session::get('info')}}")
 
-     @endif
+        @endif
 
-     @if(Session::has('success'))
+        @if(Session::has('success'))
 
         toastr.success("{{Session::get('success')}}")
 
-     @endif
-
+        @endif
     </script>
 </body>
+
 </html>

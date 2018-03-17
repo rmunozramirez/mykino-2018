@@ -44,20 +44,21 @@ class ActorsController extends Controller
         $file = $request->file('image');
         $name = time() . '-' . $file->getClientOriginalName();
         $file->move('images', $name);
-
-        $last_img = Image::orderBy('id', 'desc')->first();
+        
+        $last_img = Image::orderBy('id', 'desc')->first(); 
+               
+        is_null($last_img) ? $img_id = 1 : $img_id =  $last_img->id + 1;
        
         $actor = Actor::create([
             'name'      =>  $request->name,
             'genre'   =>  $request->genre,
             'slug'          =>  str_slug($request->name, '-'),
-            'image_id'      =>  $last_img->id + 1,
+            'image_id'      =>  $img_id,
         ]);        
 
         $image = Image::create([
             'image'             =>  $name,
-            'imageable_type'    => 'Actor',
-            'imageable_id'      =>  $actor->id
+            'actor_id'      =>  $actor->id
         ]);
 
         $actor->save();

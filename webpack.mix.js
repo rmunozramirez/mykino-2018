@@ -13,3 +13,23 @@ let mix = require('laravel-mix');
 
 mix.js('resources/assets/js/app.js', 'public/js')
    .sass('resources/assets/sass/app.scss', 'public/css');
+
+mix.styles([
+    'resources/assets/css/bootstrap/bootstrap.css',
+    'resources/assets/css/bootstrap/bootstrap-grid.css',
+    'resources/assets/css/bootstrap/bootstrap-reboot.css',
+    'resources/assets/css/libs/toastr.css',
+    'resources/assets/css/libs/summernote-bs4.css',
+
+
+], 'public/css/libs.css');
+
+mix.scripts([
+
+    'resources/assets/js/libs/toastr.min.css',
+    'resources/assets/js/libs//summernote-bs4.css',
+    'resources/assets/js/bootstrap/bootstrap-bundle.js',
+    'resources/assets/js/bootstrap/bootstrap.js',
+
+], 'public/js/libs.js');
+

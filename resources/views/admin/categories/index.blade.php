@@ -2,12 +2,20 @@
 
 @section('content')
 
-
-
 <div class="card">
-    <div class="card-body">        
-        <h2>Categories</h2>
 
+    <div class="card-header">           
+      <div class="row">  
+        <div class="col-md-9">  
+          <h2><img height="30" src="{{URL::to('/images/category.png') }}" alt="{{count($categories)}} Categories">{{count($categories)}}  Categories</h2>
+        </div>  
+        <div class="col-md-3"> 
+          <a class="btn btn-success pull-right" href="{{route('categories.create')}}">Create new Category</a>
+        </div>  
+      </div>  
+    </div>  
+    <div class="card-body">        
+         
             @if($categories)
             <table class="table">
                <thead>
@@ -21,13 +29,12 @@
                <tbody>
                   @foreach($categories as $category)
                   <tr>
-                     <td><a href="{{route('categories.show', $category->id)}}">{{$category->category}}</a></td>
+                     <td><a href="{{route('categories.show', $category->slug)}}">{{$category->category}}</a></td>
                      <td>
-                        <img height="50" src="{{$category->image_id ? URL::to($category->image) : URL::to('/images/category.png')}}" alt="{{$category->category}}" >
-                     </td>
+                      <img height="80" src="{{$category->image ? URL::to('/images/' . $category->image->image) : URL::to('/images/category.png') }}" alt="{{$category->category}}" >
+                    </td>
                      <td>{{str_limit($category->description, 100, '...')}}</td>
-                     <td><a href="">{{$category->films_count}}</a></td>
-
+                     <td><a href="{{route('categories.show', $category->slug)}}">{{$category->films_count}}</a></td>
                   </tr>
                   @endforeach 
             @endif
@@ -35,6 +42,12 @@
             </table>
        
 
+    </div>
+
+    <div class="card-footer">
+      <div class="text-center">
+          {{ $categories->links() }}
+      </div>
     </div>
 </div>
 

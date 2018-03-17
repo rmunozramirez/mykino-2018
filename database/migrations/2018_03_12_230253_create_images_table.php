@@ -16,6 +16,9 @@ class CreateImagesTable extends Migration
         Schema::create('images', function (Blueprint $table) {
             $table->increments('id');
             $table->string('image');
+            $table->string('film_id')->index()->default();
+            $table->string('actor_id')->index()->default();
+            $table->string('category_id')->index()->default();
             $table->timestamps();
         });
     }

@@ -10,23 +10,20 @@ class Image extends Model
 	protected $fillable = [
 
 		'image',
+        'film_id',
+        'actor_id',
+        'category_id',
 
 	];
 
-    public function imageable()
-    {
-        return $this->morphTo();
-    }
-
-
     public function film()
     {
-        return $this->belongsTo('App\Film');
+        return $this->belongsTo('App\Film', 'film_id', 'id');
     }
 
     public function category()
     {
-        return $this->belongsTo('App\Category');
+        return $this->belongsTo('App\Category', 'category_id', 'id');
     }
 
     public function actor()

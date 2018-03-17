@@ -20,9 +20,9 @@
 
 <div class="card">
     <div class="card-body">        
-        <h2>Create a new Category</h2>
+        <h2>Edit Category {{$category}}</h2>
 
-        {!!Form::open(array('route' => 'categories.store', 'files' => true)) !!}   
+        {!! Form::model($category, ['method'=>'PATCH', 'action'=> ['CategoriesController@update', $category->slug ],'files'=>true]) !!}
 
         <div class="pt-4">        
             {!!Form::label('category', 'Add a Category name', array('class' => 'form-spacing-top'))!!}
@@ -30,8 +30,15 @@
         </div>
 
         <div class="pt-4"> 
-            {!!Form::label('image', 'Upload a Featured Image') !!}
-            {!!Form::file('image') !!}
+            <div class="row"> 
+                <div class="col-md-6"> 
+                    <img src="{{URL::to('/images/' . $category->image) }}" alt="{{$category->category}}">
+                </div>  
+                <div class="col-md-6"> 
+                    {!!Form::label('image', 'Upload a Featured Image') !!}
+                    {!!Form::file('image') !!}
+                </div>  
+            </div>  
         </div>  
 
         <div class="pt-4">       

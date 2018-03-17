@@ -22,17 +22,8 @@ class FilmsController extends Controller
      */
     public function index()
     {
-        $films =   Film::all();
+        $films = Film::with('image')->get();
 
-                    /* DB::table('films')
-                    ->join('images', 'films.image_id', '=', 'images.id')
-                    ->join('languages', 'films.language_id', '=', 'languages.id')
-                    ->join('categories', 'films.category_id', '=', 'categories.id')
-                    ->join('fsks', 'fsks.id', '=', 'films.fsk_id')
-                    ->select('films.*', 'images.image', 'languages.language', 'categories.category', 'fsks.id', 'fsks.image')
-                    ->paginate(20);
-
-                    var_dump($films); die;*/
         return view('admin.films.index', compact('films'));
     }
 
@@ -58,6 +49,8 @@ class FilmsController extends Controller
             return redirect()->back();
         }
 
+        $last_img = Image::orderBy('id', 'desc')->first();
+
         return view('admin.films.create', compact('films', 'categories', 'languages', 'fsks'));
 
     }
@@ -75,7 +68,9 @@ class FilmsController extends Controller
         $name = time() . '-' . $file->getClientOriginalName();
         $file->move('images', $name);
 
-        $last_img = Image::orderBy('id', 'desc')->first();
+        $last_img = Image::orderBy('id', 'desc')->first(); 
+               
+        is_null($last_img) ? $img_id = 1 : $img_id =  $last_img->id + 1;
 
         $film = Film::create([
     
@@ -88,13 +83,14 @@ class FilmsController extends Controller
             'language_id'   => $request->language_id,
             'description'   => $request->description,
             'slug'          => str_slug($request->name, '-'),
-            'image_id'      => $last_img->id + 1,
-        ]);        
+            'image_id'      => $img_id
+
+       ]);   
 
         $image = Image::create([
-            'image'             =>  $name,
-            'imageable_type'    => 'Film',
-            'imageable_id'      =>  $film->id
+            'image'         =>  $name,
+            'film_id'       => $film->id,
+
         ]);
 
 
@@ -114,11 +110,9 @@ class FilmsController extends Controller
      */
     public function show($slug)
     {
-        $film = Film::findOrFail($slug);
+        $film = Film::with('category')->where('slug', $slug)->first();
 
-        $image = $film->images;
-
-        return view('admin.films.show', compact('film', 'image'));
+        return view('admin.films.show', compact('film'));
     }
 
     /**
@@ -129,8 +123,10 @@ class FilmsController extends Controller
      */
     public function edit($slug)
     {
-        $film = Film::findOrFail($slug);
 
+        $film = Film::where('slug', $slug)->pluck('name', 'id');
+
+        return view('admin.films.edit', compact('film'));
 
     }
 
@@ -141,9 +137,25 @@ class FilmsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(FilmsRequest $request, $id)
+    public function update(FilmsRequest $request, $slug)
     {
-        //
+
+        $input = $request->all();
+        $input['slug'] = str_slug($request->category, '-');
+
+        if ( $file = $request->file('image')) {
+            $name = time() . '-' . $file->getClientOriginalName();
+            $file->move('images', $name);
+            $image = Image::create(['image' =>  $name]);
+            $input['image_id'] = $image->id;
+        }
+
+        Film::find($slug)->update($input);
+
+        Session::flash('success', 'Film successfully updated!');
+     
+        return redirect()->route('categories.index');
+
     }
 
     /**

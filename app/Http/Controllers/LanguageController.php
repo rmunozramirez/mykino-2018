@@ -20,7 +20,7 @@ class LanguageController extends Controller
     public function index()
     {
         
-        $languages = Language::all();
+        $languages = Language::withCount('films')->get();
 
         return view('admin.language.index', compact('languages'));
     }
@@ -47,7 +47,9 @@ class LanguageController extends Controller
         $name = time() . '-' . $file->getClientOriginalName();
         $file->move('images', $name);
 
-        $last_img = Image::orderBy('id', 'desc')->first();
+        $last_img = Image::orderBy('id', 'desc')->first(); 
+               
+        is_null($last_img) ? $img_id = 1 : $img_id =  $last_img->id + 1;
         
         $language = Language::create([
             'language'      =>  $request->language,
@@ -75,9 +77,13 @@ class LanguageController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($slug)
     {
-        //
+      $language = Language::withCount('films')->where('slug', $slug)->first();
+
+        $films = Film::where('language_id', $language->id)->get();
+       
+        return view('admin.language.show', compact('language', 'films'));
     }
 
     /**

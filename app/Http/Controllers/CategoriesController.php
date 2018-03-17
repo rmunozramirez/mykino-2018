@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\CategoriesRequest;
 use App\Category;
 use App\Image;
+use App\Film;
 use Session;
 
 
@@ -19,7 +20,8 @@ class CategoriesController extends Controller
     public function index()
     {
         
-        $categories = Category::withCount('films')->get();
+        $categories = Category::withCount('films')->paginate(12);
+
         return view('admin.categories.index', compact('categories'));
     }
 
@@ -46,14 +48,16 @@ class CategoriesController extends Controller
         $file = $request->file('image');
         $name = time() . '-' . $file->getClientOriginalName();
         $file->move('images', $name);
-
-        $last_img = Image::orderBy('id', 'desc')->first();
+        
+        $last_img = Image::orderBy('id', 'desc')->first(); 
+               
+        is_null($last_img) ? $img_id = 1 : $img_id =  $last_img->id + 1;
        
         $category = Category::create([
             'category'      =>  $request->category,
             'description'   =>  $request->description,
             'slug'          =>  str_slug($request->category, '-'),
-            'image_id'      =>  $last_img->id + 1,
+            'image_id'      =>  $img_id,
         ]);        
 
         $image = Image::create([
@@ -74,10 +78,12 @@ class CategoriesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($slug)
     {
  
-        $category = Category::findOrFail($id)->withCount('films')->with('films');
+        $category = Category::withCount('films')->where('slug', $slug)->first();
+
+        $films = Film::where('category_id', $category->id)->get();
 
         return view('admin.categories.show', compact('category', 'films'));
 
@@ -89,12 +95,12 @@ class CategoriesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($slug)
     {
 
-        $category = Category::findOrFail($id)->withCount('film')->with('films');
+        $category = Category::where('slug', $slug)->first();
 
-        return view('admin.categories.show', compact('category'));
+        return view('admin.categories.edit', compact('category'));
 
     }
 
@@ -105,33 +111,25 @@ class CategoriesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(CategoriesRequest $request, $id)
+    public function update(CategoriesRequest $request, $slug)
     {
 
-        $file = $request->file('image');
-        $name = time() . '-' . $file->getClientOriginalName();
-        $file->move('images', $name);
+        $input = $request->all();
+        $input['slug'] = str_slug($request->category, '-');
 
-        $last_img = Image::orderBy('id', 'desc')->first();
-       
-        $category = Category::create([
-            'category'      =>  $request->category,
-            'description'   =>  $request->description,
-            'slug'          =>  str_slug($request->category, '-'),
-            'image_id'      =>  $last_img->id + 1,
-        ]);        
+        if ( $file = $request->file('image')) {
+            $name = time() . '-' . $file->getClientOriginalName();
+            $file->move('images', $name);
+            $image = Image::create(['image' =>  $name]);
+            $input['image_id'] = $image->id;
+        }
 
-        $image = Image::create([
-            'image'             =>  $name,
-            'imageable_type'    => 'Category',
-            'imageable_id'      =>  $category->id
-        ]);
+        Category::find($slug)->update($input);
 
-        $category->save();
-
-        Session::flash('success', 'Category successfully created!');
+        Session::flash('success', 'Category successfully updated!');
      
         return redirect()->route('categories.index');
+
     }
 
     /**
@@ -140,8 +138,16 @@ class CategoriesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($slug)
     {
-        //
+
+       $category = Category::find($slug);
+
+       $category->delete();
+
+       Session::flash('deleted_user', 'The users has been deleted');
+
+        returnview('admin.categories.index');
+
     }
 }
