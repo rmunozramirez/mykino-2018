@@ -5,11 +5,15 @@
 <div class="card">
     <div class="card-header">           
       <div class="row">  
-        <div class="col-md-9">  
+        <div class="col-md-10 page-logo">  
           <h2><img height="30" src="{{URL::to('/images/age.png') }}" alt="Categories" > Films per Age</h2>
-        </div>   
+        </div>  
+        <div class="col-md-2 "> 
+          <a class="btn btn-outline-success page-btns" href="{{route('films.index')}}"> Films</a>
+        </div>  
       </div>  
-    </div>   
+    </div> 
+
     <div class="card-body">        
             @if($fsks)
             <table class="table">

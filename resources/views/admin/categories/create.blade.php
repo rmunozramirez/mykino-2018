@@ -1,26 +1,29 @@
 @extends('layouts.app')
 
-
-
 @section('content')
 
     @if(count($errors) > 0)
-
         <ul class="list-group">
-            
+         
             @foreach($errors->all() as $error)
-
                 <li class="list-group-item text-danger">{{$error}}</li>
-
             @endforeach
-
         </ul>
-
     @endif
 
 <div class="card">
+    <div class="card-header">           
+      <div class="row">  
+        <div class="col-md-9">  
+          <h2><img class="film-thumbnail" height="30" src="{{URL::to('/images/category.png') }}" alt="{{count($categories)}} Categories">Create a new Category</h2>
+        </div>  
+        <div class="col-md-3"> 
+          <a class="btn btn-outline-success page-btns" href="{{route('categories.index')}}">{{count($categories)}}  Categories</a>
+        </div>  
+      </div>  
+    </div>  
     <div class="card-body">        
-        <h2>Create a new Category</h2>
+        
 
         {!!Form::open(array('route' => 'categories.store', 'files' => true)) !!}   
 

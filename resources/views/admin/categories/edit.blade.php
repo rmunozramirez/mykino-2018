@@ -19,20 +19,29 @@
     @endif
 
 <div class="card">
+    <div class="card-header">           
+      <div class="row">  
+        <div class="col-md-10 page-logo">  
+          <h2><img height="30" src="{{URL::to('/images/Category.png') }}" alt="{{$category->category}}">Edit {{$category->category}}</h2>
+        </div>  
+        <div class="col-md-2 "> 
+          <a class="btn btn-outline-success page-btns" href="{{route('categories.index')}}"> Categories</a>
+        </div>  
+      </div>  
+    </div> 
     <div class="card-body">        
-        <h2>Edit Category {{$category}}</h2>
 
         {!! Form::model($category, ['method'=>'PATCH', 'action'=> ['CategoriesController@update', $category->slug ],'files'=>true]) !!}
 
         <div class="pt-4">        
-            {!!Form::label('category', 'Add a Category name', array('class' => 'form-spacing-top'))!!}
+            {!!Form::label('category', 'Category name', array('class' => 'form-spacing-top'))!!}
             {!!Form::text('category', null, array('class' => 'form-control', 'required' => '', 'maxlength' => '255'))!!}
         </div>
 
         <div class="pt-4"> 
             <div class="row"> 
                 <div class="col-md-6"> 
-                    <img src="{{URL::to('/images/' . $category->image) }}" alt="{{$category->category}}">
+                    <img height="180" src="{{$category->image ? URL::to('/images/' . $category->image->image) : URL::to('/images/category.png') }}" alt="{{$category->category}}">
                 </div>  
                 <div class="col-md-6"> 
                     {!!Form::label('image', 'Upload a Featured Image') !!}

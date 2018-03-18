@@ -15,10 +15,16 @@ class CreateActorFilmTable extends Migration
     {
         Schema::create('actor_film', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('actor_id');
-            $table->integer('film_id');
+            $table->integer('actor_id')->unsigned();
+            $table->integer('film_id')->unsigned();;
             $table->timestamps();
         });
+
+       Schema::table('actor_film', function($table) {
+           $table->foreign('actor_id')->references('id')->on('actors');
+           $table->foreign('film_id')->references('id')->on('films');
+       });
+
     }
 
     /**
@@ -28,6 +34,8 @@ class CreateActorFilmTable extends Migration
      */
     public function down()
     {
+        DB::statement('SET FOREIGN_KEY_CHECKS = 0');
         Schema::dropIfExists('actor_film');
+        DB::statement('SET FOREIGN_KEY_CHECKS = 1');
     }
 }

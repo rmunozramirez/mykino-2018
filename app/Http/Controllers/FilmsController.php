@@ -38,6 +38,7 @@ class FilmsController extends Controller
         $categories = Category::pluck('category', 'id')->all();
         $languages = Language::pluck('language', 'id')->all(); 
         $fsks  = Fsk::pluck('fsk', 'id')->all(); 
+        $films  = Film::all(); 
                       
         $categoriescount = Category::all();
         $languagescount = Language::all();
@@ -90,6 +91,8 @@ class FilmsController extends Controller
         $image = Image::create([
             'image'         =>  $name,
             'film_id'       => $film->id,
+            'actor_id'       => 0,
+            'category_id'   => 0,
 
         ]);
 
@@ -124,9 +127,10 @@ class FilmsController extends Controller
     public function edit($slug)
     {
 
-        $film = Film::where('slug', $slug)->pluck('name', 'id');
-
-        return view('admin.films.edit', compact('film'));
+        //find the film in the database
+        $film = Film::where('slug', $slug)->first(); 
+        $films = Film::all();
+          return view('admin.films.edit', compact('film', 'films'));
 
     }
 

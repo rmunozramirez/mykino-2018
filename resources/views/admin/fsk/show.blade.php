@@ -5,10 +5,10 @@
         <div class="row">
             <div class="col-md-9">
                 <h2><img height="50" src="{{URL::to('/images/' . $fsk->image)}}" alt="{{$fsk->fsk}}" > 
-           {{$fsk->fsk}}</h2>
+           {{$fsk->films_count}} films {{$fsk->fsk}} years</h2>
             </div>
             <div class="col-md-3">
-                <div>{{$fsk->films_count}} films</div>
+                <a type="button" class="btn btn-outline-success page-btns mt-2 mb-2" href="{{route('fsk.index')}}">Back</a>
             </div>
         </div>
     </div>
@@ -18,25 +18,23 @@
             <thead>
                 <tr>
                     <th>Film</th>
-                    <th>Image</th>
-                    <th>Language</a>
-                    </th>
-                    <th>Year</a>
-                    </th>
+                    <th>Category</th>                   
+                    <th>Language</th>
+                    <th>Year</a></th>
                 </tr>
             </thead>
             <tbody>
                 @foreach($films as $film)
                 <tr>
-                    <td><a href="{{route('films.show', $film->slug)}}">{{$film->name}}</a></td>
                     <td>
-                        <img height="80" src="{{URL::to('/images/' . $film->image->image ) }}" alt="{{$film->name}}">
-
-                    </td>
+                        <img  class="film-thumbnail" height="80" src="{{URL::to('/images/' . $film->image->image ) }}" alt="{{$film->name}}">
+                        <a href="{{route('films.show', $film->slug)}}">{{$film->name}}</a></td>
+                    <td>{{$film->category->category}}</td>                        
                     <td><a href="{{route('language.show', $film->language->slug)}}">
                         <img height="80" src="{{URL::to('/images/' . $film->language->image ) }}" alt="{{$film->name}}"></a>
                     </td>
                     <td>{{$film->year}}</td>
+
                 </tr>
                 @endforeach
             </tbody>

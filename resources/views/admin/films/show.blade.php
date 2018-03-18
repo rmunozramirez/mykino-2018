@@ -6,11 +6,11 @@
     <div class="card-header">           
       <div class="row">  
         <div class="col-md-10">  
-            <h2 class="card-title">{{ $film->name }}</h2>
+            <h2 class="card-title"><img height="30" src="{{URL::to('/images/film.png') }}" alt="{{ $film->name }}" > {{ $film->name }}</h2>
         </div>  
         <div class="col-md-2  page-btns"> 
-            <a type="button" class="btn btn-sm btn-outline-secondary page-btns" href="{{route('films.edit', $film->slug)}}">Edit</a>
-            <a type="button" class="btn btn-sm btn-outline-danger page-btns" href="{{route('films.delete', $film->slug)}}">Delete</a>
+            <a type="button" class="btn btn-outline-secondary page-btns" href="{{route('films.edit', $film->slug)}}">Edit</a>
+            <a type="button" class="btn film-thumbnail btn-outline-danger page-btns" href="{{route('films.delete', $film->slug)}}">Delete</a>
         </div>  
       </div>  
     </div>  
@@ -20,23 +20,26 @@
       <!-- Tab panels -->
 
             <div class="row py-3">
-               <div class="col-md-5">
+               <div class="col-md-4">
                   <img  src="{{URL::to('/images/' . $film->image->image ) }}" alt="{{$film->name}}" >
                </div>
-               <div class="col-md-7">
+
+               <div class="col-md-8">
                   <dl>
                      <dd>Title:{!! $film->name !!}</dd>
                      <dd>Genre: <a href="{{route('categories.show', $film->category->slug)}}">{!! $film->category->category !!}</a></dd>
                      <dd>Date: {!! $film->year !!}</dd>
                      <dd>Duration: {!! $film->duration !!}</dd>
                      <dd>Language: {!! $film->language->language !!}</dd>
-                     <dd>Trailer: <a href="{!! $film->trailer !!}">{!! $film->name !!}</a>
+                     <video id="player-obj" controls="" src="{!! $film->trailer !!}" frameborder="0" allowfullscreen></video>
+                     
                      <dd>Age: <a href="{{route('fsk.show', $film->fsk->slug)}}"><img height="50" src="{{URL::to('/images/' . $film->fsk->image ) }}" alt="{{$film->name}}" ></a> </dd>
                   </dl>
                </div>
-
             </div>
-            <hr>
+
+    <hr />
+
             <div class="row">
                <!--/.Panel 1-->
                <!--Panel 2-->

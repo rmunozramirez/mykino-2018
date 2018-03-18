@@ -5,10 +5,10 @@
         <div class="row">
             <div class="col-md-9">
                 <h2><img height="50" src="{{URL::to('/images/' . $language->image)}}" alt="{{$language->language}}" > 
-           {{$language->language}}</h2>
+            {{$language->films_count}} films in {{$language->language}}</h2>
             </div>
             <div class="col-md-3">
-                <div>{{$language->films_count}} films</div>
+                <a type="button" class="btn btn-outline-success page-btns mt-2 mb-2" href="{{route('language.index')}}">Back to languages</a>
             </div>
         </div>
     </div>
@@ -18,8 +18,8 @@
             <thead>
                 <tr>
                     <th>Film</th>
-                    <th>Image</th>
                     <th>Category</a></th>
+                    <th>Fsk</th>
                     <th>Year</a>
                     </th>
                 </tr>
@@ -27,12 +27,15 @@
             <tbody>
                 @foreach($films as $film)
                 <tr>
-                    <td><a href="{{route('films.show', $film->slug)}}">{{$film->name}}</a></td>
                     <td>
-                        <img height="80" src="{{URL::to('/images/' . $film->image->image ) }}" alt="{{$film->name}}">
+                        <img  class="film-thumbnail" height="80" src="{{URL::to('/images/' . $film->image->image ) }}" alt="{{$film->name}}">
+                        <a href="{{route('films.show', $film->slug)}}">{{$film->name}}</a></td>
+                    <td><a href="{{route('categories.show', $film->category->slug)}}">{{$film->category->category}}</a></td>
+                    <td>
+                        <a href="{{route('fsk.show', $film->fsk->slug)}}"><img height="50" src="{{$film->fsk->image ? URL::to('/images/' . $film->fsk->image) : URL::to('/images/language.png')}}" alt="{{$film->name}}" ></a></td>
+
 
                     </td>
-                    <td><a href="{{route('categories.show', $film->category->slug)}}">{{$film->category->category}}</a></td>
                     <td>{{$film->year}}</td>
                 </tr>
                 @endforeach

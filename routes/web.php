@@ -62,7 +62,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
 	Route::get('/actors/index', 'ActorsController@index')->name('actors.index');
 	Route::get('/actors/create', 'ActorsController@create')->name('actors.create');	
 	Route::post('/actors/store', 'ActorsController@store')->name('actors.store');	
-	Route::get('/actors/show/{id}', 'ActorsController@show')->name('actors.show');
+	Route::get('/actors/{slug}', 'ActorsController@show')->name('actors.show')->where('slug', '[\w\d\-\_]+');
 
 	//fsks
 	Route::get('/fsk/index', 'FskController@index')->name('fsk.index');

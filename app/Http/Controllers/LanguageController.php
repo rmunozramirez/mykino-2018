@@ -32,7 +32,8 @@ class LanguageController extends Controller
      */
     public function create()
     {
-        return view('admin.language.create');
+        $language = Language::all();
+        return view('admin.language.create', compact('language'));
     }
 
     /**

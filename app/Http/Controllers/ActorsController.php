@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\ActorsRequest;
 use App\Actor;
 use App\Image;
+use App\Film;
 use Session;
 
 class ActorsController extends Controller
@@ -29,8 +30,8 @@ class ActorsController extends Controller
      */
     public function create()
     {
-
-        return view('admin.actors.create');
+        $actors = Actor::all();
+        return view('admin.actors.create', compact('actors'));
     }
 
     /**
@@ -58,7 +59,9 @@ class ActorsController extends Controller
 
         $image = Image::create([
             'image'             =>  $name,
-            'actor_id'      =>  $actor->id
+            'actor_id'      =>  $actor->id,
+            'film_id'       => 0,
+            'category_id'   => 0,
         ]);
 
         $actor->save();
@@ -74,9 +77,12 @@ class ActorsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($slug)
     {
-        //
+
+        $actor = Actor::where('slug', $slug)->first();
+
+        return view('admin.actors.show', compact('actor'));
     }
 
     /**

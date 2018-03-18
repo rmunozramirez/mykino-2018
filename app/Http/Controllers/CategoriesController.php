@@ -32,8 +32,8 @@ class CategoriesController extends Controller
      */
     public function create()
     {
-
-        return view('admin.categories.create');
+        $categories = Category::all();
+        return view('admin.categories.create', compact('categories'));
     }
 
     /**
@@ -61,7 +61,10 @@ class CategoriesController extends Controller
         ]);        
 
         $image = Image::create([
-            'image'             =>  $name,
+            'image'         =>  $name,
+            'film_id'       => 0,
+            'actor_id'      => 0,
+            'category_id'   => $film->id,
         ]);
 
         $category->save();

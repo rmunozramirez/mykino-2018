@@ -1,26 +1,30 @@
 @extends('layouts.app')
 
-
-
 @section('content')
 
     @if(count($errors) > 0)
-
         <ul class="list-group">
-            
+        
             @foreach($errors->all() as $error)
 
                 <li class="list-group-item text-danger">{{$error}}</li>
 
             @endforeach
-
         </ul>
-
     @endif
 
 <div class="card ">
+        <div class="card-header">           
+      <div class="row">  
+        <div class="col-md-10 page-logo">  
+          <h2><img height="30" src="{{URL::to('/images/film.png') }}" alt="{{count($films)}} Films" >Add Films </h2>
+        </div>  
+        <div class="col-md-2 "> 
+          <a class="btn btn-outline-success page-btns" href="{{route('films.index')}}">{{count($films)}} Films</a>
+        </div>  
+      </div>  
+    </div> 
     <div class="card-body">        
-        <h2>Create a new Film</h2>
 
         {!!Form::open(array('route' => 'films.store', 'files' => true)) !!}   
 
@@ -28,16 +32,21 @@
             {!!Form::label('name', 'Add a film name', array('class' => 'form-spacing-top'))!!}
             {!!Form::text('name', null, array('class' => 'form-control', 'required' => '', 'maxlength' => '255'))!!}
         </div>
+        
+        <div class="pt-3 row">       
+            <div class="col-md-6"> 
+                <div class="pt-3"> 
+                        {!! Form::label('category_id', 'Category:') !!}
+                        {!! Form::select('category_id', ['' => 'Choose a Category'] + $categories, null, array('class' => 'form-control'))!!}
+                </div>
+            </div>
 
-        <div class="pt-3"> 
-                {!! Form::label('category_id', 'Category:') !!}
-                {!! Form::select('category_id', ['' => 'Choose a Category'] + $categories, null, array('class' => 'form-control'))!!}
-        </div>
-
-
-        <div class="pt-3"> 
-            {!!Form::label('trailer', 'Trailer link:', array('class' => 'form-spacing-top'))!!}
-            {!!Form::text('trailer', null, array('class' => 'form-control')) !!}
+            <div class="col-md-6">   
+                <div class="pt-3"> 
+                    {!!Form::label('trailer', 'Trailer link:', array('class' => 'form-spacing-top'))!!}
+                    {!!Form::text('trailer', null, array('class' => 'form-control')) !!}
+                </div>
+            </div>
         </div>
 
         <div class="pt-3 row">       

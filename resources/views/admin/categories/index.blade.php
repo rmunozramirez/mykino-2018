@@ -6,11 +6,11 @@
 
     <div class="card-header">           
       <div class="row">  
-        <div class="col-md-9">  
-          <h2><img height="30" src="{{URL::to('/images/category.png') }}" alt="{{count($categories)}} Categories">{{count($categories)}}  Categories</h2>
+        <div class="col-md-10">  
+          <h2><img class="film-thumbnail" height="30" src="{{URL::to('/images/category.png') }}" alt="{{count($categories)}} Categories">{{count($categories)}}  Categories</h2>
         </div>  
-        <div class="col-md-3"> 
-          <a class="btn btn-success pull-right" href="{{route('categories.create')}}">Create new Category</a>
+        <div class="col-md-2"> 
+          <a class="btn btn-outline-success page-btns" href="{{route('categories.create')}}">Add a Category</a>
         </div>  
       </div>  
     </div>  

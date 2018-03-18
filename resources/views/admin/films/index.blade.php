@@ -10,8 +10,8 @@
         <div class="col-md-10 page-logo">  
           <h2><img height="30" src="{{URL::to('/images/film.png') }}" alt="{{count($films)}} Films" >{{count($films)}} Films </h2>
         </div>  
-        <div class="col-md-2 page-btns"> 
-          <a class="btn btn-outline-success pull-right" href="{{route('films.create')}}">Add film</a>
+        <div class="col-md-2 "> 
+          <a class="btn btn-outline-success page-btns" href="{{route('films.create')}}">Add film</a>
         </div>  
       </div>  
     </div> 
