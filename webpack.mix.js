@@ -20,16 +20,19 @@ mix.styles([
     'resources/assets/css/bootstrap/bootstrap-reboot.css',
     'resources/assets/css/libs/toastr.css',
     'resources/assets/css/libs/summernote-bs4.css',
+    'resources/assets/css/libs/parsley.css',
 
 
 ], 'public/css/libs.css');
 
 mix.scripts([
 
-    'resources/assets/js/libs/toastr.min.css',
-    'resources/assets/js/libs//summernote-bs4.css',
+    'resources/assets/js/libs/toastr.min.js',
+    'resources/assets/js/libs/parsley.min.js',
+    'resources/assets/js/libs//summernote-bs4.js',
     'resources/assets/js/bootstrap/bootstrap-bundle.js',
     'resources/assets/js/bootstrap/bootstrap.js',
+
 
 ], 'public/js/libs.js');
 

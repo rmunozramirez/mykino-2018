@@ -40,13 +40,15 @@
             @foreach($films as $film)
             <tr>
                <td>
-               <img class="film-thumbnail" height="50" src="{{URL::to('/images/' . $film->image->image ) }}" alt="{{$film->name}}" ><a href="{{route('films.show', $film->slug)}}">{{$film->name}}</a>
+                  <img class="film-thumbnail" height="50" src="{{URL::to('/images/' . $film->image->image ) }}" alt="{{$film->name}}" ><a href="{{route('films.show', $film->slug)}}">{{$film->name}}</a>
              </td>
                <td><a href="{{route('categories.show', $film->category->slug)}}">{{$film->category->category}}</a></td>
-               <td><a href="{{route('language.show', $film->language->slug)}}"><img height="50" src="{{$film->language->image ? URL::to('/images/' . $film->language->image) : URL::to('/images/language.png')}}" alt="{{$film->name}}" ></a></td>
-               <td><a href="{{route('fsk.show', $film->fsk->slug)}}"><img height="50" src="{{$film->fsk->image ? URL::to('/images/' . $film->fsk->image) : URL::to('/images/language.png')}}" alt="{{$film->name}}" ></a></td>
+               <td><a href="{{route('language.show', $film->language->slug)}}"><img height="50" src="{{$film->language->image ? URL::to('/images/' . $film->language->image) : URL::to('/images/language.png')}}" alt="{{$film->name}}"  title="{{$film->language->language}}"></a></td>
+               <td>
+                    <a href="{{route('fsk.show', $film->fsk->slug)}} is {{$film->fsk->fsk}}">
+                      <img height="50" src="{{$film->fsk->image ? URL::to('/images/' . $film->fsk->image) : URL::to('/images/language.png')}}" alt="{{$film->name}}" title="{{$film->fsk->fsk}}"></a></td>
                <td><a href="{{route('films.year', $film->year)}}">{{$film->year}}</a></td>
-               <td><a href="{{ $film->trailer }}"><img class="play" height="50" src="{{URL::to('/images/play.png')}}" alt="{{$film->name}}"></a></td>
+               <td><a href="{{ $film->trailer }}"><img class="play" height="50" src="{{URL::to('/images/play.png')}}" alt="{{$film->name}}" title="{{$film->name}}"></a></td>
             </tr>
             @endforeach 
    

@@ -28,7 +28,7 @@
                   <tr>
                      <td><a href="{{route('language.show', $language->slug)}}">{{$language->language}}</a></td>
                      <td><a href="{{route('language.show', $language->slug)}}">
-                        <img height="50" src="{{$language->image ? URL::to('/images/' . $language->image) : URL::to('/images/language.png')}}" alt="{{$language->category}}" ></a>
+                        <img height="50" src="{{$language->image ? URL::to('/images/' . $language->image) : URL::to('/images/language.png')}}" alt="{{$language->category}}" title="{{$language->language}}"></a>
                      </td>
                      <td><a href="">{{$language->films_count}}</a></td>
                   </tr>

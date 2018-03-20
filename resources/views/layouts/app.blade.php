@@ -76,7 +76,13 @@
             </div>
         </nav>
 
-        <main class="container pt-4 mb-4">
+        <main class="container mb-4">
+
+            <div class="row"> 
+                <div class="offset-md-10 col-md-2 pt-4 mb-4"> 
+                  <a class="btn btn-outline-success page-btns" href="{{route('films.create')}}">Add film</a>
+                </div>
+            </div>
 
                 @yield('content')
             </div>

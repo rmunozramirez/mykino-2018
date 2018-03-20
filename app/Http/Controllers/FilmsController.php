@@ -102,7 +102,7 @@ class FilmsController extends Controller
 
         Session::flash('success', 'Film successfully created!');
      
-        return redirect()->route('films.index');
+        return redirect()->route('films.show', $film->slug);
 
     }
 
