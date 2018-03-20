@@ -54,7 +54,7 @@
                
 
         <div class="pt-4">    
-            {!!Form::submit('Add the New Actor', array('class' => 'btn btn-success btn-block')) !!}
+            {!!Form::submit('Add New Actor', array('class' => 'btn btn-success btn-block')) !!}
             {!!Form::close() !!}       
         </div>
         

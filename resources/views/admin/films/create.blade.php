@@ -52,8 +52,20 @@
         <div class="pt-3 row">       
             <div class="col-md-6">       
                 {!!Form::label('year', 'Year:', array('class' => 'form-spacing-top'))!!} 
-                {!!Form::text('year', '', array('class' => 'form-control')) !!} 
+                {!!Form::date('year', '', array('class' => 'form-control')) !!} 
             </div>
+
+
+            <div class="col-lg-12">
+        <form action="/results" method="POST" role="search">
+            {{ csrf_field() }}
+            <div class="form-group row">
+  <label for="example-date-input" class="col-2 col-form-label">Date</label>
+  <div class="col-10">
+    <input class="form-control" type="date" value="" id="example-date-input">
+  </div>
+</div>
+        </form>
 
             <div class="col-md-6"> 
                 {!!Form::label('duration', 'Duration:', array('class' => 'form-spacing-top'))!!}
@@ -84,7 +96,7 @@
         </div>
 
         <div class="pt-4">    
-            {!!Form::submit('Add the New Film', array('class' => 'btn btn-success btn-block')) !!}
+            {!!Form::submit('Add New Film', array('class' => 'btn btn-success btn-block')) !!}
             {!!Form::close() !!}       
         </div>
 

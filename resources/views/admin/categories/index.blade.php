@@ -17,11 +17,10 @@
     <div class="card-body">        
          
             @if($categories)
-            <table class="table">
+            <table class="table table-striped table-hover">
                <thead>
                   <tr>
                      <th>Category</th>
-                     <th>Image</th>
                      <th>Description</th>
                      <th>Films</th>
                   </tr>
@@ -29,10 +28,9 @@
                <tbody>
                   @foreach($categories as $category)
                   <tr>
-                     <td><a href="{{route('categories.show', $category->slug)}}">{{$category->category}}</a></td>
                      <td>
-                      <img height="80" src="{{$category->image ? URL::to('/images/' . $category->image->image) : URL::to('/images/category.png') }}" alt="{{$category->category}}" >
-                    </td>
+                      <img class="film-thumbnail" height="80" src="{{$category->image ? URL::to('/images/' . $category->image->image) : URL::to('/images/category.png') }}" alt="{{$category->category}}" >
+                      <a href="{{route('categories.show', $category->slug)}}">{{$category->category}}</a></td>
                      <td>{{str_limit($category->description, 100, '...')}}</td>
                      <td><a href="{{route('categories.show', $category->slug)}}">{{$category->films_count}}</a></td>
                   </tr>

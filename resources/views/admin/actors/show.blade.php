@@ -38,8 +38,9 @@
                <div class="col-md-12" id="actors" role="tabpanel">
                   <h4>{!! $actor->name!!}'s films:</h4>
                </div>
+               <hr />
                 @if($actor->films)
-            <table class="table table-hover">
+            <table class="table table-striped table-hover">
                <thead>
                   <tr>
                       <th>Film</th>

@@ -18,9 +18,10 @@ class ActorsController extends Controller
      */
     public function index()
     {
-        $actors = Actor::all();
+        $actors = Actor::paginate(10);
+        $total_actors = Actor::all();
 
-        return view ('admin.actors.index', compact('actors'));
+        return view ('admin.actors.index', compact('actors', 'total_actors'));
     }
 
     /**

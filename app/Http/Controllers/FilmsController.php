@@ -22,9 +22,10 @@ class FilmsController extends Controller
      */
     public function index()
     {
-        $films = Film::with('image')->get();
+        $films = Film::paginate(10);
+        $total_films = Film::all();
 
-        return view('admin.films.index', compact('films'));
+        return view('admin.films.index', compact('films', 'total_films'));
     }
 
     /**
@@ -168,14 +169,32 @@ class FilmsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($slug)
     {
-        $film = Post::findOrFail($id);
+        $film = Film::find($slug);
 
        $film->delete();
 
        Session::flash('deleted_post', 'The post has been deleted');
 
-        return redirect('admin/posts');
+        return redirect()->route('films.index');
+    } 
+
+
+    public function year($year)
+    {
+        
+        $films = Film::where('year', $year)->get();
+        var_dump($films); die;
+
+        return redirect()->route('films.year', compact('films'));
+    }
+
+    public function results($year)
+    {
+        
+        $films = Film::with('categories', 'fsks', 'languages')->where('title', 'like', '%'. request('query') . '%')->get();
+
+        return redirect()->route('films.results', compact('films'));
     }
 }

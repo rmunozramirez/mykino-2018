@@ -18,7 +18,7 @@
     <div class="card-body">    
 
           @if($category->films_count)
-            <table class="table">
+            <table class="table table-striped table-hover">
                <thead>
                   <tr>
                       <th>Film</th>

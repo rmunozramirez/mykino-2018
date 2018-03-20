@@ -10,20 +10,12 @@
         <div class="col-md-10 page-logo">  
           <h2><img height="30" src="{{URL::to('/images/film.png') }}" alt="{{count($total_films)}} Films" >{{count($total_films)}} Films </h2>
         </div>  
-        <div class="col-md-2"> 
-
+        <div class="col-md-2 "> 
           <a class="btn btn-outline-success page-btns" href="{{route('films.create')}}">Add film</a>
-        </div>
-        <div class="col-md-6 offset-md-4 text-center"> 
-            <form class="form-inline">
-              <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-              <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-            </form>          
-        </div>
-      </div>
+        </div>  
+      </div>  
     </div> 
-    <div class="card-body">    
-   
+    <div class="card-body">        
       @if($films)
       <table class="table table-striped table-hover">
          <thead>
@@ -45,7 +37,7 @@
                <td><a href="{{route('categories.show', $film->category->slug)}}">{{$film->category->category}}</a></td>
                <td><a href="{{route('language.show', $film->language->slug)}}"><img height="50" src="{{$film->language->image ? URL::to('/images/' . $film->language->image) : URL::to('/images/language.png')}}" alt="{{$film->name}}" ></a></td>
                <td><a href="{{route('fsk.show', $film->fsk->slug)}}"><img height="50" src="{{$film->fsk->image ? URL::to('/images/' . $film->fsk->image) : URL::to('/images/language.png')}}" alt="{{$film->name}}" ></a></td>
-               <td><a href="{{route('films.year', $film->year)}}">{{$film->year}}</a></td>
+               <td>{{$film->year}}</td>
                <td><a href="{{ $film->trailer }}"><img class="play" height="50" src="{{URL::to('/images/play.png')}}" alt="{{$film->name}}"></a></td>
             </tr>
             @endforeach 

@@ -16,23 +16,19 @@
 
     <div class="card-body">        
             @if($fsks)
-            <table class="table">
+            <table class="table table-striped table-hover">
                <thead>
                   <tr>
                      <th>Age</th>
-                     <th>Image</th>
                      <th>Films</th>
                   </tr>
                </thead>
                <tbody>
                   @foreach($fsks as $fsk)
                   <tr>
-                     <td><a href="{{route('fsk.show', $fsk->slug)}}">{{$fsk->fsk}}</a></td>
-                     <td><a href="{{route('fsk.show', $fsk->slug)}}">
-
-                        <img height="50" src="{{$fsk->image ? URL::to('/images/' . $fsk->image) : URL::to('/images/language.png')}}" alt="{{$fsk->fsk}}" ></a> 
-
-                     </td>
+                     <td>
+                        <a href="{{route('fsk.show', $fsk->slug)}}"><img class="film-thumbnail" height="50" src="{{$fsk->image ? URL::to('/images/' . $fsk->image) : URL::to('/images/language.png')}}" alt="{{$fsk->fsk}}" ></a> 
+                      <a href="{{route('fsk.show', $fsk->slug)}}">{{$fsk->fsk}}</a></td>
                      <td>{{$fsk->films_count}}</td>
                   </tr>
                   @endforeach 

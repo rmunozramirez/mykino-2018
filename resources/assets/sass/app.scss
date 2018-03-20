@@ -8,6 +8,12 @@
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
 
+body {
+    height: 100vh;
+    background: url("/images/overlay-carbon.png") repeat scroll 0 0;
+    font-family: 'Josefin Sans', sans-serif !important;
+}
+
 .navbar-laravel {
   background-color: #fff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
@@ -28,14 +34,18 @@
 	margin-right: 10px;
 }
 
-.play {
-	margin-top: -10px;
-}
-
 .card-body {
 	 padding-top: 0;
 }
 
 .navi {
 	display: inline;
+}
+
+.table th {
+	border-top: none;
+}
+
+.table td {
+	vertical-align: middle;
 }

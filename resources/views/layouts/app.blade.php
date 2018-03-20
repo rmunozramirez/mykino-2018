@@ -76,9 +76,8 @@
             </div>
         </nav>
 
-        <main class="container pt-4">
+        <main class="container pt-4 mb-4">
 
-            <div class="col-lg-12">
                 @yield('content')
             </div>
 

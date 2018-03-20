@@ -34,14 +34,14 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
 //my routes	
 
 	//films
-	Route::get('/films/index', 'FilmsController@index')->name('films.index');
+	Route::get('/films', 'FilmsController@index')->name('films.index');
+	Route::get('/films/year/{$year}', 'FilmsController@year')->name('films.year');
 	Route::get('/films/create', 'FilmsController@create')->name('films.create');
 	Route::post('/films/store', 'FilmsController@store')->name('films.store');
 	Route::get('/films/{slug}', 'FilmsController@show')->name('films.show')->where('slug', '[\w\d\-\_]+');
-	Route::get('/films/delete', 'FilmsController@destroy')->name('films.delete');
 	Route::get('/films/{slug}/edit', 'FilmsController@edit')->name('films.edit')->where('slug', '[\w\d\-\_]+');
 	Route::patch('/films/{slug}', 'FilmsController@update')->name('films.update')->where('slug', '[\w\d\-\_]+');
-	Route::delete('/films/{slug}', 'FilmsController@destroy')->name('films.delete');
+	Route::delete('/films/{slug}', 'FilmsController@destroy')->name('films.delete')->where('slug', '[\w\d\-\_]+');
 
 	//categories
 	Route::get('/categories/index', 'CategoriesController@index')->name('categories.index');
@@ -67,6 +67,9 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
 	//fsks
 	Route::get('/fsk/index', 'FskController@index')->name('fsk.index');
 	Route::get('/fsk/{slug}', 'FskController@show')->name('fsk.show')->where('slug', '[\w\d\-\_]+');
+
+	//Search
+	Route::get('/films/results', 'FilmsController@results')->name('films.results');
 
 });
 
