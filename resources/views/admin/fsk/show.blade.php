@@ -33,7 +33,7 @@
                     <td><a href="{{route('language.show', $film->language->slug)}}">
                         <img height="80" src="{{URL::to('/images/' . $film->language->image ) }}" alt="{{$film->name}}"></a>
                     </td>
-                    <td>{{$film->year}}</td>
+                    <td>{{date('Y', strtotime($film->year))}}</td>
 
                 </tr>
                 @endforeach

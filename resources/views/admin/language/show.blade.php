@@ -36,7 +36,7 @@
 
 
                     </td>
-                    <td>{{$film->year}}</td>
+                    <td>{{date('Y', strtotime($film->year))}}</td>
                 </tr>
                 @endforeach
             </tbody>

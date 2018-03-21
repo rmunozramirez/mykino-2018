@@ -52,12 +52,12 @@
         <div class="pt-3 row">       
             <div class="col-md-6">       
                 {!!Form::label('year', 'Year:', array('class' => 'form-spacing-top'))!!} 
-                {!!Form::text('year', '', array('class' => 'form-control')) !!} 
+                {!!Form::date('year', '', array('class' => 'form-control')) !!} 
             </div>
        
             <div class="col-md-6"> 
                 {!!Form::label('duration', 'Duration:', array('class' => 'form-spacing-top'))!!}
-                {!!Form::text('duration', null, array('class' => 'form-control')) !!}                
+                {!!Form::time('duration', null, array('class' => 'form-control')) !!}                
             </div>
         </div>
 

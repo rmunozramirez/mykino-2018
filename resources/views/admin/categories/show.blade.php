@@ -39,7 +39,7 @@
                           <a href="{{route('fsk.show', $film->fsk->slug)}}">
                           <img height="80" src="{{$film->fsk->image ? URL::to('/images/' . $film->fsk->image) : URL::to('/images/language.png')}}" alt="{{$film->name}}" ></a>
                      </td>
-                     <td>{{$film->year}}</td>
+                     <td>{{date('Y', strtotime($film->year))}}</td>
                   </tr>
                   @endforeach 
          
