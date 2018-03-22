@@ -7,7 +7,8 @@
       <div class="row">  
         <div class="col-md-10">  
            <h2><img height="50" src="{{$category->image ? URL::to('/images/' . $category->image->image) : URL::to('/images/category.png') }}" alt="{{$category->category}}" > 
-           {{$category->films_count}} films in the category: {{$category->category}}</h2>
+            {{$category->films_count}}  @if(($category->films_count) > 1) films @else film @endif in category {{$category->category}}
+           </h2>
         </div>  
         <div class="col-md-2"> 
       <a type="button" class="btn btn-outline-secondary page-btns mt-2 mb-2" href="{{route('categories.edit', $category->slug)}}">Edit</a>
@@ -39,7 +40,7 @@
                           <a href="{{route('fsk.show', $film->fsk->slug)}}">
                           <img height="80" src="{{$film->fsk->image ? URL::to('/images/' . $film->fsk->image) : URL::to('/images/language.png')}}" alt="{{$film->name}}" ></a>
                      </td>
-                     <td>{{date('Y', strtotime($film->year))}}</td>
+                     <td><a href="{{route('films.year', date('Y', strtotime($film->year)))}}">{{date('Y', strtotime($film->year))}}</a></td>
                   </tr>
                   @endforeach 
          

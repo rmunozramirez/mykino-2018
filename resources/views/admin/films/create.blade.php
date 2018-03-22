@@ -24,7 +24,8 @@
         </div>  
       </div>  
     </div> 
-    <div class="card-body">        
+   <div class="card-body">
+      <div class="show">       
 
         {!!Form::open(array('route' => 'films.store', 'files' => true)) !!}   
 
@@ -89,8 +90,9 @@
         </div>
 
     </div>
+    </div>
 
-    <div class="card-footer">  
+    <div class="card-footer pt-3">  
             <div class="col-lg-12 pt-3 ">
                        
                     <form action="/results" method="POST" role="search">

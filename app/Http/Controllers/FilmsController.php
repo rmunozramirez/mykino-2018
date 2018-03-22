@@ -184,10 +184,9 @@ class FilmsController extends Controller
     public function year($year)
     {
         
-        $films = Film::where('year', $year)->get();
-        var_dump($films); die;
+        $films = Film::where('year', 'like', $year . '%')->get();
 
-        return redirect()->route('films.year', compact('films'));
+        return view('admin.films.year', compact('films'));
     }
 
     public function results($year)

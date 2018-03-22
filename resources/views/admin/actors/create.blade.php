@@ -28,36 +28,38 @@
       </div>  
     </div> 
     <div class="card-body">        
+        <div class="show">        
 
-        {!!Form::open(array('route' => 'actors.store', 'files' => true)) !!}   
+            {!!Form::open(array('route' => 'actors.store', 'files' => true)) !!}   
 
-        <div class="pt-4">        
-            {!!Form::label('name', 'Add an Actor', array('class' => 'form-spacing-top'))!!}
-            {!!Form::text('name', null, array('class' => 'form-control', 'required' => '', 'maxlength' => '255'))!!}
-        </div>
-
-        <div class="row">
-            <div class="col-md-6">
-                <div class="pt-3"> 
-                        {!! Form::label('genre', 'Gender:') !!}
-                        {!! Form::select('genre', ['' => 'Choose a genre', 'masculine' => 'Man', 'femenine' => 'Woman'] , null, array('class' => 'form-control'))!!}
-                </div>
+            <div class="pt-4">        
+                {!!Form::label('name', 'Add an Actor', array('class' => 'form-spacing-top'))!!}
+                {!!Form::text('name', null, array('class' => 'form-control', 'required' => '', 'maxlength' => '255'))!!}
             </div>
 
-            <div class="col-md-6">
-                <div class="pt-4"> 
-                    {!!Form::label('image', 'Upload a Featured Image') !!}
-                    {!!Form::file('image') !!}
-                </div>  
-            </div>  
-        </div>
-               
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="pt-3"> 
+                            {!! Form::label('genre', 'Gender:') !!}
+                            {!! Form::select('genre', ['' => 'Choose a genre', 'masculine' => 'Man', 'femenine' => 'Woman'] , null, array('class' => 'form-control'))!!}
+                    </div>
+                </div>
 
-        <div class="pt-4">    
-            {!!Form::submit('Add New Actor', array('class' => 'btn btn-success btn-block')) !!}
-            {!!Form::close() !!}       
+                <div class="col-md-6">
+                    <div class="pt-4"> 
+                        {!!Form::label('image', 'Upload a Featured Image') !!}
+                        {!!Form::file('image') !!}
+                    </div>  
+                </div>  
+            </div>
+                   
+
+            <div class="pt-4">    
+                {!!Form::submit('Add New Actor', array('class' => 'btn btn-success btn-block')) !!}
+                {!!Form::close() !!}       
+            </div>
+            
         </div>
-        
     </div>
 </div>
 

@@ -5,7 +5,8 @@
         <div class="row">
             <div class="col-md-9">
                 <h2><img height="50" src="{{URL::to('/images/' . $language->image)}}" alt="{{$language->language}}" > 
-            {{$language->films_count}} films in {{$language->language}}</h2>
+                    {{$language->films_count}} @if(($language->films_count) > 1) films @else film @endif in {{$language->language}} 
+                </h2>
             </div>
             <div class="col-md-3">
                 <a type="button" class="btn btn-outline-success page-btns mt-2 mb-2" href="{{route('language.index')}}">Back to languages</a>
@@ -36,7 +37,7 @@
 
 
                     </td>
-                    <td>{{date('Y', strtotime($film->year))}}</td>
+                    <td><a href="{{route('films.year', date('Y', strtotime($film->year)))}}">{{date('Y', strtotime($film->year))}}</a></td>
                 </tr>
                 @endforeach
             </tbody>

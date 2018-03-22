@@ -19,16 +19,16 @@
                <thead>
                   <tr>
                      <th>Language</th>
-                     <th>Image</th>
                      <th>Films</th>
                   </tr>
                </thead>
                <tbody>
                   @foreach($languages as $language)
                   <tr>
-                     <td><a href="{{route('language.show', $language->slug)}}">{{$language->language}}</a></td>
-                     <td><a href="{{route('language.show', $language->slug)}}">
+                     <td>
+                        <a class="film-thumbnail" href="{{route('language.show', $language->slug)}}">
                         <img height="50" src="{{$language->image ? URL::to('/images/' . $language->image) : URL::to('/images/language.png')}}" alt="{{$language->category}}" title="{{$language->language}}"></a>
+                          <a href="{{route('language.show', $language->slug)}}">{{$language->language}}</a>
                      </td>
                      <td><a href="">{{$language->films_count}}</a></td>
                   </tr>

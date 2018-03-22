@@ -6,7 +6,9 @@
     <div class="card-header">           
       <div class="row">  
         <div class="col-md-10 page-logo">  
-          <h2><img height="30" src="{{URL::to('/images/user.png') }}">{{count($total_actors)}} Actors</h2>
+          <h2><img height="30" src="{{URL::to('/images/user.png') }}">
+            {{count($total_actors)}} @if(count($total_actors) > 1) actors @else actor @endif 
+          </h2>
         </div>  
         <div class="col-md-2"> 
           <a class="btn btn-outline-success page-btns" href="{{route('actors.create')}}">Create new Actor</a>

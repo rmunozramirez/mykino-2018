@@ -10006,6 +10006,8 @@ body {
           box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
 }
 
+/* my changes */
+
 .page-logo img {
   margin-right: 1.25rem;
 }
@@ -10020,7 +10022,7 @@ body {
 }
 
 .card-body {
-  padding-top: 0;
+  padding: 0;
 }
 
 .navi {
@@ -10031,7 +10033,23 @@ body {
   border-top: none;
 }
 
+.table th:first-child,
+.table td:first-child,
+.card-header {
+  padding-left: 2rem;
+}
+
+.card-body .show {
+  padding: 0 2rem 2rem;
+}
+
 .table td {
   vertical-align: middle;
+}
+
+.separator {
+  border-right: 1px solid;
+  margin-right: 10px;
+  padding-right: 10px;
 }
 

@@ -5,13 +5,13 @@
 <div class="card">
     <div class="card-header">           
       <div class="row">  
-        <div class="col-md-10">  
+        <div class="col-md-9">  
             <h2 class="card-title">
               <img height="30" src="{{URL::to('/images/film.png') }}" alt="{{ $film->name }}">
               <span class="mt-2"> {{ $film->name }}</span>
             </h2>
         </div>  
-        <div class="col-md-2  page-btns"> 
+        <div class="col-md-3  page-btns"> 
             <a type="button" class="btn btn-outline-secondary page-btns" href="{{route('films.edit', $film->slug)}}">Edit</a>
             <a type="button" class="btn film-thumbnail btn-outline-danger page-btns" href="{{route('films.delete', $film->slug)}}">Delete</a>
         </div>  
@@ -19,34 +19,33 @@
     </div>  
 
    <div class="card-body">
+      <div class="show">
+        <!-- Tab panels -->
+      <div class="col-md-12">
+        <div class="row py-3">
+            <a class="separator" href="{{route('fsk.show', $film->fsk->slug)}}">{{$film->fsk->fsk}}</a>
+            <a class="separator" href="{{route('language.show', $film->language->slug)}}">{{$film->language->language}} </a>
+            <a class="separator" href="{{route('categories.show', $film->category->slug)}}">{!! $film->category->category !!} </a>
+            <a class="separator" href="{{route('films.year', date('Y', strtotime($film->year)))}}">{{date('Y', strtotime($film->year))}}</a>
+            {!! $film->duration !!} 
 
-      <!-- Tab panels -->
-    <div class="col-md-12">
-      <div class="row py-3">
-          <a href="{{route('fsk.show', $film->fsk->slug)}}">{{$film->fsk->fsk}}</a>
-          | <a href="{{route('language.show', $film->language->slug)}}">{{$film->language->language}} </a>
 
-          | <a href="{{route('categories.show', $film->category->slug)}}">{!! $film->category->category !!} </a>
-          | {{date('Y', strtotime($film->year))}} 
-          | {!! $film->duration !!} 
+            </div>
 
-
-          </div>
-
-         
-    </div>
-    <div class="row py-3">
-       <div class="col-md-4">
-          <img  src="{{URL::to('/images/' . $film->image->image ) }}" alt="{{$film->name}}" >
-          
-       </div>
-      <div class="col-md-8">
-        <video id="player-obj" controls="" src="{!! $film->trailer !!}" frameborder="0" allowfullscreen></video>
+           
       </div>
-    </div>
+      <div class="row py-3">
+         <div class="col-md-4">
+            <img  src="{{URL::to('/images/' . $film->image->image ) }}" alt="{{$film->name}}" >
             
+         </div>
+        <div class="col-md-8">
+          <video id="player-obj" controls="" src="{!! $film->trailer !!}" frameborder="0" allowfullscreen></video>
+        </div>
+      </div>
+              
 
-    <hr />
+      <hr />
 
             <div class="row">
                <!--/.Panel 1-->

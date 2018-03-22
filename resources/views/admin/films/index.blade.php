@@ -8,7 +8,8 @@
     <div class="card-header">           
       <div class="row">  
         <div class="col-md-10 page-logo">  
-          <h2><img height="30" src="{{URL::to('/images/film.png') }}" alt="{{count($total_films)}} Films" >{{count($total_films)}} Films </h2>
+          <h2><img height="30" src="{{URL::to('/images/film.png') }}" alt="{{count($total_films)}} Films" >{{count($total_films)}}
+              @if(count($total_films) > 1) films @else film @endif </h2>
         </div>  
         <div class="col-md-2"> 
 
@@ -45,9 +46,9 @@
                <td><a href="{{route('categories.show', $film->category->slug)}}">{{$film->category->category}}</a></td>
                <td><a href="{{route('language.show', $film->language->slug)}}"><img height="50" src="{{$film->language->image ? URL::to('/images/' . $film->language->image) : URL::to('/images/language.png')}}" alt="{{$film->name}}"  title="{{$film->language->language}}"></a></td>
                <td>
-                    <a href="{{route('fsk.show', $film->fsk->slug)}} is {{$film->fsk->fsk}}">
+                    <a href="{{route('fsk.show', $film->fsk->slug)}}">
                       <img height="50" src="{{$film->fsk->image ? URL::to('/images/' . $film->fsk->image) : URL::to('/images/language.png')}}" alt="{{$film->name}}" title="{{$film->fsk->fsk}}"></a></td>
-               <td><a href="{{route('films.year', $film->year)}}">{{date('Y', strtotime($film->year))}}</a></td>
+               <td><a href="{{route('films.year', date('Y', strtotime($film->year)))}}">{{date('Y', strtotime($film->year))}}</a></td>
                <td><a href="{{ $film->trailer }}"><img class="play" height="50" src="{{URL::to('/images/play.png')}}" alt="{{$film->name}}" title="{{$film->name}}"></a></td>
             </tr>
             @endforeach 
