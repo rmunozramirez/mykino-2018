@@ -35,7 +35,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
 
 	//films
 	Route::get('/films', 'FilmsController@index')->name('films.index');
-	Route::get('/films/year/{$year}', 'FilmsController@year')->name('films.year');
+	Route::get('/films/year/{year}', 'FilmsController@year')->name('films.year');
 	Route::get('/films/create', 'FilmsController@create')->name('films.create');
 	Route::post('/films/store', 'FilmsController@store')->name('films.store');
 	Route::get('/films/{slug}', 'FilmsController@show')->name('films.show')->where('slug', '[\w\d\-\_]+');

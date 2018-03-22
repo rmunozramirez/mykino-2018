@@ -16,7 +16,7 @@ class ImagePlaceholderSeeder extends Seeder
         'image'     =>  'film.png',
         'film_id'   =>  '0',
         'actor_id'   =>  '0',
-        'category_id'   =>  '0'
+        'category_id'   =>  '0',
 
         ]);
 
@@ -25,7 +25,7 @@ class ImagePlaceholderSeeder extends Seeder
         'image'     =>  'user.png',
         'film_id'   =>  '0',
         'actor_id'   =>  '0',
-        'category_id'   =>  '0'
+        'category_id'   =>  '0',
 
         ]);
 
@@ -34,7 +34,7 @@ class ImagePlaceholderSeeder extends Seeder
         'image'     =>  'category.png',
         'film_id'   =>  '0',
         'actor_id'   =>  '0',
-        'category_id'   =>  '0'
+        'category_id'   =>  '0',
 
         ]);
 
@@ -43,7 +43,7 @@ class ImagePlaceholderSeeder extends Seeder
     	'image'	    =>	'language.png',
         'film_id'   =>  '0',
         'actor_id'   =>  '0',
-        'category_id'   =>  '0'
+        'category_id'   =>  '0',
 
         ]);
     }

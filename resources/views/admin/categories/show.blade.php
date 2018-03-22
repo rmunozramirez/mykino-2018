@@ -6,7 +6,7 @@
     <div class="card-header">           
       <div class="row">  
         <div class="col-md-10">  
-           <h2><img height="50" src="{{$category->image ? URL::to('/images/' . $category->image->image) : URL::to('/images/category.png') }}" alt="{{$category->category}}" > 
+           <h2><img height="50" src="{{$category->image ? URL::to('/images/' . $category->image->image) : URL::to('/images/category.svg') }}" alt="{{$category->category}}" > 
            {{$category->films_count}} films in the category: {{$category->category}}</h2>
         </div>  
         <div class="col-md-2"> 

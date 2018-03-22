@@ -41,7 +41,7 @@
           
        </div>
       <div class="col-md-8">
-        <video id="player-obj" controls="" src="{!! $film->trailer !!}" frameborder="0" allowfullscreen></video>
+        <iframe width="100%" height="400px" src="{!! $film->trailer !!}" frameborder="0" allowfullscreen></iframe>
       </div>
     </div>
             

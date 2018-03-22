@@ -7,7 +7,7 @@
     <div class="card-header">           
       <div class="row">  
         <div class="col-md-10">  
-          <h2><img class="film-thumbnail" height="30" src="{{URL::to('/images/category.png') }}" alt="{{count($categories)}} Categories">{{count($categories)}}  Categories</h2>
+          <h2><img class="film-thumbnail" height="30" src="{{URL::to('/images/category.svg') }}" alt="{{count($categories)}} Categories">{{count($categories)}}  Categories</h2>
         </div>  
         <div class="col-md-2"> 
           <a class="btn btn-outline-success page-btns" href="{{route('categories.create')}}">Add a Category</a>
@@ -29,7 +29,7 @@
                   @foreach($categories as $category)
                   <tr>
                      <td>
-                      <img class="film-thumbnail" height="80" src="{{$category->image ? URL::to('/images/' . $category->image->image) : URL::to('/images/category.png') }}" alt="{{$category->category}}" >
+                      <img class="film-thumbnail" height="50" src="{{$category->image ? URL::to('/images/' . $category->image->image) : URL::to('/images/category.svg') }}" alt="{{$category->category}}" >
                       <a href="{{route('categories.show', $category->slug)}}">{{$category->category}}</a></td>
                      <td>{{str_limit($category->description, 100, '...')}}</td>
                      <td><a href="{{route('categories.show', $category->slug)}}">{{$category->films_count}}</a></td>

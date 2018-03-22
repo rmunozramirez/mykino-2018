@@ -16,7 +16,7 @@ class LanguagesTableSeeder extends Seeder
 
         	'language' 	=> 	'English',
         	'slug'		=>	'english',
-        	'image'		=>	'english.svg'
+        	'image'		=>	'english.svg',
         ]);
        
        
@@ -24,7 +24,7 @@ class LanguagesTableSeeder extends Seeder
 
         	'language' 	=> 	'German',
         	'slug'		=>	'german',
-        	'image'		=>	'german.svg'
+        	'image'		=>	'german.svg',
         ]);
        
        
@@ -32,7 +32,7 @@ class LanguagesTableSeeder extends Seeder
 
         	'language' 	=> 	'Spanish',
         	'slug'		=>	'spanish',
-        	'image'		=>	'spanish.svg'
+        	'image'		=>	'spanish.svg',
         ]);
        
        
@@ -40,7 +40,7 @@ class LanguagesTableSeeder extends Seeder
 
         	'language' 	=> 	'French',
         	'slug'		=>	'french',
-        	'image'		=>	'french.svg'
+        	'image'		=>	'french.svg',
         ]);
        
        
@@ -48,7 +48,7 @@ class LanguagesTableSeeder extends Seeder
 
         	'language' 	=> 	'Italian',
         	'slug'		=>	'italian',
-        	'image'		=>	'italian.svg'
+        	'image'		=>	'italian.svg',
         ]);
        
        
@@ -56,7 +56,7 @@ class LanguagesTableSeeder extends Seeder
 
         	'language' 	=> 	'Chinese',
         	'slug'		=>	'chinese',
-        	'image'		=>	'chinese.svg'
+        	'image'		=>	'chinese.svg',
         ]);
        
     }

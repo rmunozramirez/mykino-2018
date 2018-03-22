@@ -47,7 +47,7 @@
                <td>
                     <a href="{{route('fsk.show', $film->fsk->slug)}} is {{$film->fsk->fsk}}">
                       <img height="50" src="{{$film->fsk->image ? URL::to('/images/' . $film->fsk->image) : URL::to('/images/language.png')}}" alt="{{$film->name}}" title="{{$film->fsk->fsk}}"></a></td>
-               <td><a href="{{route('films.year', $film->year)}}">{{date('Y', strtotime($film->year))}}</a></td>
+               <td><a href="{{route('films.year', date('Y', strtotime($film->year)))}}">{{date('Y', strtotime($film->year))}}</a></td>
                <td><a href="{{ $film->trailer }}"><img class="play" height="50" src="{{URL::to('/images/play.png')}}" alt="{{$film->name}}" title="{{$film->name}}"></a></td>
             </tr>
             @endforeach 

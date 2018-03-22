@@ -16,7 +16,7 @@ class FskTableSeeder extends Seeder
 
         	'fsk' 		=> 	'Approved for 0',
         	'slug'		=>	'approved-0',
-        	'image'		=>	'fsk-0.jpg'
+        	'image'		=>	'fsk-0.jpg',
 
         ]);
        
@@ -24,7 +24,7 @@ class FskTableSeeder extends Seeder
 
         	'fsk' 		=> 	'Approved for 6',
         	'slug'		=>	'approved-6',
-        	'image'		=>	'fsk-6.jpg'
+        	'image'		=>	'fsk-6.jpg',
 
         ]);
        
@@ -32,7 +32,7 @@ class FskTableSeeder extends Seeder
 
         	'fsk' 		=> 	'Approved for 12',
         	'slug'		=>	'approved-12',
-        	'image'		=>	'fsk-12.jpg'
+        	'image'		=>	'fsk-12.jpg',
 
         ]);
        
@@ -40,7 +40,7 @@ class FskTableSeeder extends Seeder
 
         	'fsk' 		=> 	'Approved for 16',
         	'slug'		=>	'approved-16',
-        	'image'		=>	'fsk-16.jpg'
+        	'image'		=>	'fsk-16.jpg',
 
         ]);
        
@@ -48,7 +48,7 @@ class FskTableSeeder extends Seeder
 
         	'fsk' 		=> 	'Approved for 18',
         	'slug'		=>	'approved-18',
-        	'image'		=>	'fsk-18.jpg'
+        	'image'		=>	'fsk-18.jpg',
 
         ]);
     }

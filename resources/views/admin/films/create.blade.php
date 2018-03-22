@@ -57,7 +57,7 @@
        
             <div class="col-md-6"> 
                 {!!Form::label('duration', 'Duration:', array('class' => 'form-spacing-top'))!!}
-                {!!Form::time('duration', null, array('class' => 'form-control')) !!}                
+                {!!Form::text('duration', null, array('class' => 'form-control')) !!}                
             </div>
         </div>
 
@@ -106,10 +106,14 @@
     </div>
 </div>
 
-
-
 @endsection
 
 @section('scripts')
-
+    <script>
+        $('#summernote').summernote({
+            placeholder: 'And the Oscars goes to...',
+            tabsize: 2,
+            height: 200
+        });
+    </script>
 @endsection

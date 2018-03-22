@@ -29,7 +29,7 @@ mix.scripts([
 
     'resources/assets/js/libs/toastr.min.js',
     'resources/assets/js/libs/parsley.min.js',
-    'resources/assets/js/libs//summernote-bs4.js',
+    'resources/assets/js/libs/summernote-bs4.js',
     'resources/assets/js/bootstrap/bootstrap-bundle.js',
     'resources/assets/js/bootstrap/bootstrap.js',
 

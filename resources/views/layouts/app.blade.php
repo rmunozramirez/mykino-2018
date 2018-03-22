@@ -97,15 +97,11 @@
     @yield('scripts')
     <!--script src="{{ asset('js/app.js') }}"></script>
     <script src="{{ asset('js/bootstrap/bootstrap.js') }}"></script>
-    <script src="{{ asset('js/toastr.min.js') }}"></script>
-    < script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote-bs4.js"></script -->
-    <script>
-        $('#summernote').summernote({
-            placeholder: 'And the Oscars goes to...',
-            tabsize: 2,
-            height: 200
-        });
-    </script>
+    <script src="{{ asset('js/toastr.min.js') }}"></script -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote-bs4.js"></script>
+    <script href="{{ asset('js/libs.js') }}" ></script>
+    <script href="{{ asset('js/app.js') }}" ></script>
+
     <script>
         //toastr
 
