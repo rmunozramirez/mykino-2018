@@ -18,6 +18,7 @@
     </div>  
 
    <div class="card-body">
+   <div class="show">
 
       <!-- Tab panels -->
 
@@ -71,6 +72,7 @@
              <h2>No Films</h2>
           @endif
             </div>
+      </div>
       </div>
    </div>
 </div>

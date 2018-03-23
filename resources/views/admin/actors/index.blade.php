@@ -17,27 +17,18 @@
     </div> 
     <div class="card-body">        
       @if($actors)
-      <table class="table table-striped table-hover">
-         <thead>
-            <tr>
-               <th>Actor</th>
-               <th>Films</th>
-            </tr>
-         </thead>
-         <tbody>
-            @foreach($actors as $actor)
-            <tr>
-               <td>
-                <img class="film-thumbnail" height="50" src="{{URL::to('/images/' . $actor->image->image ) }}" alt="{{$actor->name}}" >
-                <a href="{{route('actors.show', $actor->slug)}}">{{$actor->name}}</a></td>
 
-               <td><a href="">{{$actor->films_count}}</a></td>
 
-            </tr>
-            @endforeach 
+        @foreach ($actors as $actor)
+        <a class="image-box" href="{{route('actors.show', $actor->slug)}}">
+             <img class="film-thumbnail" src="{{URL::to('/images/' . $actor->image->image ) }}" alt="{{$actor->name}}" >
+             {{$actor->name}}{{$actor->films_count}} films
+        </a>
+        
+        @endforeach  
+
       @endif
-         </tbody>
-      </table>
+
     </div>
     <div class="card-footer">
       <div class="text-center">

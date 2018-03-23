@@ -35,10 +35,10 @@
                         <img class="film-thumbnail" height="80" src="{{URL::to('/images/' . $film->image->image ) }}" alt="{{$film->name}}" >
                         <a href="{{route('films.show', $film->slug)}}">{{$film->name}}</a></td>
                      <td><a href="{{route('language.show', $film->language->slug)}}">
-                          <img height="80" src="{{URL::to('/images/' . $film->language->image ) }}" alt="{{$film->name}}" ></a></td>
+                          <img height="74" src="{{URL::to('/images/' . $film->language->image ) }}" alt="{{$film->name}}" ></a></td>
                      <td>
                           <a href="{{route('fsk.show', $film->fsk->slug)}}">
-                          <img height="80" src="{{$film->fsk->image ? URL::to('/images/' . $film->fsk->image) : URL::to('/images/language.png')}}" alt="{{$film->name}}" ></a>
+                          <img height="50" src="{{$film->fsk->image ? URL::to('/images/' . $film->fsk->image) : URL::to('/images/language.png')}}" alt="{{$film->name}}" ></a>
                      </td>
                      <td><a href="{{route('films.year', date('Y', strtotime($film->year)))}}">{{date('Y', strtotime($film->year))}}</a></td>
                   </tr>

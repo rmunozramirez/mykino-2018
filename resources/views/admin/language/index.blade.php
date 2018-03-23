@@ -15,7 +15,7 @@
     </div>   
     <div class="card-body">        
             @if($languages)
-            <table class="table">
+            <table class="table table-striped table-hover">
                <thead>
                   <tr>
                      <th>Language</th>
@@ -27,10 +27,11 @@
                   <tr>
                      <td>
                         <a class="film-thumbnail" href="{{route('language.show', $language->slug)}}">
-                        <img height="50" src="{{$language->image ? URL::to('/images/' . $language->image) : URL::to('/images/language.png')}}" alt="{{$language->category}}" title="{{$language->language}}"></a>
+                        <img height="80" src="{{$language->image ? URL::to('/images/' . $language->image) : URL::to('/images/language.png')}}" alt="{{$language->category}}" title="{{$language->language}}"></a>
                           <a href="{{route('language.show', $language->slug)}}">{{$language->language}}</a>
                      </td>
-                     <td><a href="">{{$language->films_count}}</a></td>
+                     <td><a class="film-thumbnail" href="{{route('language.show', $language->slug)}}">
+                      {{$language->films_count}}</a></td>
                   </tr>
                   @endforeach 
             @endif

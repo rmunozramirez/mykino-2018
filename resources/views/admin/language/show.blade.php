@@ -9,13 +9,13 @@
                 </h2>
             </div>
             <div class="col-md-3">
-                <a type="button" class="btn btn-outline-success page-btns mt-2 mb-2" href="{{route('language.index')}}">Back to languages</a>
+                <a type="button" class="btn btn-outline-success page-btns mt-2 mb-2" href="{{route('language.index')}}">Back</a>
             </div>
         </div>
     </div>
     <div class="card-body">
         @if($language->films_count)
-        <table class="table">
+        <table class="table table-striped table-hover">
             <thead>
                 <tr>
                     <th>Film</th>
