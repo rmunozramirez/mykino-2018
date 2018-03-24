@@ -57,11 +57,14 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
 	Route::get('/language/{slug}', 'LanguageController@show')->name('language.show')->where('slug', '[\w\d\-\_]+');
 
 	//actors
-	Route::get('/actors/index', 'ActorsController@index')->name('actors.index');
+	Route::get('/actors', 'ActorsController@index')->name('actors.index');
 	Route::get('/actors/create', 'ActorsController@create')->name('actors.create');	
 	Route::post('/actors/store', 'ActorsController@store')->name('actors.store');	
 	Route::get('/actors/{slug}', 'ActorsController@show')->name('actors.show')->where('slug', '[\w\d\-\_]+');
-
+	Route::get('/actors/{slug}/edit', 'ActorsController@edit')->name('actors.edit')->where('slug', '[\w\d\-\_]+');
+	Route::patch('/actors/{slug}', 'ActorsController@update')->name('actors.update')->where('slug', '[\w\d\-\_]+');
+	Route::delete('/actors/{slug}', 'ActorsController@destroy')->name('actors.delete')->where('slug', '[\w\d\-\_]+');
+	
 	//fsks
 	Route::get('/fsk/index', 'FskController@index')->name('fsk.index');
 	Route::get('/fsk/{slug}', 'FskController@show')->name('fsk.show')->where('slug', '[\w\d\-\_]+');

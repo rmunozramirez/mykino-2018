@@ -18,7 +18,7 @@ class ActorsController extends Controller
      */
     public function index()
     {
-        $actors = Actor::paginate(10);
+        $actors = Actor::orderBy('name', 'asc')->paginate(10);
         $total_actors = Actor::all();
 
         return view ('admin.actors.index', compact('actors', 'total_actors'));
@@ -32,7 +32,8 @@ class ActorsController extends Controller
     public function create()
     {
         $actors = Actor::all();
-        return view('admin.actors.create', compact('actors'));
+        $films  = Film::pluck('name', 'id')->all(); 
+        return view('admin.actors.create', compact('actors', 'films'));
     }
 
     /**
@@ -81,7 +82,7 @@ class ActorsController extends Controller
     public function show($slug)
     {
 
-        $actor = Actor::where('slug', $slug)->first();
+        $actor = Actor::with('films')->where('slug', $slug)->first();
 
         return view('admin.actors.show', compact('actor'));
     }
@@ -92,9 +93,20 @@ class ActorsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($slug)
     {
-        //
+        $actor = Actor::where('slug', $slug)->first();
+        $actors = Actor::all();
+
+        $films = Film::all();
+            $films2 = array();
+            foreach ($films as $film) {
+                $films2[$film->id] = $film->name;
+        } 
+
+        $films = Film::orderBy('name', 'asc')->pluck('name', 'id')->all();
+
+          return view('admin.actors.edit', compact('actor', 'films', 'films2', 'actors'));
     }
 
     /**
@@ -104,9 +116,45 @@ class ActorsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ActorsRequest $request, $slug)
     {
-        //
+
+        if ( $file = $request->file('image')) {
+            $name = time() . '-' . $file->getClientOriginalName();
+            $file->move('images', $name);
+            $image = Image::create(['image' =>  $name]);
+            $input['image_id'] = $image->id;
+        }
+
+        $last_img = Image::orderBy('id', 'desc')->first(); 
+               
+        is_null($last_img) ? $img_id = 1 : $img_id =  $last_img->id + 1;
+       
+        $actor = Actor::create([
+            'name'      =>  $request->name,
+            'genre'   =>  $request->genre,
+            'slug'          =>  str_slug($request->name, '-'),
+            'image_id'      =>  $img_id,
+        ]);        
+
+        $image = Image::create([
+            'image'             =>  $name,
+            'actor_id'      =>  $actor->id,
+            'film_id'       => 0,
+            'category_id'   => 0,
+        ]);
+
+        Actor::find($slug)->update($input);
+
+        if (isset($request->films)) {
+            $input->films()->sync($request->films);
+        } else {
+            $input->films()->sync(array());
+        }
+
+        Session::flash('success', 'Actor successfully updated!');
+
+        return redirect()->route('actors.show', $actor->slug);
     }
 
     /**
@@ -115,8 +163,13 @@ class ActorsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($slug)
     {
-        //
+        $actor = Actor::find($slug);
+        $actor->films()->detach();
+        $actor->delete();
+
+        Session::flash('success', 'Actor was deleted successfully');
+        return redirect()->route('actors.index');
     }
 }

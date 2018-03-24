@@ -28,11 +28,7 @@
             <a class="separator" href="{{route('categories.show', $film->category->slug)}}">{!! $film->category->category !!} </a>
             <a class="separator" href="{{route('films.year', date('Y', strtotime($film->year)))}}">{{date('Y', strtotime($film->year))}}</a>
             {!! $film->duration !!} 
-
-
-            </div>
-
-           
+          </div> 
       </div>
       <div class="row py-3">
          <div class="col-md-4">

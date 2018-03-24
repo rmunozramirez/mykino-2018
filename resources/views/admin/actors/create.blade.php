@@ -32,10 +32,21 @@
 
             {!!Form::open(array('route' => 'actors.store', 'files' => true)) !!}   
 
-            <div class="pt-4">        
-                {!!Form::label('name', 'Add an Actor', array('class' => 'form-spacing-top'))!!}
-                {!!Form::text('name', null, array('class' => 'form-control', 'required' => '', 'maxlength' => '255'))!!}
-            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="pt-4">        
+                        {!!Form::label('name', 'Add an Actor', array('class' => 'form-spacing-top'))!!}
+                        {!!Form::text('name', null, array('class' => 'form-control', 'required' => '', 'maxlength' => '255'))!!}
+                    </div>
+                </div>
+
+                <div class="col-md-6 pt-4">
+                    <div class="pt-4"> 
+                        {!!Form::label('image', 'Upload a Featured Image') !!}
+                        {!!Form::file('image') !!}
+                    </div>  
+                </div>  
+            </div>  
 
             <div class="row">
                 <div class="col-md-6">
@@ -45,14 +56,14 @@
                     </div>
                 </div>
 
-                <div class="col-md-6">
+                <div class="col-md-6"> 
                     <div class="pt-4"> 
-                        {!!Form::label('image', 'Upload a Featured Image') !!}
-                        {!!Form::file('image') !!}
+                        {!! Form::label('film', 'Select the Films in which the actor played:') !!}
+                        {!! Form::select('film_id', $films, null, array('multiple' => 'multiple', 'class' => 'form-control select2-multi'))!!}
                     </div>  
                 </div>  
             </div>
-                   
+                    
 
             <div class="pt-4">    
                 {!!Form::submit('Add New Actor', array('class' => 'btn btn-success btn-block')) !!}
@@ -65,4 +76,16 @@
 
 
 
+@endsection
+
+@section('scripts')
+<script src="{{ asset('js/select2.min.js') }}"></script>
+
+<script type="text/javascript">
+    $('.select2-multi').select2({
+            maximumSelectionLength: 8,
+            placeholder: 'Choose an Actor',
+            allowClear: true
+        });
+</script>
 @endsection

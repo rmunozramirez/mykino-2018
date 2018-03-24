@@ -16,19 +16,27 @@
       </div>  
     </div> 
     <div class="card-body">        
+    <div class="show py-3">        
       @if($actors)
 
 
+        <div class="row ">
+
         @foreach ($actors as $actor)
-        <a class="image-box" href="{{route('actors.show', $actor->slug)}}">
-             <img class="film-thumbnail" src="{{URL::to('/images/' . $actor->image->image ) }}" alt="{{$actor->name}}" >
-             {{$actor->name}}{{$actor->films_count}} films
-        </a>
-        
+         <div class="the_film">
+            <img class="actor-image" src="{{URL::to('/images/' . $actor->image->image ) }}" alt="{{$actor->name}}" >
+            <div class="overlay">
+              <a href="{{route('actors.show', $actor->slug)}}">      
+                    <div class="text small">{{$actor->name}} <br /> {{$actor->films_count}} films</div>
+              </a>
+            </div>
+        </div>
         @endforeach  
 
+      </div>
       @endif
 
+    </div>
     </div>
     <div class="card-footer">
       <div class="text-center">
@@ -40,3 +48,5 @@
 
 
 @endsection
+
+

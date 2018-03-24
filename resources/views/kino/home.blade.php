@@ -2,27 +2,33 @@
 
 
 @section('content')
-<section id="content"> 
-    
-    <div class="row">
-    <div class="col-md-12 col-xs-12">
 
-   </div>
-    <div class="col-lg-12">
-        <!-- Three columns of text below the carousel -->
-        @foreach ($films as $film)
-        <a class="image-box" href="{{route('films.show', $film->slug)}}">
-             <img src="{{URL::to('/images/' . $film->image->image ) }}" alt="{{$film->name}}" >
-        </a>
-        @endforeach     
+    <section id="content" class=" intro flex-center"> 
 
-    </div><!-- /.row -->   
-    <div class="text-center">
+        <div class="row">
+            <!-- Three columns of text below the carousel -->
+            @foreach ($films as $film)
+            <div class=" the_film">
+                 <img class="image" src="{{URL::to('/images/' . $film->image->image ) }}" alt="{{$film->name}}" >
+                  <div class="middle">
+                    <a href="{{route('films.show', $film->slug)}}">
+                        <div class="text">{{$film->name}}</div>
+                    </a>
+                  </div>
+              </div>
+            @endforeach     
 
-    </div>
-    </div>
-    
-</section>
+        </div><!-- /.row -->   
+    </section>
+
+    <section id="featured"> 
+
+                <!-- Featured home section -->
+                @include('partials._featured')
+
+
+    </section>
+
 @endsection
 
 

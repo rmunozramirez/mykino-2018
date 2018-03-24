@@ -58,7 +58,7 @@
        
             <div class="col-md-6"> 
                 {!!Form::label('duration', 'Duration:', array('class' => 'form-spacing-top'))!!}
-                {!!Form::time('duration', null, array('class' => 'form-control')) !!}                
+                {!!Form::time('duration', null, array('class' => 'form-control', 'step' => 1)) !!}                
             </div>
         </div>
 
@@ -74,10 +74,18 @@
             </div>    
         </div>
 
-        <div class="pt-4"> 
+        <div class="pt-3 row">       
+            <div class="col-md-6 pt-3 "> 
             {!!Form::label('image', 'Upload a Featured Image') !!}
             {!!Form::file('image') !!}
-        </div>  
+
+            </div>
+
+            <div class="col-md-6"> 
+                {!! Form::label('actor', 'Actors:') !!}
+                {!! Form::select('actor_id', $actors, null, array('multiple' => 'multiple', 'class' => 'form-control select2-multi'))!!}
+            </div>    
+        </div>
 
         <div class="pt-4">       
             {!!Form::label('description', 'Film description:', array('class' => 'form-spacing-top'))!!}
@@ -94,16 +102,7 @@
 
     <div class="card-footer pt-3">  
             <div class="col-lg-12 pt-3 ">
-                       
-                    <form action="/results" method="POST" role="search">
-                        {{ csrf_field() }}
-                        <div class="form-group row">
-                          <label for="example-date-input" class="col-2 col-form-label">Date</label>
-                          <div class="col-10">
-                            <input class="form-control" type="date" value="" id="example-date-input">
-                          </div>
-                        </div> 
-                    </form>
+
              </div>
     </div>
 </div>
@@ -114,4 +113,13 @@
 
 @section('scripts')
 
+<script src="{{ asset('js/select2.min.js') }}"></script>
+
+<script type="text/javascript">
+    $('.select2-multi').select2({
+            maximumSelectionLength: 8,
+            placeholder: 'Choose an Actor',
+            allowClear: true
+        });
+</script>
 @endsection

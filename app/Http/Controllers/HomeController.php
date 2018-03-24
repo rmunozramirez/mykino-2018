@@ -26,7 +26,8 @@ class HomeController extends Controller
     public function index()
     {
         $films = Film::all();
+        $carousel = Film::orderBy('created_at', 'desc')->take(18)->get();
 
-        return view('kino.home', compact('films'));
+        return view('kino.home', compact('films', 'carousel'));
     }
 }

@@ -30,7 +30,7 @@
       </div>  
     </div> 
     <div class="card-body">        
-
+    <div class="show"> 
         {!! Form::model($category, ['method'=>'PATCH', 'action'=> ['CategoriesController@update', $category->slug ],'files'=>true]) !!}
 
         <div class="pt-4">        
@@ -60,6 +60,7 @@
             {!!Form::close() !!}       
         </div>
         
+    </div>
     </div>
 </div>
 

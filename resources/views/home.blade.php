@@ -9,15 +9,18 @@
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
+        <link href="{{ asset('bootstrap/css/bootstrap.css') }}" rel="stylesheet" >        
         <link href="{{ asset('css/libs.css') }}" rel="stylesheet">
-        <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+        <link href="{{ asset('font-awesome/css/font-awesome.css') }}" rel="stylesheet">
+        <!-- link href="{{ asset('css/app.css') }}" rel="stylesheet" -->
+
+        <link href="{{ asset('css/style.css') }}" rel="stylesheet">
         <!-- Styles -->
 
     </head>
-    <body>
-                   
+    <body class="full-height">
 
-        <div class="flex-center position-ref full-height">
+        <div class="">
             @if (Route::has('login'))
                 <div class="top-right links">
                     @auth
@@ -28,21 +31,21 @@
                         <a href="{{ route('register') }}">Register</a>
                     @endauth
                 </div>
+
             @endif
+       </div>
 
-            <div class="content">
-                <div class="title m-b-md">
-                    My Kino
-        <p>A collection of {{count($films)}} films</p>
-                </div>
-
-
-         @yield('content')  
+        <div class="content titulo flex-center">
+            <div class="title m-b-md">
+                <h1>My Kino</h1>
+                <p>A collection of {{count($films)}} films</p>
             </div>
-          
-        </div>
+        </div>                   
 
+        @yield('content')   
+  
 
-
+    <!-- Insert javascript files  -->
+    @include('partials._javascripts')
     </body>
 </html>

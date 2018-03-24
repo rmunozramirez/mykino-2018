@@ -10,6 +10,7 @@ use App\Image;
 use App\Category;
 use App\Language;
 use App\Fsk;
+use App\Actor;
 use Session;
 
 
@@ -22,7 +23,7 @@ class FilmsController extends Controller
      */
     public function index()
     {
-        $films = Film::paginate(10);
+        $films = Film::orderBy('name', 'asc')->paginate(10);
         $total_films = Film::all();
 
         return view('admin.films.index', compact('films', 'total_films'));
@@ -39,6 +40,7 @@ class FilmsController extends Controller
         $categories = Category::pluck('category', 'id')->all();
         $languages = Language::pluck('language', 'id')->all(); 
         $fsks  = Fsk::pluck('fsk', 'id')->all(); 
+        $actors  = Actor::pluck('name', 'id')->all(); 
         $films  = Film::all(); 
                       
         $categoriescount = Category::all();
@@ -46,14 +48,14 @@ class FilmsController extends Controller
 
         if($categoriescount->count() == 0 || $languagescount->count() == 0 )
         {
-            Session::flash('info', 'You must have at least a categoy and a language before attempting to create a post.');
+            Session::flash('info', 'You must have at least a categoy and a language before attempting to create a film.');
 
             return redirect()->back();
         }
 
         $last_img = Image::orderBy('id', 'desc')->first();
 
-        return view('admin.films.create', compact('films', 'categories', 'languages', 'fsks'));
+        return view('admin.films.create', compact('films', 'categories', 'languages', 'fsks', 'actors'));
 
     }
 
@@ -65,7 +67,7 @@ class FilmsController extends Controller
      */
     public function store(FilmsRequest $request)
     {
-    
+
         $file = $request->file('image');
         $name = time() . '-' . $file->getClientOriginalName();
         $file->move('images', $name);
@@ -97,7 +99,7 @@ class FilmsController extends Controller
 
         ]);
 
-
+        $film->actors()->sync($request->actors, false);
         $film->save();
 
         Session::flash('success', 'Film successfully created!');
@@ -131,7 +133,19 @@ class FilmsController extends Controller
         //find the film in the database
         $film = Film::where('slug', $slug)->first(); 
         $films = Film::all();
-          return view('admin.films.edit', compact('film', 'films'));
+        $categories = Category::orderBy('category', 'asc')->pluck('category', 'id')->all();
+        $languages = Language::orderBy('language', 'asc')->pluck('language', 'id')->all(); 
+        $fsks  = Fsk::pluck('fsk', 'id')->all();  
+
+        $actors = Actor::all();
+            $actors2 = array();
+            foreach ($actors as $actor) {
+                $actors2[$actor->id] = $actor->name;
+        }   
+
+        $actors = Actor::orderBy('name', 'asc')->pluck('name', 'id')->all();
+
+          return view('admin.films.edit', compact('film', 'films', 'actors', 'categories', 'fsk', 'languages', 'actors'));
 
     }
 
@@ -146,7 +160,7 @@ class FilmsController extends Controller
     {
 
         $input = $request->all();
-        $input['slug'] = str_slug($request->category, '-');
+        $input['slug'] = str_slug($request->name, '-');
 
         if ( $file = $request->file('image')) {
             $name = time() . '-' . $file->getClientOriginalName();
@@ -155,11 +169,18 @@ class FilmsController extends Controller
             $input['image_id'] = $image->id;
         }
 
+
         Film::find($slug)->update($input);
+
+        if (isset($request->actors)) {
+            $input->actors()->sync($request->actors);
+        } else {
+            $input->actors()->sync(array());
+        }
 
         Session::flash('success', 'Film successfully updated!');
      
-        return redirect()->route('categories.index');
+        return redirect()->route('films.show', $film->slug);
 
     }
 
@@ -172,10 +193,10 @@ class FilmsController extends Controller
     public function destroy($slug)
     {
         $film = Film::find($slug);
+        $film->actors()->detach();
+        $film->delete();
 
-       $film->delete();
-
-       Session::flash('deleted_post', 'The post has been deleted');
+       Session::flash('deleted_film', 'The film has been deleted');
 
         return redirect()->route('films.index');
     } 
