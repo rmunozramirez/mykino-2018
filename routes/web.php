@@ -25,9 +25,9 @@ Route::group(['middleware' => 'auth'], function() {
 
 Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
 
-	Route::get('/dashboard', 'HomeController@dashboard')->name('dashboard');
-
 //my routes	
+	// dashboard
+	Route::get('/dashboard', 'HomeController@dashboard')->name('dashboard');	
 
 	//films
 	Route::get('/films', 'FilmsController@index')->name('films.index');

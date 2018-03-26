@@ -5,6 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Film;
 use App\Image;
+use App\Category;
+use App\Language;
+use App\Fsk;
+use App\Actor;
 
 class HomeController extends Controller
 {
@@ -38,7 +42,11 @@ class HomeController extends Controller
     public function dashboard()
     {
         $films = Film::all();
+        $categories = Category::all();
+        $languages = Language::all(); 
+        $fsks  = Fsk::all(); 
+        $actors  = Actor::all(); 
 
-        return view('admin.dashboard', compact('films'));
+        return view('admin.dashboard', compact('films', 'categories', 'languages', 'actors'));
     }
 }

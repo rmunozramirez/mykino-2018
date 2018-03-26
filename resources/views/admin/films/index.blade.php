@@ -1,7 +1,5 @@
 @extends('layouts.app')
 
-
-
 @section('content')
 
 <div class="card">
@@ -15,12 +13,7 @@
 
           <a class="btn btn-outline-success page-btns" href="{{route('films.create')}}">Add film</a>
         </div>
-        <div class="col-md-6 offset-md-4 text-center"> 
-            <form class="form-inline">
-              <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-              <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-            </form>          
-        </div>
+
       </div>
     </div> 
     <div class="card-body">    

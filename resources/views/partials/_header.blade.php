@@ -13,6 +13,7 @@
         <link href="{{ asset('css/libs.css') }}" rel="stylesheet">
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
         <link href="{{ asset('bootstrap/css/bootstrap.css') }}" rel="stylesheet">
+        <script defer src="{{ asset('font-awesome/fontawesome-all.js') }}"></script>
         <!-- link href="{{ asset('css/style.css') }}" rel="stylesheet">
         <Styles -->
 

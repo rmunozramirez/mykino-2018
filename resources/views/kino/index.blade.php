@@ -1,11 +1,12 @@
 @extends('home')
 
+@include('partials._inner_nav')
 
 @section('content')
 
-    <section id="content" class=" intro flex-center"> 
+    <section id="content" class="flex-center"> 
 
-        <div class="row">
+        <div class="row flex-center">
 
             <!-- Three columns of text below the carousel -->
             @foreach ($films as $film)

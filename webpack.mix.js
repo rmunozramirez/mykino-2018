@@ -17,27 +17,24 @@ mix.js('resources/assets/js/app.js', 'public/js')
 mix.styles([
 
     'resources/assets/css/libs/parsley.css', 
-    'resources/assets/css/libs/select2.min.css',  
+    'resources/assets/css/libs/select2.css',  
     'resources/assets/css/libs/summernote-bs4.css',   
     'resources/assets/css/libs/toastr.css',   
-    'resources/assets/font-awesome/css/font-awesome.min.css',           
-    //'resources/assets/css/bootstrap/bootstrap.css',
-    //'resources/assets/css/bootstrap/bootstrap-grid.css',
-    //'resources/assets/css/bootstrap/bootstrap-reboot.css',
-
+    'resources/assets/font-awesome/css/font-awesome.css',
+    'resources/assets/css/libs/admin.min.css',          
 
 ], 'public/css/libs.css');
 
+
 mix.scripts([
 
+    'resources/assets/js/libs/admin.min.js',
     'resources/assets/js/libs/parsley.min.js',
      'resources/assets/js/libs/select2.min.js',   
     'resources/assets/js/libs/summernote-bs4.js',     
     'resources/assets/js/libs/toastr.min.js',
     'resources/assets/js/jquery.js',
-    //'resources/assets/js/bootstrap/bootstrap-bundle.js',
-    //'resources/assets/js/bootstrap/bootstrap.js',
-
+    'resources/assets/font-awesome/css/font-awesome.css', 
 
 ], 'public/js/libs.js');
 
