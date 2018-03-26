@@ -24,7 +24,7 @@
       </div>  
     </div> 
     <div class="card-body">        
-    <div class="show">        
+    <div class="inside">        
 
         {!! Form::model($actor, ['method'=>'PATCH', 'action'=> ['ActorsController@update', $actor->slug ],'files'=>true]) !!}
 

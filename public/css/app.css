@@ -10155,8 +10155,8 @@ body {
   -webkit-backface-visibility: hidden;
           backface-visibility: hidden;
   margin: 2px;
-  max-width: calc( 100% - 4px);
-  height: 320px;
+  width: calc( 100% - 4px);
+  height: 276px;
 }
 
 img .actor-image {
@@ -10180,8 +10180,9 @@ img .actor-image {
 
 .the_film {
   position: relative;
-  width: 130px;
+  width: 24%;
   margin: 2px;
+  height: 280px;
 }
 
 .overlay {
@@ -10258,7 +10259,7 @@ img .actor-image {
   padding-left: 2rem;
 }
 
-.card-body .show {
+.card-body .inside {
   padding: 0 2rem 2rem;
 }
 
@@ -10358,5 +10359,28 @@ img .actor-image {
   top: 0;
   z-index: 9998;
   opacity: 0;
+}
+
+.dashboard .card-body .nav-tabs {
+  border: none !important;
+}
+
+.dashboard .nav-tabs .nav-link.active,
+.dashboard .nav-tabs .nav-item.show .nav-link {
+  color: #495057;
+  background-color: #fff;
+  border-color: transparent;
+}
+
+.dashboard .nav-link {
+  padding: 0;
+}
+
+ul a {
+  color: #495057 !important;
+}
+
+.pull-right {
+  float: right !important;
 }
 

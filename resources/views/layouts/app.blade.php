@@ -24,7 +24,7 @@
     <script src="{{ asset('js/bootstrap/bootstrap.js') }}"></script>
     <script src="{{ asset('js/toastr.min.js') }}"></script>
     < script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote-bs4.js"></script -->
-
+    @include('partials._javascripts')  
     <script>
         //toastr
 

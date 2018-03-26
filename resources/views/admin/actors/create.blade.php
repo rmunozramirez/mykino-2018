@@ -28,7 +28,7 @@
       </div>  
     </div> 
     <div class="card-body">        
-        <div class="show">        
+        <div class="inside">        
 
             {!!Form::open(array('route' => 'actors.store', 'files' => true)) !!}   
 

@@ -20,9 +20,10 @@ class LanguageController extends Controller
     public function index()
     {
         
-        $languages = Language::withCount('films')->get();
+        $languages = Language::all();
+        $total_films = Film::all();
 
-        return view('admin.language.index', compact('languages'));
+        return view('admin.language.index', compact('languages', 'total_films'));
     }
 
     /**

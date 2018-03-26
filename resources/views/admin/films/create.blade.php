@@ -25,7 +25,7 @@
       </div>  
     </div> 
    <div class="card-body">
-      <div class="show">       
+      <div class="inside">       
 
         {!!Form::open(array('route' => 'films.store', 'files' => true)) !!}   
 

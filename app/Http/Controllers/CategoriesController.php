@@ -21,8 +21,9 @@ class CategoriesController extends Controller
     {
         
         $categories = Category::orderBy('category', 'asc')->withCount('films')->paginate(12);
+        $total_categories = Category::all();
 
-        return view('admin.categories.index', compact('categories'));
+        return view('admin.categories.index', compact('categories', 'total_categories'));
     }
 
     /**

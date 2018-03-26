@@ -18,7 +18,7 @@
     </div>  
 
    <div class="card-body">
-    <div class="show pt-3">
+    <div class="inside pt-3">
       <div class="row pt-3">
         <div class="col-md-3">
             <img class="big-img" src="{{URL::to('/images/' . $actor->image->image ) }}" alt="{{$actor->name}}" >

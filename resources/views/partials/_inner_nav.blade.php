@@ -22,12 +22,6 @@
                 @else
 
                 <li><a class="nav-link" href="{{route('dashboard')}}">Dashboard</a></li>
-                <li><a class="nav-link" href="{{route('films.index')}}">Films</a></li>
-                <li><a class="nav-link" href="{{route('categories.index')}}">Categories</a></li>
-                <li><a class="nav-link" href="{{route('fsk.index')}}">Age</a></li>
-                <li><a class="nav-link" href="{{route('language.index')}}">Languages</a></li>
-                <li><a class="nav-link" href="{{route('actors.index')}}">Actor</a></li>
-
                 <li class="nav-item dropdown">
                     <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                             {{ Auth::user()->name }} <span class="caret"></span>
@@ -50,3 +44,6 @@
         </div>
     </div>
 </nav>
+
+
+

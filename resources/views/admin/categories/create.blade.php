@@ -23,30 +23,31 @@
       </div>  
     </div>  
     <div class="card-body">        
-        
+        <div class="inside">
 
-        {!!Form::open(array('route' => 'categories.store', 'files' => true)) !!}   
+            {!!Form::open(array('route' => 'categories.store', 'files' => true)) !!}   
 
-        <div class="pt-4">        
-            {!!Form::label('category', 'Add a Category name', array('class' => 'form-spacing-top'))!!}
-            {!!Form::text('category', null, array('class' => 'form-control', 'required' => '', 'maxlength' => '255'))!!}
+            <div class="pt-4">        
+                {!!Form::label('category', 'Add a Category name', array('class' => 'form-spacing-top'))!!}
+                {!!Form::text('category', null, array('class' => 'form-control', 'required' => '', 'maxlength' => '255'))!!}
+            </div>
+
+            <div class="pt-4"> 
+                {!!Form::label('image', 'Upload a Featured Image') !!}
+                {!!Form::file('image') !!}
+            </div>  
+
+            <div class="pt-4">       
+                {!!Form::label('description', 'Category description:', array('class' => 'form-spacing-top'))!!}
+                {!!Form::textarea('description', null, array('id' => 'summernote','class' => 'form-control', 'rows' => 9))!!}                       
+            </div>
+
+            <div class="pt-4">    
+                {!!Form::submit('Add New Category', array('class' => 'btn btn-success btn-block')) !!}
+                {!!Form::close() !!}       
+            </div>
+            
         </div>
-
-        <div class="pt-4"> 
-            {!!Form::label('image', 'Upload a Featured Image') !!}
-            {!!Form::file('image') !!}
-        </div>  
-
-        <div class="pt-4">       
-            {!!Form::label('description', 'Category description:', array('class' => 'form-spacing-top'))!!}
-            {!!Form::textarea('description', null, array('id' => 'summernote','class' => 'form-control', 'rows' => 9))!!}                       
-        </div>
-
-        <div class="pt-4">    
-            {!!Form::submit('Add New Category', array('class' => 'btn btn-success btn-block')) !!}
-            {!!Form::close() !!}       
-        </div>
-        
     </div>
 </div>
 

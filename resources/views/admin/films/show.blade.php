@@ -19,7 +19,7 @@
     </div>  
 
    <div class="card-body">
-      <div class="show">
+      <div class="inside">
         <!-- Tab panels -->
         <div class="row py-3"> 
           <div class="col-md-12">
