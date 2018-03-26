@@ -19,7 +19,7 @@
           <h2><img height="30" src="{{URL::to('/images/film.png') }}" alt="{{$actor->name}}">Edit {{$actor->name}}</h2>
         </div>  
         <div class="col-md-2 "> 
-          <a class="btn btn-outline-success page-btns" href="{{route('films.index')}}">{{count($actors)}} Actors</a>
+          <a class="btn btn-outline-success page-btns" href="{{route('actors.index')}}">{{count($actors)}} Actors</a>
         </div>  
       </div>  
     </div> 

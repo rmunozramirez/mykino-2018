@@ -19,15 +19,13 @@ Route::group(['middleware' => 'auth'], function() {
 
 //Just authenticated users could enter in Kino
 	Route::get('/kino', 'KinoController@index')->name('kino');
-
-
+	
 });
-
 
 
 Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
 
-	Route::get('/dashboard', 'HomeController@index')->name('dashboard');
+	Route::get('/dashboard', 'HomeController@dashboard')->name('dashboard');
 
 //my routes	
 
@@ -42,7 +40,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
 	Route::delete('/films/{slug}', 'FilmsController@destroy')->name('films.delete')->where('slug', '[\w\d\-\_]+');
 
 	//categories
-	Route::get('/categories/index', 'CategoriesController@index')->name('categories.index');
+	Route::get('/categories', 'CategoriesController@index')->name('categories.index');
 	Route::get('/categories/create', 'CategoriesController@create')->name('categories.create');
 	Route::post('/categories/store', 'CategoriesController@store')->name('categories.store');
 	Route::get('/categories/{slug}', 'CategoriesController@show')->name('categories.show')->where('slug', '[\w\d\-\_]+');
@@ -51,7 +49,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
 	Route::delete('/categories/{slug}', 'CategoriesController@destroy')->name('categories.delete');
 
 	//languages
-	Route::get('/language/index', 'LanguageController@index')->name('language.index');
+	Route::get('/language', 'LanguageController@index')->name('language.index');
 	Route::get('/language/create', 'LanguageController@create')->name('language.create');
 	Route::post('/language/store', 'LanguageController@store')->name('language.store');
 	Route::get('/language/{slug}', 'LanguageController@show')->name('language.show')->where('slug', '[\w\d\-\_]+');
@@ -66,7 +64,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
 	Route::delete('/actors/{slug}', 'ActorsController@destroy')->name('actors.delete')->where('slug', '[\w\d\-\_]+');
 	
 	//fsks
-	Route::get('/fsk/index', 'FskController@index')->name('fsk.index');
+	Route::get('/fsk', 'FskController@index')->name('fsk.index');
 	Route::get('/fsk/{slug}', 'FskController@show')->name('fsk.show')->where('slug', '[\w\d\-\_]+');
 
 	//Search

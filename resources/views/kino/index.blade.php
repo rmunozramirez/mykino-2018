@@ -1,21 +1,32 @@
+@extends('home')
 
-<div class="card">
-    <div class="card-body">        
-        <h2>Categories</h2>
 
-            @if($films)
-                <div class="col-lg-12">
-                    <!-- Three columns of text below the carousel -->
-                    @foreach ($films as $film)
-                    <a class="image-box" href="{{ 'films/'.$film->slug }}">
-                        <img src="{{ $film->image }}" alt="{{ $film->name }}" class="image img-responsive">
+@section('content')
+
+    <section id="content" class=" intro flex-center"> 
+
+        <div class="row">
+
+            <!-- Three columns of text below the carousel -->
+            @foreach ($films as $film)
+            <div class=" the_film">
+                 <img class="image" src="{{URL::to('/images/' . $film->image->image ) }}" alt="{{$film->name}}" >
+                  <div class="middle">
+                    <a href="{{route('films.show', $film->slug)}}">
+                        <div class="text">{{$film->name}}</div>
                     </a>
-                    @endforeach     
+                  </div>
+              </div>
+             
+            @endforeach     
 
-                </div><!-- /.row -->   
-                <div class="text-center">
-                    {{ $films->links() }}
-                </div>
-            @endif
-    </div>
-</div>
+      <div class="text-center">
+              {{ $films->links() }}
+          </div>
+        </div><!-- /.row -->   
+    </section>
+
+
+
+@endsection
+

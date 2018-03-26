@@ -73,7 +73,7 @@
                 <div class="pt-3 row">       
                     <div class="col-md-6">       
                         {!!Form::label('year', 'Year:', array('class' => 'form-spacing-top'))!!} 
-                        {!!Form::text('year', '', array('class' => 'form-control')) !!} 
+                        {!!Form::date('year', '', array('class' => 'form-control')) !!} 
                     </div>
 
                     <div class="col-md-6"> 
@@ -110,14 +110,18 @@
             </div>
         </div>
 
+    </div>
+    <div class="card-footer">  
+  
         <div class="pt-3 row">       
             <div class="col-md-12">    
                 {!!Form::submit('Add the New Film', array('class' => 'btn btn-success btn-block')) !!}
                 {!!Form::close() !!}       
             </div>
 
-        </div>
+        </div>      
     </div>
+
 </div>
 
 
@@ -133,5 +137,13 @@
             placeholder: 'Choose an Actor',
             allowClear: true
         });
+</script>
+
+<script>
+    $('#summernote').summernote({
+        placeholder: 'And the Oscars goes to...',
+        tabsize: 2,
+        height: 200
+    });
 </script>
 @endsection

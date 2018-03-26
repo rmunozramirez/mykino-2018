@@ -118,39 +118,26 @@ class ActorsController extends Controller
      */
     public function update(ActorsRequest $request, $slug)
     {
+       
+        $actor_id = Actor::where('slug', $slug)->first();
+        $input = $request->all();
+        $input['slug'] = str_slug($request->name, '-');
 
         if ( $file = $request->file('image')) {
             $name = time() . '-' . $file->getClientOriginalName();
             $file->move('images', $name);
-            $image = Image::create(['image' =>  $name]);
+
+            $image = Image::where('actor_id', $actor_id->id)->first();
+            $image['image'] =  $name;
+            Image::where('actor_id', $actor_id->id)->first()->fill($image)->save();
+
             $input['image_id'] = $image->id;
+
         }
 
-        $last_img = Image::orderBy('id', 'desc')->first(); 
-               
-        is_null($last_img) ? $img_id = 1 : $img_id =  $last_img->id + 1;
-       
-        $actor = Actor::create([
-            'name'      =>  $request->name,
-            'genre'   =>  $request->genre,
-            'slug'          =>  str_slug($request->name, '-'),
-            'image_id'      =>  $img_id,
-        ]);        
 
-        $image = Image::create([
-            'image'             =>  $name,
-            'actor_id'      =>  $actor->id,
-            'film_id'       => 0,
-            'category_id'   => 0,
-        ]);
-
-        Actor::find($slug)->update($input);
-
-        if (isset($request->films)) {
-            $input->films()->sync($request->films);
-        } else {
-            $input->films()->sync(array());
-        }
+        $actor = Actor::where('slug', $slug)->first();
+        $actor->fill($input)->save();
 
         Session::flash('success', 'Actor successfully updated!');
 

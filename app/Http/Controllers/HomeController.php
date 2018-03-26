@@ -28,6 +28,17 @@ class HomeController extends Controller
         $films = Film::all();
         $carousel = Film::orderBy('created_at', 'desc')->take(18)->get();
 
-        return view('kino.home', compact('films', 'carousel'));
+        return view('kino.landing', compact('films', 'carousel'));
+    }
+    /**
+     * Show the application dashboard.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function dashboard()
+    {
+        $films = Film::all();
+
+        return view('admin.dashboard', compact('films'));
     }
 }

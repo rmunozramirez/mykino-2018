@@ -169,18 +169,13 @@ class FilmsController extends Controller
             $input['image_id'] = $image->id;
         }
 
+        $updated_film = Film::where('slug', $slug)->first();
+        $updated_film->fill($input)->save();
 
-        Film::find($slug)->update($input);
-
-        if (isset($request->actors)) {
-            $input->actors()->sync($request->actors);
-        } else {
-            $input->actors()->sync(array());
-        }
 
         Session::flash('success', 'Film successfully updated!');
      
-        return redirect()->route('films.show', $film->slug);
+        return redirect()->route('films.show', $updated_film->slug);
 
     }
 
@@ -192,7 +187,8 @@ class FilmsController extends Controller
      */
     public function destroy($slug)
     {
-        $film = Film::find($slug);
+        $film = Film::where('slug', $slug)->first();
+
         $film->actors()->detach();
         $film->delete();
 

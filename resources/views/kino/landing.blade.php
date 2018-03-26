@@ -1,11 +1,16 @@
 @extends('home')
 
-
 @section('content')
+    <div class="content titulo flex-center">
+        <div class="title m-b-md">
+            <h1>My Kino</h1>
+            <p>A collection of {{count($films)}} films</p>
+        </div>
+    </div>          
 
     <section id="content" class=" intro flex-center"> 
 
-        <div class="row">
+        <div class="row flex-center">
             <!-- Three columns of text below the carousel -->
             @foreach ($films as $film)
             <div class=" the_film">
@@ -21,11 +26,10 @@
         </div><!-- /.row -->   
     </section>
 
+<!-- Featured home section -->
     <section id="featured"> 
 
-                <!-- Featured home section -->
-                @include('partials._featured')
-
+        @include('partials._featured')
 
     </section>
 

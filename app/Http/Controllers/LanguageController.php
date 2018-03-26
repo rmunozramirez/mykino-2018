@@ -20,7 +20,7 @@ class LanguageController extends Controller
     public function index()
     {
         
-        $languages = Language::orderBy('language', 'asc')->withCount('films')->get();
+        $languages = Language::withCount('films')->get();
 
         return view('admin.language.index', compact('languages'));
     }

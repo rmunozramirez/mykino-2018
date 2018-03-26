@@ -15,23 +15,28 @@ mix.js('resources/assets/js/app.js', 'public/js')
    .sass('resources/assets/sass/app.scss', 'public/css');
 
 mix.styles([
-    'resources/assets/css/bootstrap/bootstrap.css',
-    'resources/assets/css/bootstrap/bootstrap-grid.css',
-    'resources/assets/css/bootstrap/bootstrap-reboot.css',
-    'resources/assets/css/libs/toastr.css',
-    'resources/assets/css/libs/summernote-bs4.css',
-    'resources/assets/css/libs/parsley.css',
+
+    'resources/assets/css/libs/parsley.css', 
+    'resources/assets/css/libs/select2.min.css',  
+    'resources/assets/css/libs/summernote-bs4.css',   
+    'resources/assets/css/libs/toastr.css',   
+    'resources/assets/font-awesome/css/font-awesome.min.css',           
+    //'resources/assets/css/bootstrap/bootstrap.css',
+    //'resources/assets/css/bootstrap/bootstrap-grid.css',
+    //'resources/assets/css/bootstrap/bootstrap-reboot.css',
 
 
 ], 'public/css/libs.css');
 
 mix.scripts([
 
-    'resources/assets/js/libs/toastr.min.js',
     'resources/assets/js/libs/parsley.min.js',
-    'resources/assets/js/libs/summernote-bs4.js',
-    'resources/assets/js/bootstrap/bootstrap-bundle.js',
-    'resources/assets/js/bootstrap/bootstrap.js',
+     'resources/assets/js/libs/select2.min.js',   
+    'resources/assets/js/libs/summernote-bs4.js',     
+    'resources/assets/js/libs/toastr.min.js',
+    'resources/assets/js/jquery.js',
+    //'resources/assets/js/bootstrap/bootstrap-bundle.js',
+    //'resources/assets/js/bootstrap/bootstrap.js',
 
 
 ], 'public/js/libs.js');

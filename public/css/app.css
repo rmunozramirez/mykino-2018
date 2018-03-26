@@ -9994,14 +9994,24 @@ a.text-dark:focus {
   }
 }
 
-html,
+/*--------------------------------------------------------------
+1. - General
+--------------------------------------------------------------*/
+
 body {
-  background-color: #fff;
-  color: #636b6f;
-  font-family: 'Raleway', sans-serif;
+  background-color: red;
   font-weight: 100;
   margin: 0;
+  height: 100vh;
+  background: url("/images/overlay-carbon.png") repeat 0 0;
+  font-family: 'Josefin Sans', sans-serif !important;
+  background-attachment: fixed;
+  padding-bottom: 40px;
 }
+
+/*--------------------------------------------------------------
+2. - Laravel inherited
+--------------------------------------------------------------*/
 
 .full-height {
   height: 100vh;
@@ -10027,6 +10037,7 @@ body {
   position: absolute;
   right: 10px;
   top: 18px;
+  z-index: 300;
 }
 
 .content {
@@ -10034,11 +10045,11 @@ body {
 }
 
 .title {
-  font-size: 84px;
+  margin-top: -100px;
 }
 
 .links > a {
-  color: #636b6f;
+  color: #fff;
   padding: 0 25px;
   font-size: 12px;
   font-weight: 600;
@@ -10051,12 +10062,6 @@ body {
   margin-bottom: 30px;
 }
 
-body {
-  background: url("/images/overlay-carbon.png") repeat 0 0;
-  font-family: 'Josefin Sans', sans-serif !important;
-  background-attachment: fixed;
-}
-
 .navbar-laravel {
   background-color: #fff;
   -webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
@@ -10064,6 +10069,158 @@ body {
 }
 
 /* my changes */
+
+/*--------------------------------------------------------------
+3. - Landing page
+--------------------------------------------------------------*/
+
+.intro {
+  position: fixed;
+  top: 0;
+  height: 100vh;
+  overflow: hidden;
+}
+
+#featured {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 43vh;
+  z-index: 500;
+}
+
+#featured h2 {
+  color: #fff;
+}
+
+.stiky-home h2,
+.featured-home h2 {
+  font-size: 50px;
+  margin-top: 30px;
+}
+
+.carbon-transparent {
+  background: transparent radial-gradient(circle farthest-side at center bottom, #009cde, #444 125%) repeat scroll 0 0;
+  padding: 20px 0 50px;
+}
+
+.carbon {
+  background: rgba(255, 255, 255, 0.9) url("/images/overlay-carbon.png") repeat scroll 0 0;
+}
+
+.titulo {
+  position: fixed;
+  z-index: 200;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.75);
+  width: 100%;
+  background-attachment: fixed;
+}
+
+.titulo .title {
+  color: #fff;
+}
+
+.title h1 {
+  font-size: 60px;
+}
+
+.title p {
+  font-size: 40px;
+}
+
+.half_height {
+  height: 50vh;
+}
+
+/* HOVER */
+
+.image {
+  opacity: 1;
+  display: block;
+  width: 130px;
+  height: 200px;
+  -webkit-transition: .5s ease;
+  transition: .5s ease;
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
+  margin: 2px;
+}
+
+.actor-image {
+  opacity: 1;
+  display: block;
+  -webkit-transition: .5s ease;
+  transition: .5s ease;
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
+  margin: 2px;
+  max-width: calc( 100% - 4px);
+  height: 320px;
+}
+
+img .actor-image {
+  height: 300px;
+  width: 100%;
+}
+
+.middle {
+  -webkit-transition: .5s ease;
+  transition: .5s ease;
+  opacity: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+}
+
+/*---*/
+
+.the_film {
+  position: relative;
+  width: 130px;
+  margin: 2px;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  max-width: calc( 100% - 4px);
+  opacity: 0;
+  -webkit-transition: .5s ease;
+  transition: .5s ease;
+  background-color: #000;
+  margin: 2px;
+}
+
+.the_film:hover .overlay {
+  opacity: 0.6;
+}
+
+.text {
+  color: white;
+  font-size: 16px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  text-align: center;
+  width: 100%;
+}
+
+/* hover effect*/
+
+/*--------------------------------------------------------------
+3. - Admin section
+--------------------------------------------------------------*/
 
 .page-logo img {
   margin-right: 1.25rem;
@@ -10078,8 +10235,13 @@ body {
   margin-right: 10px;
 }
 
+.big-img {
+  max-width: 220px;
+  width: 220px;
+}
+
 .card-body {
-  padding: 0;
+  padding: 0 !important;
 }
 
 .navi {
@@ -10115,15 +10277,86 @@ body {
 --------------------------------------------------------------*/
 
 .image-box img {
-  float: left;
+  /* float: left; */
   margin: 2px;
   height: 200px;
   width: 130px;
+  position: relative;
 }
 
-.image {
-  margin: 2px;
-  max-height: 100%;
-  width: 100%;
+/******************************* Start featured home ***************************/
+
+.dynamicTile .col-sm-2.col-xs-4 {
+  padding: 5px;
+}
+
+.carousel-inner {
+  height: 259px;
+}
+
+.carousel-inner > .item,
+.carousel-inner > .img {
+  height: 320px;
+}
+
+.bigicon {
+  font-size: 67px;
+  color: white;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+.icontext {
+  color: white;
+  font-size: 18px;
+}
+
+.bigicondark {
+  font-size: 67px;
+  color: black;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+.icontextdark {
+  color: black;
+  font-size: 27px;
+}
+
+.dynamicTile {
+  margin: 0;
+  overflow: hidden;
+}
+
+.dynamicTile .col-sm-4.col-xs-8 {
+  padding: 5px;
+  margin: 0;
+}
+
+.tilecaption {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  margin: 0 !important;
+  text-align: center;
+  color: white;
+  font-family: Segoe UI;
+  font-weight: lighter;
+}
+
+.dynamicTile .fa {
+  font-size: 35px;
+}
+
+/******************************* End featured home *******************/
+
+.select2-drop-mask {
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 9998;
+  opacity: 0;
 }
 

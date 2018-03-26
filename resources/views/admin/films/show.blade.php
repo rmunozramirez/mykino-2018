@@ -21,8 +21,9 @@
    <div class="card-body">
       <div class="show">
         <!-- Tab panels -->
-      <div class="col-md-12">
-        <div class="row py-3">
+        <div class="row py-3"> 
+          <div class="col-md-12">
+
             <a class="separator" href="{{route('fsk.show', $film->fsk->slug)}}">{{$film->fsk->fsk}}</a>
             <a class="separator" href="{{route('language.show', $film->language->slug)}}">{{$film->language->language}} </a>
             <a class="separator" href="{{route('categories.show', $film->category->slug)}}">{!! $film->category->category !!} </a>
@@ -40,24 +41,27 @@
         </div>
       </div>
               
+      <hr />
+
+      <div class="row">
+         <!--/.Panel 1-->
+         <!--Panel 2-->
+         <div class="col-md-12" id="sinopsis" role="tabpanel">
+            <div class="contenido">{!! $film->description !!}</div>
+         </div>
+      </div>
+               <!--/.Panel 2-->
 
       <hr />
 
-            <div class="row">
-               <!--/.Panel 1-->
-               <!--Panel 2-->
-               <div class="col-md-12" id="sinopsis" role="tabpanel">
-                  <div class="content bottom-50 contenido">{!! $film->description !!}</div>
-               </div>
-               <!--/.Panel 2-->
-            <hr>   
-               <!--Panel 3-->
-               <div class="col-md-12" id="actors" role="tabpanel">
-                  <h3>Actors playing in "<?php echo ($film->name); ?>"</h3>
-               </div>
-               <!--/.Panel 3-->
-            </div>
+      <div class="row">
+         <!--Panel 3-->
+         <div class="col-md-12" id="actors" role="tabpanel">
+            <h3>Actors playing in "<?php echo ($film->name); ?>"</h3>
+         </div>
+         <!--/.Panel 3-->
       </div>
+    </div>
    </div>
 </div>
 @endsection

@@ -122,4 +122,12 @@
             allowClear: true
         });
 </script>
+
+<script>
+    $('#summernote').summernote({
+        placeholder: 'And the Oscars goes to...',
+        tabsize: 2,
+        height: 200
+    });
+</script>
 @endsection
