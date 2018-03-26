@@ -6,8 +6,8 @@
     <section id="content" class=""> 
       <div class="card">
           <div class="card-header">           
-            <div class="row">  
-              <div class="12 page-logo show">  
+            <div class="col-md-12">  
+              <div class="page-logo show">  
                   <h2><i class="fa fa-tachometer-alt"></i> Dashboard </h2>
               </div>  
             </div>
@@ -117,9 +117,12 @@
                       </div>
                   </div>
               </div>
+<hr />
 
+        @include('admin.partials._statistics')
             </div>
           </div>
+
 
           <div class="card-footer">    
             <div class="show py-3">
