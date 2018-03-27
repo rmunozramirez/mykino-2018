@@ -2,7 +2,7 @@
     <div class="card-header">           
       <div class="row">  
         <div class="col-md-10 page-logo">  
-          <h2><img height="30" src="{{URL::to('/images/language.png') }}" > {{count($total_films)}} films in {{count($languages)}} Languages</h2>
+          <h2> <i class="fas fa-language"></i>  {{count($total_films)}} films in {{count($languages)}} Languages</h2>
         </div>  
         <div class="col-md-2"> 
           <a class="btn btn-outline-success page-btns"  href="{{route('language.create')}}">Add language</a>

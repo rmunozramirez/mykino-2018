@@ -17,7 +17,7 @@
         <div class="card-header">           
       <div class="row">  
         <div class="col-md-10 page-logo">  
-          <h2><img height="30" src="{{URL::to('/images/film.png') }}" alt="{{count($films)}} Films" >Add Films </h2>
+          <h2> <i class="fas fa-film"></i>  Add Films </h2>
         </div>  
         <div class="col-md-2 "> 
           <a class="btn btn-outline-success page-btns" href="{{route('films.index')}}">{{count($films)}} Films</a>

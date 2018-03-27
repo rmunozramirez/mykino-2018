@@ -3,7 +3,7 @@
     <div class="card-header">           
       <div class="row">  
         <div class="col-md-10">  
-          <h2><img class="film-thumbnail" height="30" src="{{URL::to('/images/category.png') }}" alt="{{count($categories)}} Categories">
+          <h2><i class="fas fa-tags"></i>
            {{count($total_categories)}}  @if(count($categories) > 1) categories @else category @endif
          </h2>
         </div>  
@@ -27,8 +27,12 @@
               @foreach($categories as $category)
               <tr>
                  <td>
-                  <img class="film-thumbnail" height="80" src="{{$category->image ? URL::to('/images/' . $category->image->image) : URL::to('/images/category.png') }}" alt="{{$category->category}}" >
-                  <a href="{{route('categories.show', $category->slug)}}">{{$category->category}}</a></td>
+                  @if( $category->image )
+                    <img class="film-thumbnail" src="URL::to('/images/' . {{ $category->image->image }} )" alt="{{$category->category}}" />
+                    @else
+                    <i class="fas fa-tag fa-2x"></i> @endif
+                  <a href="{{route('categories.show', $category->slug)}}">{{$category->category}}</a>
+                </td>
                  <td>{{str_limit($category->description, 100, '...')}}</td>
                  <td><a href="{{route('categories.show', $category->slug)}}">{{$category->films_count}}</a></td>
               </tr>

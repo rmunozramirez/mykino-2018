@@ -2,8 +2,7 @@
     <div class="card-header">           
       <div class="row">  
         <div class="col-md-10 page-logo">  
-          <h2><img height="30" src="{{URL::to('/images/film.png') }}" alt="{{count($total_films)}} Films" >
-            {{count($total_films)}} @if(count($total_films) > 1) films @else film @endif </h2>
+          <h2> <i class="fas fa-film"></i> {{count($total_films)}} @if(count($total_films) > 1) films @else film @endif </h2>
         </div>  
         <div class="col-md-2"> 
 

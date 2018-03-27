@@ -7,7 +7,7 @@
       <div class="row">  
         <div class="col-md-9">  
             <h2 class="card-title">
-              <img height="30" src="{{URL::to('/images/film.png') }}" alt="{{ $film->name }}">
+               <i class="fas fa-film"></i> 
               <span class="mt-2"> {{ $film->name }}</span>
             </h2>
         </div>  

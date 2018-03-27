@@ -22,7 +22,7 @@
     <div class="card-header">           
       <div class="row">  
         <div class="col-md-10 page-logo">  
-          <h2><img height="30" src="{{URL::to('/images/Category.png') }}" alt="{{$category->category}}">Edit {{$category->category}}</h2>
+          <h2><i class="fas fa-tag"></i> Edit {{$category->category}}</h2>
         </div>  
         <div class="col-md-2 "> 
           <a class="btn btn-outline-success page-btns" href="{{route('categories.index')}}"> Categories</a>
@@ -40,10 +40,13 @@
 
         <div class="pt-4"> 
             <div class="row"> 
-                <div class="col-md-6"> 
-                    <img height="180" src="{{$category->image ? URL::to('/images/' . $category->image->image) : URL::to('/images/category.png') }}" alt="{{$category->category}}">
+                <div class="col-md-3"> 
+                     @if( $category->image )
+                    <img class="film-thumbnail" src="URL::to('/images/' . {{ $category->image->image }} )" alt="{{$category->category}}" />
+                    @else
+                    <i class="fas fa-tag fa-5x"></i> @endif
                 </div>  
-                <div class="col-md-6"> 
+                <div class="col-md-9"> 
                     {!!Form::label('image', 'Upload a Featured Image') !!}
                     {!!Form::file('image') !!}
                 </div>  

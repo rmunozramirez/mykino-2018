@@ -1,7 +1,12 @@
 
 
 @extends('layouts.app') @section('content')
+
+<div class="row">
+   
+</div>   
 <section id="content" class="dashboard">
+
    <div class="card">
       <div class="card-header">
          <div class="col-md-12">
@@ -133,5 +138,6 @@
       </div>
    </div>
 </section>
+
 @endsection
 

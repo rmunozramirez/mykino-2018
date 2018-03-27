@@ -6,7 +6,7 @@
     <div class="card-header">           
       <div class="row">  
         <div class="col-md-10">  
-           <h2><img height="50" src="{{$category->image ? URL::to('/images/' . $category->image->image) : URL::to('/images/category.png') }}" alt="{{$category->category}}" > 
+           <h2><i class="fas fa-tag"></i>
             {{$category->films_count}}  @if(($category->films_count) > 1) films @else film @endif in category {{$category->category}}
            </h2>
         </div>  
@@ -17,6 +17,7 @@
       </div>  
     </div> 
     <div class="card-body">    
+    <div class="inside">    
 
           @if($category->films_count)
             <table class="table table-striped table-hover">
@@ -51,6 +52,7 @@
             <a href="{{route('categories.index')}}">Back</a>
           @endif
 
+    </div>
     </div>
 </div>
 

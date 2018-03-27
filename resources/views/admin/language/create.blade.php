@@ -17,7 +17,7 @@
         <div class="card-header">           
           <div class="row">  
             <div class="col-md-10 page-logo">  
-              <h2><img height="30" src="{{URL::to('/images/language.png') }}" >Create a new Language</h2>
+              <h2> <i class="fas fa-language"></i>  Create a new Language</h2>
             </div>  
             <div class="col-md-2"> 
               <a class="btn btn-outline-success page-btns"  href="{{route('language.index')}}">{{count($language)}} languages</a>

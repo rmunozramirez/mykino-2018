@@ -20,7 +20,7 @@
         <div class="card-header">           
       <div class="row">  
         <div class="col-md-10 page-logo">  
-          <h2><img height="30" src="{{URL::to('/images/user.png') }}"> Add Actor</h2>
+          <h2><i class="fa fa-user"></i> Add Actor</h2>
         </div>  
         <div class="col-md-2"> 
           <a class="btn btn-outline-success page-btns" href="{{route('actors.index')}}">{{count($actors)}} Actors</a>

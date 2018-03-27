@@ -8,7 +8,7 @@
     <div class="card-header">           
       <div class="row">  
         <div class="col-md-10 page-logo">  
-          <h2><img height="30" src="{{URL::to('/images/film.png') }}" alt="{{count($films)}} Films" >{{count($films)}} Films from {{date('Y', strtotime($films[0]->year))}}</h2>
+          <h2>  <i class="fas fa-calendar-alt"></i> {{date('Y', strtotime($films[0]->year))}}: {{count($films)}} Films </h2>
         </div>  
         <div class="col-md-2 "> 
           <a class="btn btn-outline-success page-btns" href="{{route('films.create')}}">Add film</a>

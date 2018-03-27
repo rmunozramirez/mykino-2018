@@ -8,7 +8,11 @@
     <div class="card-header">           
       <div class="row">  
         <div class="col-md-10">  
-            <h2 class="card-title"><img height="30" src="{{URL::to('/images/film.png') }}" alt="{{ $actor->name }}" > {{ $actor->name }}</h2>
+            <h2 class="card-title">
+               @if($actor->genre == 'masculine') 
+                <i class="fa fa-male"></i> 
+              @else <i class="fa fa-female"></i>  @endif 
+               {{ $actor->name }}</h2>
         </div>  
         <div class="col-md-2  page-btns"> 
             <a type="button" class="btn btn-outline-secondary page-btns" href="{{route('actors.edit', $actor->slug)}}">Edit</a>
