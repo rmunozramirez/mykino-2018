@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Category;
 use App\Film;
 use App\Image;
@@ -17,7 +18,7 @@ class KinoController extends Controller
      */
     public function index()
     {
-        $films = Film::paginate(36);
+        $films = Film::paginate(10);
         return view('kino.index', compact('films'));
     }
 
@@ -48,9 +49,20 @@ class KinoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($slug)
     {
-        //
+        $film = Film::with('category')->where('slug', $slug)->first();
+        $prev = $film->id - 1;
+        $film_prev = DB::table('films')
+                    ->select('films.*')
+                    ->where('films.id', '=', $prev)->first();  
+
+        $next = $film->id + 1;  
+        $film_next = DB::table('films')
+                    ->select('films.*')
+                    ->where('films.id', '=', $next)->first();   
+
+        return view('kino.show', compact('film', 'film_prev', 'film_next'));
     }
 
     /**

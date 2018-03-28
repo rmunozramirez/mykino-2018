@@ -14,11 +14,10 @@
 --------------------------------------------------------------*/
 
 body {
-    background-color: red;
     font-weight: 100;
     margin: 0;
     height: 100vh;
-    background: url("/images/overlay-carbon.png") repeat 0 0;
+    background: url("/images/overlay-carbon.png") repeat 0 0, radial-gradient(circle farthest-side at center center,#009cde,#444 125%);
     font-family: 'Josefin Sans', sans-serif !important;
     background-attachment: fixed;
     padding-bottom: 40px;
@@ -118,7 +117,7 @@ background: rgba(0, 0, 0, 0) radial-gradient(circle farthest-side at center bott
     position: fixed;
     z-index: 200;
     height: 100vh;
-    background-color: rgba(0, 0, 0, 0.75);
+    background-color: rgba(0, 0, 0, 0.70);
     width: 100%;
     background-attachment: fixed;
 }
@@ -177,19 +176,18 @@ img .actor-image {
   -ms-transform: translate(-50%, -50%)
 }
 
-
-/*---*/
+/*-- -*/
 
 .the_thumbnail {
   position: relative;
   width: 130px;
   margin: 2px;
-  height: 320px
+  height: 200px
 }
 
-.the_film {
+.the_film, .item {
   position: relative;
-  width: 24%;
+  // width: 24%;
   margin: 2px;
   height: 280px
 }
@@ -201,16 +199,18 @@ img .actor-image {
   left: 0;
   right: 0;
   height: 100%;
-  max-width: calc( 100% - 4px);
+  max-width: 100%;
   opacity: 0;
   transition: .5s ease;
   background-color: #000;
-  margin: 2px;
+  z-index: 600;
 }
 
+.item:hover .overlay,
 .the_thumbnail:hover .overlay,
 .the_film:hover .overlay {
-  opacity: 0.6;
+  opacity: 0.8;
+  z-index: 600;
 }
 
 .text {
@@ -223,6 +223,7 @@ img .actor-image {
   -ms-transform: translate(-50%, -50%);
   text-align: center;
   width: 100%;
+  z-index: 650;
 }
 
 /* hover effect*/
@@ -269,7 +270,7 @@ img .actor-image {
 }
 
 .table td {
-    vertical-align: middle;
+    vertical-align: middle !important;
 }
 
 .separator {
@@ -385,4 +386,12 @@ ul a {
 
 .pull-right {
   float: right !important;
+}
+
+/* Kino View */
+
+.films-footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
 }

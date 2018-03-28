@@ -18,7 +18,8 @@ Auth::routes();
 Route::group(['middleware' => 'auth'], function() {
 
 //Just authenticated users could enter in Kino
-	Route::get('/kino', 'KinoController@index')->name('kino');
+	Route::get('/kino', 'KinoController@index')->name('kino.index');
+	Route::get('/kino/{slug}', 'KinoController@show')->name('kino.show')->where('slug', '[\w\d\-\_]+');
 	
 });
 

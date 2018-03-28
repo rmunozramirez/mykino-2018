@@ -1,21 +1,9 @@
 @extends('home')
 
-    <div class="">
-        @if (Route::has('login'))
-            <div class="top-right links">
-                @auth
-                    <a href="{{ url('/kino') }}">Kino</a>
-                    <a href="{{route('dashboard') }}">Dashboard</a>
-                @else
-                    <a href="{{ route('login') }}">Login</a>
-                    <a href="{{ route('register') }}">Register</a>
-                @endauth
-            </div>
-
-        @endif
-   </div>
+@include('partials._out_nav')
 
 @section('content')
+
     <div class="content titulo flex-center">
         <div class="title m-b-md">
             <h1>My Kino</h1>

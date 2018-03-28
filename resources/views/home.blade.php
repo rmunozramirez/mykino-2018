@@ -3,9 +3,7 @@
     <!-- Head  -->
     @include('partials._header')  
 
-    <body class="full-height">
-
-
+    <body>
         @yield('content')   
   
     <!-- Insert javascript files  -->

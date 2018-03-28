@@ -48,7 +48,7 @@ class HomeController extends Controller
         $actors  = Actor::paginate(10); 
         $total_actors  = Actor::all(); 
         $languages = Language::withCount('films')->get(); 
-        $fsks  = Fsk::all(); 
+        $fsks  = Fsk::withCount('films')->get(); 
 
         //Statistics
         $newest_films = Film::orderBy('year', 'desc')->take(5)->get();
@@ -58,6 +58,6 @@ class HomeController extends Controller
 
         //total
 
-        return view('admin.dashboard', compact('films', 'categories', 'languages', 'actors', 'newest_films', 'oldest_films', 'longest_films', 'shortest_films', 'total_categories', 'total_actors', 'total_films' ));
+        return view('admin.dashboard', compact('films', 'categories', 'languages', 'actors', 'newest_films', 'oldest_films', 'longest_films', 'shortest_films', 'total_categories', 'total_actors', 'total_films', 'fsks'));
     }
 }
