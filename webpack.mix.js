@@ -33,8 +33,7 @@ mix.scripts([
      'resources/assets/js/libs/select2.min.js',   
     'resources/assets/js/libs/summernote-bs4.js',     
     'resources/assets/js/libs/toastr.min.js',
-    'resources/assets/js/jquery.js',
-    'resources/assets/font-awesome/css/font-awesome.css', 
+    'resources/assets/js/jquery.js', 
 
 ], 'public/js/libs.js');
 

@@ -1,17 +1,18 @@
 @extends('home')
 
-@include('partials._out_nav')
-
 @section('content')
 
-    <div class="content titulo flex-center">
-        <div class="title m-b-md">
-            <h1>My Kino</h1>
-            <p>A collection of {{count($films)}} films</p>
-        </div>
-    </div>          
-
+@include('partials._out_nav')
+    
     <section id="content" class=" intro flex-center"> 
+    
+        <div class="content titulo flex-center">
+            <div class="title m-b-md">
+                <h1>My Kino</h1>
+                <p>A collection of {{count($films)}} films</p>
+            </div>
+        </div>          
+
 
         <div class="row flex-center">
             <!-- Three columns of text below the carousel -->

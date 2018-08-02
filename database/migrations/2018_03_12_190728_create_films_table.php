@@ -21,7 +21,7 @@ class CreateFilmsTable extends Migration
             $table->string('slug')->unique();
             $table->string('trailer')->nullable();
             $table->date('year')->nullable();
-            $table->time('duration')->nullable;
+            $table->time('duration')->nullable();
             $table->integer('fsk_id')->unsigned();        
             $table->integer('language_id')->unsigned();        
             $table->integer('category_id')->unsigned();   

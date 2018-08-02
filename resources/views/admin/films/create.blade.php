@@ -92,18 +92,16 @@
             {!!Form::textarea('description', null, array('id' => 'summernote', 'class' => 'form-control', 'rows' => 6))!!}                       
         </div>
 
-        <div class="pt-4">    
+
+
+    </div>
+    </div>
+
+    <div class="card-footer py-4">  
+
             {!!Form::submit('Add New Film', array('class' => 'btn btn-success btn-block')) !!}
-            {!!Form::close() !!}       
-        </div>
+            {!!Form::close() !!}                
 
-    </div>
-    </div>
-
-    <div class="card-footer pt-3">  
-            <div class="col-lg-12 pt-3 ">
-
-             </div>
     </div>
 </div>
 

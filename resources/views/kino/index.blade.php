@@ -7,7 +7,7 @@
   <section id="content" class="films-footer"> 
 
 
-    <div class="flex-center">
+    <div class="row flex-center row-1">
 
       <!-- Three columns of text below the carousel -->
       @foreach ($films as $film)
@@ -23,10 +23,10 @@
       @endforeach     
     </div><!-- /.row --> 
 
-    <div class="flex-center ">
-      <div class="row">
+    <div class="row flex-center row-1">
+
         {{ $films->links() }}
-      </div>
+
     </div>
           
   </section>

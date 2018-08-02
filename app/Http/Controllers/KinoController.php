@@ -18,7 +18,7 @@ class KinoController extends Controller
      */
     public function index()
     {
-        $films = Film::paginate(10);
+        $films = Film::paginate(33);
         return view('kino.index', compact('films'));
     }
 

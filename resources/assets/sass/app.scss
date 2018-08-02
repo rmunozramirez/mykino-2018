@@ -23,7 +23,6 @@ body {
     padding-bottom: 40px;
 }
 
-
 /*--------------------------------------------------------------
 2. - Laravel inherited
 --------------------------------------------------------------*/
@@ -46,6 +45,7 @@ body {
     right: 10px;
     top: 18px;
     z-index: 300;
+    width: 30%;
 }
 
 .content {
@@ -70,9 +70,24 @@ body {
     margin-bottom: 30px;
 }
 
-.navbar-laravel {
-  background-color: #fff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+.navbar ul {
+  display: block;
+}
+.navbar ul li,
+.nav-link {
+  display: inline;
+}
+.navbar ul li a, .navbar a {
+  color: #fff;
+  margin: 0 20px;
+}
+
+.open > .dropdown-menu {
+  display: block;
+}
+
+.dropdown-menu.show, .show {
+  display: inline !important;
 }
 
 /* my changes */
@@ -380,8 +395,8 @@ img .actor-image {
   padding: 0;
 }
 
-ul a {
-  color: #495057 !important;
+.dashboard ul a {
+  color: #495057;
 }
 
 .pull-right {
@@ -394,4 +409,23 @@ ul a {
   position: absolute;
   bottom: 0;
   width: 100%;
+}
+
+.glass .card {
+  background-color: rgba(0, 0, 0, 0.25);
+
+}
+.glass .card h2,
+.glass .card a,
+.glass .card ul a,
+.glass .card {
+  color: #fff;
+}
+
+.glass .card ul a:hover {
+  color: initial;
+}
+
+.row-1 {
+  width: 100vw !important;
 }

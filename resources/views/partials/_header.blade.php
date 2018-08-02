@@ -11,6 +11,7 @@
        <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">    
         <link href="{{ asset('css/libs.css') }}" rel="stylesheet">
+        
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
         <link href="{{ asset('bootstrap/css/bootstrap.css') }}" rel="stylesheet">
         <script defer src="{{ asset('font-awesome/fontawesome-all.js') }}"></script>
