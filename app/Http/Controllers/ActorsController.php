@@ -18,10 +18,11 @@ class ActorsController extends Controller
      */
     public function index()
     {
-        $actors = Actor::orderBy('name', 'asc')->paginate(10);
-        $total_actors = Actor::all();
-
-        return view ('admin.actors.index', compact('actors', 'total_actors'));
+        $actors = Actor::orderBy('name', 'asc')->withCount('films')->paginate(10);
+        $all_ = Actor::all();
+        $page_name = 'actors';
+        $index = 'yes';
+        return view ('dashboard.actors.index', compact('actors', 'all_', 'page_name', 'index'));
     }
 
     /**
@@ -33,7 +34,7 @@ class ActorsController extends Controller
     {
         $actors = Actor::all();
         $films  = Film::pluck('name', 'id')->all(); 
-        return view('admin.actors.create', compact('actors', 'films'));
+        return view('dashboard.actors.create', compact('actors', 'films'));
     }
 
     /**
@@ -84,7 +85,7 @@ class ActorsController extends Controller
 
         $actor = Actor::with('films')->where('slug', $slug)->first();
 
-        return view('admin.actors.show', compact('actor'));
+        return view('dashboard.actors.show', compact('actor'));
     }
 
     /**
@@ -106,7 +107,7 @@ class ActorsController extends Controller
 
         $films = Film::orderBy('name', 'asc')->pluck('name', 'id')->all();
 
-          return view('admin.actors.edit', compact('actor', 'films', 'films2', 'actors'));
+          return view('dashboard.actors.edit', compact('actor', 'films', 'films2', 'actors'));
     }
 
     /**

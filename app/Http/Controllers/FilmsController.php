@@ -24,9 +24,11 @@ class FilmsController extends Controller
     public function index()
     {
         $films = Film::orderBy('name', 'asc')->paginate(10);
-        $total_films = Film::all();
+        $all_ = Film::all();
+        $page_name = 'films';
+        $index = 'yes';
 
-        return view('admin.films.index', compact('films', 'total_films'));
+        return view('dashboard.films.index', compact('films', 'page_name', 'all_', 'index'));
     }
 
     /**
@@ -40,9 +42,10 @@ class FilmsController extends Controller
         $categories = Category::pluck('category', 'id')->all();
         $languages = Language::pluck('language', 'id')->all(); 
         $fsks  = Fsk::pluck('fsk', 'id')->all(); 
-        $actors  = Actor::pluck('name', 'id')->all(); 
-        $films  = Film::all(); 
-                      
+        $actors  = Actor::pluck('name', 'id')->all();
+        $all_ = Film::all();
+        $page_name =  'films';
+        $index = 'create';
         $categoriescount = Category::all();
         $languagescount = Language::all();
 
@@ -55,8 +58,7 @@ class FilmsController extends Controller
 
         $last_img = Image::orderBy('id', 'desc')->first();
 
-        return view('admin.films.create', compact('films', 'categories', 'languages', 'fsks', 'actors'));
-
+        return view('dashboard.films.create', compact('all_', 'categories', 'languages', 'fsks', 'actors', 'index', 'page_name'));
     }
 
     /**
@@ -116,9 +118,12 @@ class FilmsController extends Controller
      */
     public function show($slug)
     {
-        $film = Film::with('category')->where('slug', $slug)->first();
+        $element = Film::with('category')->withCount('actors')->where('slug', $slug)->first();
+        $page_name = 'films';
+        $all_ = Film::all();
+        $index = 'show';
 
-        return view('admin.films.show', compact('film'));
+        return view('dashboard.films.show', compact('element', 'page_name', 'all_', 'index'));
     }
 
     /**
@@ -131,12 +136,14 @@ class FilmsController extends Controller
     {
 
         //find the film in the database
-        $film = Film::where('slug', $slug)->first(); 
+        $element = Film::where('slug', $slug)->first(); 
         $films = Film::all();
         $categories = Category::orderBy('category', 'asc')->pluck('category', 'id')->all();
         $languages = Language::orderBy('language', 'asc')->pluck('language', 'id')->all(); 
         $fsks  = Fsk::pluck('fsk', 'id')->all();  
-
+        $page_name = 'films';
+        $index = 'edit';
+        $all_ = Film::all();
         $actors = Actor::all();
             $actors2 = array();
             foreach ($actors as $actor) {
@@ -145,7 +152,7 @@ class FilmsController extends Controller
 
         $actors = Actor::orderBy('name', 'asc')->pluck('name', 'id')->all();
 
-          return view('admin.films.edit', compact('film', 'films', 'actors', 'categories', 'fsk', 'languages', 'actors'));
+          return view('dashboard.films.edit', compact('element', 'films', 'actors', 'categories', 'fsk', 'languages', 'actors', 'page_name', 'index', 'all_'));
 
     }
 
@@ -195,7 +202,48 @@ class FilmsController extends Controller
        Session::flash('deleted_film', 'The film has been deleted');
 
         return redirect()->route('films.index');
-    } 
+    }
+
+    public function trashed()
+    {
+        $all_tr = Film::onlyTrashed()->get();
+        $all_ = Film::all();
+        $page_name = 'films';
+        $index = 'trash';
+
+        return view('dashboard.films.trashed', compact('all_tr', 'page_name', 'all_', 'index'));
+    }
+
+    public function restore($slug)
+    {
+        $buero = Film::withTrashed()->where('slug', $slug)->first();
+        $buero->restore();
+
+        Session::flash('success', 'Film successfully restored!');
+        return redirect()->route('films.index');
+    }
+
+    public function kill($slug)
+    {
+        $buero = Film::withTrashed()->where('slug', $slug)->first();
+        $buero->forceDelete();
+
+        Session::flash('success', 'Film pemanently deleted!');
+        return redirect()->route('films.index');
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     public function year($year)

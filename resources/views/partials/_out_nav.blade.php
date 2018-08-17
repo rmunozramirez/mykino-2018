@@ -1,35 +1,33 @@
-<div class="navbar">
-        <a class="navbar-brand" href="{{ url('/') }}">
-            My Kino
-        </a>
-    @if (Route::has('login'))
-        <div class="top-right links">
-            @auth
-            <ul class="pull-right">
-                <li class="nav-item"><a href="{{ url('/kino') }}">Kino</a></li>
-                <li class="nav-item"><a href="{{route('dashboard') }}">Dashboard</a></li>
-                <li class="nav-item dropdown">
-                    <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                        {{ Auth::user()->name }} <span class="caret"></span>
-                    </a>
+<nav class="navbar navbar-expand-md navbar-dark sticky-top" id="mainNav">
+  <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <i class="fa fa-bars"></i>
+        </button>
+  <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="sky-mega-menu sky-mega-menu-top sky-mega-menu-response-to-icons">
 
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                             document.getElementById('logout-form').submit();">
-                                {{ __('Logout') }}
-                            </a>
+          <li class="nav-item active"><a class="nav-link js-scroll-trigger" href="{{ url('/') }}">Startseite</a></li>
 
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                            @csrf
-                        </form>
-                    </div>
-                </li>
-            </ul>
-            @else
-                <a href="{{ route('login') }}">Login</a>
-                <a href="{{ route('register') }}">Register</a>
-            @endauth
-        </div>
-    @endif
+          <!--/ about -->
+          <div class="pull-right">
+              @guest
+                  <li><a class="nav-link js-scroll-trigger nav-link" href="{{ route('login') }}">{{ __('Login') }}</a></li>
+              @else
+                  <!-- about -->
+                  <li aria-haspopup="true">
+                      <a href="#"><i class="fa fa-arrow-down"></i> {{ Auth::user()->name }}</a>
+                      <div class="grid-container2">
+                          <ul>
+                              @if( Auth::user()->role_id > 3)
+                              <li><a href="{{ route('dashboard') }}">Admin</a></li>                        
+                              @endif
 
-</div>
+                              <li><a href="{{ url('/logout') }}"><i class="fa fa-sign-out-alt"></i>Logout</a></li>
+                          </ul>
+                      </div>
+                  </li>
+                  <!--/ about -->
+              @endguest
+          </div>
+      </ul>
+  </div>
+</nav>

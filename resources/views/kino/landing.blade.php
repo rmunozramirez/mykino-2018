@@ -1,9 +1,8 @@
-@extends('home')
+@extends('layouts.app')
+@section ('title',  "| $page_name")
 
 @section('content')
-
-@include('partials._out_nav')
-    
+   
     <section id="content" class=" intro flex-center"> 
     
         <div class="content titulo flex-center">

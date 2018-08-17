@@ -17,7 +17,7 @@
         <div class="card-header">           
       <div class="row">  
         <div class="col-md-10 page-logo">  
-          <h2> <i class="fas fa-film"></i>  Add Films </h2>
+          <h2> <i class="fas fa-film"></i>Add Film</h2>
         </div>  
         <div class="col-md-2 "> 
           <a class="btn btn-outline-success page-btns" href="{{route('films.index')}}">{{count($films)}} Films</a>
@@ -26,7 +26,6 @@
     </div> 
    <div class="card-body">
       <div class="inside">       
-
         {!!Form::open(array('route' => 'films.store', 'files' => true)) !!}   
 
         <div class="pt-4">        

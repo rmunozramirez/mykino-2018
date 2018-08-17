@@ -8,12 +8,10 @@ class Actor extends Model
 {
 
 	protected $fillable = [
-
 		'name',
 		'image_id',
 		'genre',
         'slug',
-		
 	];
 
     public function films()
