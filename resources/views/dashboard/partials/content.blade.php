@@ -47,7 +47,24 @@
                                     </a>
                                 </li>
                                 <li class="active">
-                                    {{ $element->title }}
+                                    {{ $element->name }}
+                                </li>
+
+                            @elseif ($index === 'year')
+                                <li>
+                                    <a href="{{route('films.index')}}">
+                                        Films
+                                    </a>
+                                </li>
+                                <li class="active">
+                                    {{date('Y', strtotime($films[0]->year))}}
+                                </li>
+
+                            @elseif ($index === 'years')
+                                <li>
+                                    <a href="{{route('films.index')}}">
+                                        Films
+                                    </a>
                                 </li>
 
                             @else ($index === 'edit')
@@ -56,20 +73,24 @@
                                         {{ ucfirst(trans($page_name)) }}
                                     </a>
                                 </li>
+
                                 <li>
                                     <a href="{{route($page_name . '.show', $element->slug)}}">
-                                        {{ $element->title }}
+                                        {{ $element->name }}
                                     </a>
                                 </li>
+                                
                                 <li class="active">
                                     {{ ucfirst(trans($index)) }}
                                 </li>
                             @endif
-                            <span class="pull-right">
-                                <i class="fas fa-pencil-alt"></i>
-                                <i class="fa fa-plus"></i> <a href="{{route($page_name . '.create')}}">Create {{ ucfirst(trans($page_name)) }}</a>
-                                <i class="fa fa-trash"></i> <a href="{{route($page_name . '.trashed')}}">Trashed {{ ucfirst(trans($page_name)) }}</a>
-                            </span>
+                            @if($page_name !== 'year' && $page_name !== 'years')
+                                <span class="pull-right">
+                                    <i class="fas fa-pencil-alt"></i>
+                                    <i class="fa fa-plus"></i> <a href="{{route($page_name . '.create')}}">Create {{ ucfirst(trans($page_name)) }}</a>
+                                    <i class="fa fa-trash"></i> <a href="{{route($page_name . '.trashed')}}">Trashed {{ ucfirst(trans($page_name)) }}</a>
+                                </span>
+                            @endif
                         @endif
                     </ol>    
                 </div>             

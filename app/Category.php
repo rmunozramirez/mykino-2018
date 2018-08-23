@@ -3,18 +3,22 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Category extends Model
 {
 
 	protected $fillable = [
 
-	    'category',
+	    'name',
 	    'description',
 	    'image_id',
         'slug',
 
 	];
+
+    use SoftDeletes;
+    protected $dates = ['deleted_at'];
 
     public function films()
     {
@@ -23,6 +27,6 @@ class Category extends Model
 
     public function image()
     {
-        return $this->hasOne('App\Image', 'category_id', 'id');
+        return $this->belongsTo('App\Image', 'category_id', 'id');
     }
 }

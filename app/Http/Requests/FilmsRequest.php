@@ -33,7 +33,7 @@ class FilmsRequest extends FormRequest
             'language_id'   => 'required|integer',
             'fsk_id'   => 'required|integer',
             'description' => 'required',
-            'image' => 'required|image' 
+
         ];
     }
 }

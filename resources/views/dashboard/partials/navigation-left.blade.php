@@ -3,21 +3,20 @@
     <aside>
         <!-- mega menu -->
         <ul class="sky-mega-menu  sky-mega-menu-fixed sky-mega-menu-pos-left sky-mega-menu-anim-scale sky-mega-menu-response-to-switcher">
-            @if(Auth::user()->profile)
+
+            @if(Auth::user())
             <li>  
                 <a href="#" class="text-center py-5">
-                    @foreach(Auth::user()->profile->imageables as $image)
-                    @if($image->imageable_type === 'profiles' && $image->imageable_id === Auth::id())
-                    <img height="80" class="img-circle thumbnail-admin"  src="{{URL::to('/images/' . $image->slug) }}" alt="{{Auth::user()->name}}" title="{{Auth::user()->name}}" />
+
+                    @if(Auth::user()->image)
+                    <img height="80" class="img-circle thumbnail-admin"  src="{{URL::to('/images/' . Auth::user()->image->slug) }}" alt="{{Auth::user()->name}}" title="{{Auth::user()->name}}" />
                     <br />
                     @endif
-                    @endforeach
+
                     {{Auth::user()->name}}
                 </a>
                 <div class="grid-container3">
                     <ul>
-                        <li><a href="{{route('profiles.show', Auth::user()->profile->slug)}}">Profile</a></li>
-                        <li><a href="mailbox.html">Mailbox</a></li>
                         <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Logout</a></li>
                     </ul>
                 </div>
@@ -42,7 +41,7 @@
 
             <!-- Films -->
             <li aria-haspopup="true">
-                <a href="{{route('films.index')}}"><i class="fa fa-group"></i>Films</a>
+                <a href="{{route('films.index')}}"><i class="fa fa-film"></i>Films</a>
                 <div class="grid-container3">
                     <ul>
                         <li><a href="{{route('films.create')}}"><i class="fa fa-plus"></i>Neue hinzufügen</a></li>
@@ -61,6 +60,34 @@
                 </div>
             </li>
             <!--/ Actors -->
+
+            <!-- Categories -->
+            <li aria-haspopup="true">
+                <a href="{{route('categories.index')}}"><i class="fa fa-tags"></i>Categories</a>
+                <div class="grid-container3">
+                    <ul>
+                        <li><a href="{{route('categories.create')}}"><i class="fa fa-plus"></i>Neue hinzufügen</a></li>
+                    </ul>
+                </div>
+            </li>
+            <!--/ Categories -->
+
+            <!-- FSK -->
+            <li aria-haspopup="true">
+                <a href="{{route('fsk.index')}}"><i class="fa fa-eye"></i>FSK</a>
+            </li>
+            <!--/ FSK -->
+
+            <!-- Languages -->
+            <li aria-haspopup="true">
+                <a href="{{route('language.index')}}"><i class="fa fa-language"></i>Languages</a>
+                <div class="grid-container3">
+                    <ul>
+                        <li><a href="{{route('language.create')}}"><i class="fa fa-plus"></i>Neue hinzufügen</a></li>
+                    </ul>
+                </div>
+            </li>
+            <!--/ Languages -->
 
             <!-- settings -->
             <li aria-haspopup="true" class="bottom">

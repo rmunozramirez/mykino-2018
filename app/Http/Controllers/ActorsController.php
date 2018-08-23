@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\ActorsRequest;
 use App\Actor;
 use App\Image;
+use App\Category;
 use App\Film;
 use Session;
 
@@ -18,7 +19,7 @@ class ActorsController extends Controller
      */
     public function index()
     {
-        $actors = Actor::orderBy('name', 'asc')->withCount('films')->paginate(10);
+        $actors = Actor::orderBy('name', 'asc')->withCount('films')->with('image')->get();
         $all_ = Actor::all();
         $page_name = 'actors';
         $index = 'yes';
@@ -32,9 +33,13 @@ class ActorsController extends Controller
      */
     public function create()
     {
-        $actors = Actor::all();
+        $all_ = Actor::all();
         $films  = Film::pluck('name', 'id')->all(); 
-        return view('dashboard.actors.create', compact('actors', 'films'));
+        $page_name =  'actors';
+        $index = 'create';
+
+        return view('dashboard.actors.create', compact('all_', 'films', 'page_name', 'index'));
+
     }
 
     /**
@@ -45,6 +50,7 @@ class ActorsController extends Controller
      */
     public function store(ActorsRequest $request)
     {
+
         $file = $request->file('image');
         $name = time() . '-' . $file->getClientOriginalName();
         $file->move('images', $name);
@@ -55,16 +61,16 @@ class ActorsController extends Controller
        
         $actor = Actor::create([
             'name'      =>  $request->name,
-            'genre'   =>  $request->genre,
-            'slug'          =>  str_slug($request->name, '-'),
-            'image_id'      =>  $img_id,
+            'gender_id' =>  $request->gender_id,
+            'slug'      =>  str_slug($request->name, '-'),
+            'image_id'  =>  $img_id,
         ]);        
 
         $image = Image::create([
-            'image'             =>  $name,
-            'actor_id'      =>  $actor->id,
-            'film_id'       => 0,
-            'category_id'   => 0,
+            'image_name'  =>  $request->name,
+            'slug'  =>  $name,
+            'alt'   =>  $request->name,
+            'about' =>  $request->name,
         ]);
 
         $actor->save();
@@ -83,9 +89,18 @@ class ActorsController extends Controller
     public function show($slug)
     {
 
-        $actor = Actor::with('films')->where('slug', $slug)->first();
+        $element = Actor::with('films')->where('slug', $slug)->first();
+        $page_name = 'actors';
+        $all_ = Actor::all();
+        $index = 'show';
 
-        return view('dashboard.actors.show', compact('actor'));
+        $prev = $element->id - 1;
+        $actor_prev = Actor::find($prev);
+
+        $next = $element->id + 1;  
+        $actor_next = Actor::find($next);
+
+        return view('dashboard.actors.show', compact('element', 'page_name', 'all_', 'index', 'actor_prev', 'actor_next'));
     }
 
     /**
@@ -96,8 +111,10 @@ class ActorsController extends Controller
      */
     public function edit($slug)
     {
-        $actor = Actor::where('slug', $slug)->first();
-        $actors = Actor::all();
+        $element = Actor::where('slug', $slug)->first();
+        $all_ = Actor::all();
+        $page_name = 'actors';
+        $index = 'edit';
 
         $films = Film::all();
             $films2 = array();
@@ -107,7 +124,7 @@ class ActorsController extends Controller
 
         $films = Film::orderBy('name', 'asc')->pluck('name', 'id')->all();
 
-          return view('dashboard.actors.edit', compact('actor', 'films', 'films2', 'actors'));
+          return view('dashboard.actors.edit', compact('element', 'films', 'films2', 'all_', 'page_name', 'index'));
     }
 
     /**
@@ -133,9 +150,7 @@ class ActorsController extends Controller
             Image::where('actor_id', $actor_id->id)->first()->fill($image)->save();
 
             $input['image_id'] = $image->id;
-
         }
-
 
         $actor = Actor::where('slug', $slug)->first();
         $actor->fill($input)->save();
@@ -153,11 +168,41 @@ class ActorsController extends Controller
      */
     public function destroy($slug)
     {
-        $actor = Actor::find($slug);
+
+        $actor = Actor::where('slug', $slug)->first();
         $actor->films()->detach();
         $actor->delete();
 
         Session::flash('success', 'Actor was deleted successfully');
         return redirect()->route('actors.index');
     }
+
+    public function trashed()
+    {
+        $all_tr = Actor::onlyTrashed()->get();
+        $all_ = Actor::all();
+        $page_name = 'actors';
+        $index = 'trash';
+
+        return view('dashboard.actors.trashed', compact('all_tr', 'page_name', 'all_', 'index'));
+    }
+
+    public function restore($slug)
+    {
+        $actor = Actor::withTrashed()->where('slug', $slug)->first();
+        $actor->restore();
+
+        Session::flash('success', 'Actor successfully restored!');
+        return redirect()->route('actors.index');
+    }
+
+    public function kill($slug)
+    {
+        $actor = Actor::withTrashed()->where('slug', $slug)->first();
+        $actor->forceDelete();
+
+        Session::flash('success', 'Actor pemanently deleted!');
+        return redirect()->route('actors.index');
+    }
+
 }

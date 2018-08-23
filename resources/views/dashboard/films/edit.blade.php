@@ -25,29 +25,18 @@
 
 							        <div class="pt-3 row">       
 							            <div class="col-md-3"> 
-							                <div class="row"> 
-							                    <div class="col-md-12 pt-3"> 
-							                        <img class="big-img img-responsive"  src="{{URL::to('/images/' . $element->image->image ) }}" alt="{{$element->name}}" >
-							                    </div>
-							                </div>
+					                        <img class="img-responsive"  src="{{URL::to('/images/' . $element->image->slug ) }}" alt="{{$element->name}}" >
 
-							                <div class="col-md-12 pt-3 "> 
-							                    <div class="pt-4"> 
-							                        {!!Form::label('image', 'Change the Featured Image') !!}
-							                        {!!Form::file('image') !!}
-							                    </div>
-							                </div>
+					                        {!!Form::label('image_name', 'Change the Featured Image') !!}
+					                        {!!Form::file('image_name') !!}
 							            </div>
 
 							            <div class="col-md-9"> 
-							                <div class="row"> 
-							                     <div class="col-md-12"> 
-							                        <div class="pt-4">        
-							                            {!!Form::label('name', 'Add a film name', array('class' => 'form-spacing-top'))!!}
-							                            {!!Form::text('name', null, array('class' => 'form-control', 'required' => '', 'maxlength' => '255'))!!}
-							                        </div>
-							                    </div>
-							                </div>
+
+					                        <div class="pt-4">        
+					                            {!!Form::label('name', 'Edit film name', array('class' => 'form-spacing-top'))!!}
+					                            {!!Form::text('name', null, array('class' => 'form-control', 'required' => '', 'maxlength' => '255'))!!}
+					                        </div>
 							                
 							                <div class="row"> 
 							                     <div class="col-md-6"> 
@@ -106,13 +95,11 @@
 							        </div>
 
 							    </div>
-							    <div class="card-footer">  
-							        <div class="pt-3 row">       
-							            <div class="col-md-12">    
-							                {!!Form::submit('Add the New Film', array('class' => 'btn btn-success btn-block')) !!}
-							                {!!Form::close() !!}       
-							            </div>
-							        </div>      
+							    <div class="card-footer">        
+						            <div class="col-md-9 col-md-offset-3">    
+						                {!!Form::submit('Edit Film', array('class' => 'btn btn-success btn-block')) !!}
+						                {!!Form::close() !!}       
+						            </div>    
 							    </div> 		
 							</div>
 				    	</div>

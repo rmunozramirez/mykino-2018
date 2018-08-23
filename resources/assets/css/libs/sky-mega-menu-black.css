@@ -1,0 +1,98 @@
+.sky-mega-menu li:hover > a,
+.sky-mega-menu li.current > a {
+	background: #050935;
+	color: #fff;
+}
+
+
+/**/
+/* forms */
+/**/
+.sky-mega-menu form .input:hover input,
+.sky-mega-menu form .textarea:hover textarea {
+	border-color: #909090;
+}
+.sky-mega-menu form .button {
+	background-color: #050935;	
+}
+.sky-mega-menu form .input input:focus,
+.sky-mega-menu form .textarea textarea:focus {
+	border-color: #050935;
+}
+
+#landing-page .sky-mega-menu li a,
+#landing-page .sky-mega-menu li ul li a,
+#inner-page .sky-mega-menu li a,
+#inner-page .sky-mega-menu li ul li a 
+{
+	color: #fff;
+}
+
+.sky-mega-menu li > div {
+	color: #666;
+}
+
+/**/
+/* normal state */
+/**/
+.sky-form .toggle i:before {
+	background-color: #050935;	
+}
+.sky-form .button {
+	background-color: #050935;
+	font-style: initial;
+}
+
+.sky-form .section-call-to-action .button {
+	padding-top: 18px;
+}
+
+
+/**/
+/* hover state */
+/**/
+.sky-form .input:hover input,
+.sky-form .select:hover select,
+.sky-form .textarea:hover textarea,
+.sky-form .radio:hover i,
+.sky-form .checkbox:hover i,
+.sky-form .toggle:hover i,
+.sky-form .ui-slider-handle:hover {
+	border-color: #909090;
+}
+.sky-form .rating input + label:hover,
+.sky-form .rating input + label:hover ~ label {
+	color: #050935;
+}
+
+
+/**/
+/* focus state */
+/**/
+.sky-form .input input:focus,
+.sky-form .select select:focus,
+.sky-form .textarea textarea:focus,
+.sky-form .radio input:focus + i,
+.sky-form .checkbox input:focus + i,
+.sky-form .toggle input:focus + i {
+	border-color: #050935;
+}
+
+
+/**/
+/* checked state */
+/**/
+.sky-form .radio input + i:after {
+	background-color: #050935;	
+}
+.sky-form .checkbox input + i:after {
+	color: #050935;
+}
+.sky-form .radio input:checked + i,
+.sky-form .checkbox input:checked + i,
+.sky-form .toggle input:checked + i {
+	border-color: #050935;	
+}
+.sky-form .rating input:checked ~ label {
+	color: #050935;	
+}

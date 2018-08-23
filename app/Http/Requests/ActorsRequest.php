@@ -25,7 +25,8 @@ class ActorsRequest extends FormRequest
     {
         return [
             
-            'name'=> 'required|max:255',
+            'name'      => 'required|max:255',
+            'gender_id'  => 'required|integer',
 
         ];
     }

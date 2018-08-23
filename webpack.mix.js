@@ -21,7 +21,12 @@ mix.styles([
     'resources/assets/css/libs/summernote-bs4.css',   
     'resources/assets/css/libs/toastr.css',   
     'resources/assets/font-awesome/css/font-awesome.css',
-    'resources/assets/css/libs/admin.min.css',          
+    'resources/assets/css/libs/admin.min.css',
+    'resources/assets/css/libs/sky-forms.css',
+    'resources/assets/css/libs/sky-mega-menu.css',
+    'resources/assets/css/libs/sky-mega-menu-black.css',
+    'resources/assets/css/libs/sky-tabs.css',
+    'resources/assets/css/libs/animate.css',
 
 ], 'public/css/libs.css');
 

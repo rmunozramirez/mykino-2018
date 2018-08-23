@@ -47,6 +47,6 @@ class Film extends Model
 
     public function image()
     {
-        return $this->hasOne('App\Image', 'film_id', 'id');
+        return $this->belongsTo('App\Image');
     }
 }

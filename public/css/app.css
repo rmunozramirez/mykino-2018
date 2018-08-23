@@ -10062,11 +10062,15 @@ body {
   margin-bottom: 30px;
 }
 
-.navbar ul {
-  display: block;
+.navbar {
+  background-color: rgba(0, 0, 0, 0.2) !important;
 }
 
-.navbar ul li,
+.navbar ul {
+  display: block;
+  width: 100%;
+}
+
 .nav-link {
   display: inline;
 }
@@ -10075,6 +10079,16 @@ body {
 .navbar a {
   color: #fff;
   margin: 0 20px;
+}
+
+.sky-mega-menu li:hover > a {
+  background: none;
+}
+
+.sky-mega-menu li:hover,
+.sky-mega-menu li.current,
+.navbar .grid-container2 ul {
+  background: #050935;
 }
 
 .open > .dropdown-menu {
@@ -10417,8 +10431,8 @@ img .actor-image {
 
 .films-footer {
   position: absolute;
-  bottom: 0;
   width: 100%;
+  top: calc(100vh - 220px) !important;
 }
 
 .glass .card {
@@ -10438,5 +10452,37 @@ img .actor-image {
 
 .row-1 {
   width: 100vw !important;
+}
+
+/*************** VIDEO ************************/
+
+#last-film {
+  position: relative;
+  padding-bottom: 0px;
+  /* 56.25%;ratio 16x9 */
+  height: 0;
+  overflow: hidden;
+  width: auto;
+  height: 100vh;
+}
+
+#last-film iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* ratio 4x3 */
+
+#last-film .ratio4x3 {
+  padding-bottom: 75%;
+}
+
+#marca {
+  z-index: 200;
+  position: fixed;
+  width: 100%;
 }
 

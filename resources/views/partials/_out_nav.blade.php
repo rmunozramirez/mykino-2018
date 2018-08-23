@@ -5,7 +5,10 @@
   <div class="collapse navbar-collapse" id="navbarResponsive">
       <ul class="sky-mega-menu sky-mega-menu-top sky-mega-menu-response-to-icons">
 
-          <li class="nav-item active"><a class="nav-link js-scroll-trigger" href="{{ url('/') }}">Startseite</a></li>
+          <li class="nav-item active"><a class="nav-link js-scroll-trigger" href="{{ url('/') }}"><img height="30" src="{{URL::to('/images/mykino.png' ) }}" alt="My Kino"> Startseite</a></li>-mega-menu-response-to-icons">
+
+          <li class="nav-item active"><a class="nav-link js-scroll-trigger" href="{{route('kino.index')}}"> Filme</a></li>
+
 
           <!--/ about -->
           <div class="pull-right">

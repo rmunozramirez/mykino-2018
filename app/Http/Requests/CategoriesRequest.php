@@ -25,7 +25,7 @@ class CategoriesRequest extends FormRequest
     {
         return [
                 
-            'category' => 'required|max:255',
+            'name' => 'required|max:255',
             'description' => 'required',
 
         ];

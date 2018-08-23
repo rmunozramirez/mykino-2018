@@ -30,7 +30,7 @@ class HomeController extends Controller
     public function index()
     {
         $films = Film::all();
-        $carousel = Film::orderBy('created_at', 'desc')->take(18)->get();
+        $carousel = Film::orderBy('created_at', 'desc')->get();
         $page_name = 'Home page'; 
 
         return view('kino.landing', compact('page_name', 'films', 'carousel'));

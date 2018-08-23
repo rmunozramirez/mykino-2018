@@ -39,9 +39,9 @@ class FilmsController extends Controller
     public function create()
     {
         
-        $categories = Category::pluck('category', 'id')->all();
-        $languages = Language::pluck('language', 'id')->all(); 
-        $fsks  = Fsk::pluck('fsk', 'id')->all(); 
+        $categories = Category::pluck('name', 'id')->all();
+        $languages = Language::pluck('name', 'id')->all(); 
+        $fsks  = Fsk::pluck('name', 'id')->all(); 
         $actors  = Actor::pluck('name', 'id')->all();
         $all_ = Film::all();
         $page_name =  'films';
@@ -93,12 +93,11 @@ class FilmsController extends Controller
 
        ]);   
 
-        $image = Image::create([
-            'image'         =>  $name,
-            'film_id'       => $film->id,
-            'actor_id'       => 0,
-            'category_id'   => 0,
-
+       $image = Image::create([
+            'image_name'  =>  $request->name,
+            'slug'  =>  $name,
+            'alt'   =>  $request->name,
+            'about' =>  $request->name,
         ]);
 
         $film->actors()->sync($request->actors, false);
@@ -118,7 +117,7 @@ class FilmsController extends Controller
      */
     public function show($slug)
     {
-        $element = Film::with('category')->withCount('actors')->where('slug', $slug)->first();
+        $element = Film::with('category')->with('image')->withCount('actors')->where('slug', $slug)->first();
         $page_name = 'films';
         $all_ = Film::all();
         $index = 'show';
@@ -138,9 +137,9 @@ class FilmsController extends Controller
         //find the film in the database
         $element = Film::where('slug', $slug)->first(); 
         $films = Film::all();
-        $categories = Category::orderBy('category', 'asc')->pluck('category', 'id')->all();
-        $languages = Language::orderBy('language', 'asc')->pluck('language', 'id')->all(); 
-        $fsks  = Fsk::pluck('fsk', 'id')->all();  
+        $categories = Category::orderBy('name', 'asc')->pluck('name', 'id')->all();
+        $languages = Language::orderBy('name', 'asc')->pluck('name', 'id')->all(); 
+        $fsks  = Fsk::pluck('name', 'id')->all();  
         $page_name = 'films';
         $index = 'edit';
         $all_ = Film::all();
@@ -166,32 +165,40 @@ class FilmsController extends Controller
     public function update(FilmsRequest $request, $slug)
     {
 
-        $input = $request->all();
-        $input['slug'] = str_slug($request->name, '-');
+        $input = $request->all();    
+        $input['slug'] = str_slug($request->name, '-');   
+        $film = Film::where('slug', $slug)->first();      
 
-        if ( $file = $request->file('image')) {
+
+        if ( $file = $request->file('image_name')) {
+
             $name = time() . '-' . $file->getClientOriginalName();
+            $image = Image::find($film->image->id);
+
+            if ($image) {
+                $image->forceDelete();
+            }
+
             $file->move('images', $name);
-            $image = Image::create(['image' =>  $name]);
-            $input['image_id'] = $image->id;
+            $image = Image::create([
+                'id'            =>  $image->id,
+                'image_name'    =>  $image->image_name,
+                'slug'          =>  $image->slug,
+                'alt'           =>  $image->image_name,
+                'about'         =>  $image->image_name,
+            ]);            
         }
 
-        $updated_film = Film::where('slug', $slug)->first();
-        $updated_film->fill($input)->save();
-
+        $image = Image::find($film->image->id);
+        $film->image_id = $image->id;
+        $film->save();        
 
         Session::flash('success', 'Film successfully updated!');
      
-        return redirect()->route('films.show', $updated_film->slug);
+        return redirect()->route('films.show', $film->slug);
 
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($slug)
     {
         $film = Film::where('slug', $slug)->first();
@@ -216,8 +223,8 @@ class FilmsController extends Controller
 
     public function restore($slug)
     {
-        $buero = Film::withTrashed()->where('slug', $slug)->first();
-        $buero->restore();
+        $film = Film::withTrashed()->where('slug', $slug)->first();
+        $film->restore();
 
         Session::flash('success', 'Film successfully restored!');
         return redirect()->route('films.index');
@@ -225,33 +232,36 @@ class FilmsController extends Controller
 
     public function kill($slug)
     {
-        $buero = Film::withTrashed()->where('slug', $slug)->first();
-        $buero->forceDelete();
+        $film = Film::withTrashed()->where('slug', $slug)->first();
+        $film->forceDelete();
 
         Session::flash('success', 'Film pemanently deleted!');
         return redirect()->route('films.index');
     }
 
+    
+    public function years()
+    {
 
+        $years = Film::groupBy('year')
+                    ->selectRaw('count(*) as total, year')
+                    ->get();
+        $all_ = Film::all();
+        $page_name = 'years';
+        $index = 'years';
 
-
-
-
-
-
-
-
-
-
-
-
+        return view('dashboard.films.years', compact('years', 'page_name', 'all_', 'index'));   
+    }
 
     public function year($year)
     {
         
         $films = Film::where('year', 'like', $year . '%')->get();
+        $all_ = Film::all();
+        $page_name = 'year';
+        $index = 'year';
 
-        return view('admin.films.year', compact('films'));
+        return view('dashboard.films.year', compact('films', 'all_', 'page_name', 'index'));
     }
 
     public function results($year)

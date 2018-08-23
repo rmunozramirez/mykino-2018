@@ -24,7 +24,7 @@ class LanguageRequest extends FormRequest
     public function rules()
     {
         return [
-            'language' => 'required|max:255'
+            'name' => 'required|max:255'
         ];
     }
 }

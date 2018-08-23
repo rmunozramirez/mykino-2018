@@ -3,7 +3,9 @@
 
 @section('content')
    
-    <section id="content" class=" intro flex-center"> 
+    <section id="landing-page">
+
+        @include('partials._out_nav')
     
         <div class="content titulo flex-center">
             <div class="title m-b-md">
@@ -13,26 +15,28 @@
         </div>          
 
 
-        <div class="row flex-center">
-            <!-- Three columns of text below the carousel -->
-            @foreach ($films as $film)
-            <div class="the_thumbnail">
-                 <img class="image" src="{{URL::to('/images/' . $film->image->image ) }}" alt="{{$film->name}}" >
-                  <div class="middle">
-                    <a href="{{route('films.show', $film->slug)}}">
-                        <div class="text">{{$film->name}}</div>
-                    </a>
+        <div class="container">
+            <div class="row">
+                <!-- Three columns of text below the carousel -->
+                @foreach ($films as $film)
+                <div class="the_thumbnail">
+                     <img class="image" src="{{URL::to('/images/' . $film->image->slug ) }}" alt="{{$film->name}}" >
+                      <div class="middle">
+                        <a href="{{route('films.show', $film->slug)}}">
+                            <div class="text">{{$film->name}}</div>
+                        </a>
+                      </div>
                   </div>
-              </div>
-            @endforeach     
+                @endforeach     
 
+            </div><!-- /.row -->   
         </div><!-- /.row -->   
     </section>
 
 <!-- Featured home section -->
     <section id="featured"> 
 
-        @include('partials._featured')
+       
 
     </section>
 

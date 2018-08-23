@@ -1,5 +1,5 @@
 @extends('dashboard.index')
-@section ('title', "| Alle Partner Büros")
+@section ('title', "| Alle $page_name")
 @section('content')
 <div class="wrapper wrapper-content animated fadeInRight">
     <div class="row wrapper border-bottom white-bg">
@@ -7,19 +7,34 @@
     		<h2>All {!! $page_name !!}</h2><hr />
 			<div id="contenido"  class="card">
 				<div class="row">
-				         	@foreach ($all_ as $element)
-					           <div class="col-md-2 actor-list">
-				                <div class="card">
-				                  <a href="{{route('actors.show', $element->slug)}}">
-				                  <img class="img-responsive" src="{{URL::to('/images/' . $element->image->image ) }}" alt="{{$element->name}}" >
-				                  <div class="card-body text-center">
-				                    <h4 class="card-title">{{$element->name}}</h4>
-				                    <p class="card-text">Films: {{ count($element->films) }}</p>
-				                  </div>
-				                </a>
-				                </div>
-				              </div>
-				            @endforeach
+					<div class="ibox-content">
+		                <div class="table-responsive">
+		                    <table class="table table-striped table-bordered table-hover dataTables-example" >
+					           <thead>
+					              <tr>
+					                 <th>Actor</th>
+					                 <th>Films</th>
+					                 <th>Created at</th>
+					              </tr>
+					           </thead>
+					           <tbody>
+				         			@foreach ($actors as $element)
+					              	<tr>
+					                 	<td>
+					                  	@if( $element->image )
+					                    	<img height="50" class="" src="{{URL::to('/images/' . $element->image->slug ) }}" alt="{{$element->name}}" >
+					                    @else
+					                    	<i class="fas fa-tag fa-2x"></i> @endif
+					                  		<a href="{{route('actors.show', $element->slug)}}">{{$element->name}}</a>
+					                	</td>
+					                 	<td>{{ count($element->films) }}</td>
+					              		<td>{{ $element->created_at->format('D j M Y')}}</td>
+					              	</tr>
+					              	@endforeach 
+					           </tbody>
+					        </table>     
+				    	</div>
+				    </div>
 				</div>
 			</div>
 		</div>

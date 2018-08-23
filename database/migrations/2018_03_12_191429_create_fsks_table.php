@@ -15,10 +15,12 @@ class CreateFsksTable extends Migration
     {
         Schema::create('fsks', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('fsk')->unique();
+            $table->string('name')->unique();
             $table->string('slug')->unique();
             $table->string('image')->unique();
-            $table->timestamps();
+            $table->timestamp('created_at')->useCurrent();
+            $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
+            $table->softDeletes();
         });
     }
 

@@ -12,22 +12,22 @@ class RolesTableSeeder extends Seeder
     public function run()
     {
         App\Role::create ([
-            'title' =>  'Guest',
+            'name' =>  'Guest',
             'slug'  =>  'guest',
         ]); 
 
         App\Role::create ([
-            'title' =>  'Invited',
+            'name' =>  'Invited',
             'slug'  =>  'invited',
         ]);   
                              
 		 App\Role::create ([
-            'title' =>  'Admin',
+            'name' =>  'Admin',
         	'slug'  => 	'admin',
         ]);   
 
          App\Role::create ([
-            'title' =>  'Super admin',
+            'name' =>  'Super admin',
             'slug'  =>  'super_admin',
         ]);
          

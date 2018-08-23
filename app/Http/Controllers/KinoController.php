@@ -18,8 +18,15 @@ class KinoController extends Controller
      */
     public function index()
     {
-        $films = Film::paginate(33);
-        return view('kino.index', compact('films'));
+
+        $films = Film::orderBy('name', 'asc')->paginate(30);
+        $all_ = Film::all();
+        $page_name = 'films';
+        $index = 'front';
+
+        $element = Film::where('name', 'My Name Is Khan')->first();
+
+        return view('kino.index', compact('films', 'all_', 'page_name', 'index', 'element'));
     }
 
     /**
@@ -51,18 +58,22 @@ class KinoController extends Controller
      */
     public function show($slug)
     {
-        $film = Film::with('category')->where('slug', $slug)->first();
-        $prev = $film->id - 1;
+        $element = Film::with('category')->withCount('actors')->where('slug', $slug)->first();
+        $prev = $element->id - 1;
         $film_prev = DB::table('films')
                     ->select('films.*')
                     ->where('films.id', '=', $prev)->first();  
 
-        $next = $film->id + 1;  
+        $next = $element->id + 1;  
         $film_next = DB::table('films')
                     ->select('films.*')
                     ->where('films.id', '=', $next)->first();   
 
-        return view('kino.show', compact('film', 'film_prev', 'film_next'));
+        $page_name = 'films';
+        $all_ = Film::all();
+        $index = 'show';
+
+        return view('kino.show', compact('element', 'film_prev', 'film_next', 'page_name', 'all_', 'index'));
     }
 
     /**
