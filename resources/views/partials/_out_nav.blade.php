@@ -9,6 +9,16 @@
 
           <li class="nav-item active"><a class="nav-link js-scroll-trigger" href="{{route('kino.index')}}"> Filme</a></li>
 
+          <li aria-haspopup="true">
+              <a href="{{route('kino.stats')}}">Statistics</a>
+              <div class="grid-container3">
+                  <ul>
+                      <li><a href="{{route('kino.categories')}}">Categories</a></li>
+                      <li><a href="{{route('kino.ages')}}">Age Classifications</a></li>
+                      <li><a href="{{route('kino.languages')}}">Languages</a></li>
+                  </ul>
+              </div>
+          </li>
 
           <!--/ about -->
           <div class="pull-right">

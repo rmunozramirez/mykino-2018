@@ -6,7 +6,8 @@
 <div class="wrapper wrapper-content animated fadeInUp">		
     <div class="row wrapper border-bottom white-bg">
 		<div class="inside">
-            <h2>Category: <img height="50" src="{{$element->image ? URL::to('/images/' . $element->image) : URL::to('/images/language.png')}}" alt="{{$element->name}}" title="{{$element->name}}">  {!! $element->name !!}
+            <h2><img height="50" src="{{$element->image ? URL::to('/images/' . $element->image) : URL::to('/images/language.png')}}" alt="{{$element->name}}" title="{{$element->language}}"> {!! $element->name !!} category - 
+              {{ $element->films_count }}  @if($element->films_count > 1) films @else film @endif
 	            <span class="small pull-right">
 	            	<i class="fa fa-chevron-left"></i> <a class="small-link" href="{{route('categories.index')}}"> Back to Categories</a>
 	            	<i class="fa fa-pencil"></i><a type="button" href="{{route('categories.edit', $element->slug)}}"> Edit</a>
@@ -20,12 +21,13 @@
                         <table class="table table-striped table-bordered table-hover dataTables-example" >
                           <thead>
                               <tr>
-                                  <th>Film</th>
-                                  <th>Fsk</th>
-                                  <th>Language</th> 
-                                  <th>Year</th>
-                                  <th>Trailer</th>
-                                  <th>Created at</th>
+                                  <th>Film <i class="fa fa-sort"></i></th>
+                                  <th>Actors <i class="fa fa-sort"></i></th>
+                                  <th>Age <i class="fa fa-sort"></i></th>
+                                  <th>Language <i class="fa fa-sort"></i></th> 
+                                  <th>Year <i class="fa fa-sort"></i></th>
+                                  <th>Trailer <i class="fa fa-sort"></i></th>
+                                  <th>Created at <i class="fa fa-sort"></i></th>
                               </tr>
                            </thead>
                   <tbody>
@@ -33,7 +35,8 @@
                       <tr>
                          <td>
                             <img class="film-thumbnail" height="80" src="{{URL::to('/images/' . $element->image->slug ) }}" alt="{{$element->name}}" ><a href="{{route('films.show', $element->slug)}}">{{$element->name}}</a>
-                       </td>
+                          </td>
+                          <td> {{ count($element->actors) }}</td>
                          <td><a href="{{route('fsk.show', $element->fsk->slug)}}">
                                 <img class="film-thumbnail" height="80" src="{{$element->fsk->image ? URL::to('/images/' . $element->fsk->image) : URL::to('/images/language.png')}}" alt="{{$element->fsk}}" >
                             </a></td>

@@ -29,11 +29,16 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $films = Film::all();
-        $carousel = Film::orderBy('created_at', 'desc')->get();
-        $page_name = 'Home page'; 
 
-        return view('kino.landing', compact('page_name', 'films', 'carousel'));
+        $page_name = 'Home page'; 
+        $films = Film::orderBy('created_at', 'desc')->paginate(10);
+        $all_ = Film::all();
+        $index = 'front';
+
+        $element = Film::where('name', 'My Name Is Khan')->first();
+
+
+        return view('kino.landing', compact('page_name', 'films', 'all_', 'index', 'element'));
     }
     /**
      * Show the application dashboard.

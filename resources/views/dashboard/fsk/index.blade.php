@@ -12,9 +12,9 @@
 		                    <table class="table table-striped table-bordered table-hover dataTables-example" >
 					           	<thead>
 					              	<tr>
-					                 	<th>Age classification</th>
-					                 	<th>Number of films</th>
-					                 	<th>Created at</th>
+					                 	<th>Age classification <i class="fa fa-sort"></i></th>
+					                 	<th>Number of films <i class="fa fa-sort"></i></th>
+					                 	<th>Created at <i class="fa fa-sort"></i></th>
 					              	</tr>
 					           	</thead>
 					           	<tbody>
@@ -27,7 +27,7 @@
 					                    	<i class="fas fa-tag fa-2x"></i> @endif
 					                  		<a href="{{route('fsk.show', $fsk->slug)}}">{{$fsk->name}}</a>
 					                	</td>
-					                	<td>{{ $fsk->films_count}}</a></td>
+					                	<td>{{ $fsk->films_count}}</td>
 					               		<td>{{$fsk->created_at->format('D j M Y')}}</td>
 					              	</tr>
 					              @endforeach 

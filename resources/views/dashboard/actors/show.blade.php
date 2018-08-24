@@ -16,7 +16,7 @@
           <div  class="row navigator mb-5">
             <div  class="col-md-6">
                 @if($actor_prev)
-                <a type="button" href="{{ route('actors.show', $actor_prev->slug) }}"><i class="fa fa-chevron-circle-left fa-2x"></i> {{ $actor_prev->name }}</a>
+                <h4><a type="button" href="{{ route('actors.show', $actor_prev->slug) }}"><i class="fa fa-chevron-circle-left fa-2x"></i> {{ $actor_prev->name }}</a></h4>
                 @endif
               </div>
               <div  class="col-md-6">
@@ -35,13 +35,14 @@
                     <div class="post-title">
                         <h3>{{ count($element->films)}} films from {{$element->name}}</h3>
                     </div>
-                    <table class="table table-striped table-responsive table-hover">
+          <div class="ibox-content">
+                    <div class="table-responsive">
+                        <table class="table table-striped table-bordered table-hover dataTables-example" >
                         <thead>
-                          <th>Film</th>
-                          <th>Category</th>
-                          <th>Trailer</th>
+                          <th>Film <i class="fa fa-sort"></th>
+                          <th>Category <i class="fa fa-sort"></th>
+                          <th>Trailer <i class="fa fa-sort"></th>
                         </thead>
-                        <tbody>
                         <tbody>  
                             @foreach ($element->films as $film)
                             <tr>
@@ -55,6 +56,8 @@
                             @endforeach
                         </tbody>
                     </table>
+                </div>
+                </div>
                 </div>
             </div>
 

@@ -24,84 +24,69 @@
             {!! $element->duration !!} 
           </div> 
         </div>
-        <div class="row py-3">
-          <div class="col-md-4">
+        <div class="row py-5">
+          <div class="col-md-3">
             <img class="img-responsive" src="{{URL::to('/images/' . $element->image->slug ) }}" alt="{{$element->name}}" >
           </div>
-          <div class="col-md-8">
+          <div class="col-md-9">
+             <div class="sky-tabs sky-tabs-amount-3 sky-tabs-pos-top-justify sky-tabs-anim-fade sky-tabs-response-to-icons" >
+                <input type="radio" name="sky-tabs" checked id="sky-tab1" class="sky-tab-content-1">
+                <label for="sky-tab1"><span><span><i class="fa fa-film"></i> Synopsis</span></span></label>
+                
+                <input type="radio" name="sky-tabs" id="sky-tab2" class="sky-tab-content-2">
+                <label for="sky-tab2"><span><span><i class="fa fa-users"></i> Actors</span></span></label>
 
-            <!-- Nav tabs -->
-            <ul class="nav nav-tabs nav-justified" role="tablist">
-                <li role="presentation" class="active tab-responsive">
-                    <a href="#descripcion" aria-controls="descripcion" role="tab" data-toggle="tab">
-                        <i class="fa fa-film"></i> synopsis
-                    </a>
-                </li>
+                <input type="radio" name="sky-tabs" id="sky-tab3" class="sky-tab-content-3">
+                <label for="sky-tab3"><span><span><i class="fa fa-video"></i> Video</span></span></label>
 
-                <li role="presentation" class="tab-responsive">
-                    <a href="#actors" aria-controls="technical" role="tab" data-toggle="tab">
-                        <i class="fa fa-users"></i> Actors
-                    </a>
-                </li>
-
-                <li role="presentation" class="tab-responsive">
-                    <a href="#video" aria-controls="technical" role="tab" data-toggle="tab">
-                        <i class="fa fa-video"></i> Video
-                    </a>
-                </li>
-            </ul>
-
-            <!-- Tab panes -->
-            <div class="tab-content">
-                <div role="tabpanel" class="tab-pane active" id="descripcion">
-                  <div class="inside">
-                    {!! $element->description !!}
-                  </div>
-                </div>
-                <div role="tabpanel" class="tab-pane" id="actors">
-                  <div class="inside">
-                    <div class="ibox-content">
-                      <div class="table-responsive">
-                        <table class="table table-striped table-bordered table-hover dataTables-example" >
-                           <thead>
-                              <tr>
-                                 <th>Actor</th>
-                                 <th>Films</th>
-                                 <th>Created at</th>
-                              </tr>
-                           </thead>
-                           <tbody>
-                            @foreach ($element->actors as $actor)
-                                <tr>
-                                  <td>
-                                    @if( $actor->image )
-                                      <img height="50" class="" src="{{URL::to('/images/' . $actor->image->slug ) }}" alt="{{$actor->name}}" >
-                                    @else
-                                      <i class="fas fa-tag fa-2x"></i> @endif
-                                      <a href="{{route('actors.show', $actor->slug)}}">{{$actor->name}}</a>
-                                  </td>
-                                  <td>{{ count($actor->films) }}</td>
-                                  <td>{{ $actor->created_at->format('D j M Y')}}</td>
-                                </tr>
-                                @endforeach 
-                           </tbody>
-                        </table>     
+                <!-- Tab panes -->
+                <ul>
+                   <li class="sky-tab-content-1">
+                      {!! $element->description !!}
+                   </li>
+                   <li class="sky-tab-content-2">
+                      <div class="ibox-content">
+                         <div class="table-responsive">
+                            <table class="table table-striped table-bordered table-hover dataTables-example" >
+                               <thead>
+                                  <tr>
+                                     <th>Actor <i class="fa fa-sort"></th>
+                                     <th>Films <i class="fa fa-sort"></th>
+                                     <th>Created at <i class="fa fa-sort"></th>
+                                  </tr>
+                               </thead>
+                               <tbody>
+                                  @foreach ($element->actors as $actor)
+                                  <tr>
+                                     <td>
+                                        @if( $actor->image )
+                                        <img height="50" class="" src="{{URL::to('/images/' . $actor->image->slug ) }}" alt="{{$actor->name}}" >
+                                        @else
+                                        <i class="fas fa-tag fa-2x"></i> @endif
+                                        <a href="{{route('actors.show', $actor->slug)}}">{{$actor->name}}</a>
+                                     </td>
+                                     <td>{{ count($actor->films) }}</td>
+                                     <td>{{ $actor->created_at->format('D j M Y')}}</td>
+                                  </tr>
+                                  @endforeach 
+                               </tbody>
+                            </table>
+                         </div>
                       </div>
+                   </li>
+                   <li id="video" class="sky-tab-content-3 ">
+                      <div class="inside">
+                      <iframe width="560" height="315" src="{{ $element->trailer }}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
                     </div>
-                  </div>
-                </div>
-                <div role="tabpanel" class="tab-pane" id="video">
-                  <div class="inside">
-                    <iframe width="560" height="315" src="{{ $element->trailer }}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-                  </div>
-                </div>
-            </div>
+                   </li>
+                </ul>
+             </div>
           </div>
       </div>
 			<div class="card-footer">
 				<div class="inside">
 					<div class="row">
-						<div class="col-md-8 col-md-offset-4">
+						<div class="col-md-9 col-md-offset-3">
 			        {!! Form::open(['route' => ['films.destroy', $element->slug], 'method' => 'DELETE']) !!}
 							{!! Form::submit('Delete', ['class' => 'btn btn-block btn-danger btn-sm']) !!}
 							{!! Form::close() !!}

@@ -12,9 +12,9 @@
 		                    <table class="table table-striped table-bordered table-hover dataTables-example" >
 					           <thead>
 					              <tr>
-					                 <th>Actor</th>
-					                 <th>Films</th>
-					                 <th>Created at</th>
+					                 <th>Actor <i class="fa fa-sort"></th>
+					                 <th>Films <i class="fa fa-sort"></th>
+					                 <th>Created at <i class="fa fa-sort"></th>
 					              </tr>
 					           </thead>
 					           <tbody>
@@ -22,7 +22,7 @@
 					              	<tr>
 					                 	<td>
 					                  	@if( $element->image )
-					                    	<img height="50" class="" src="{{URL::to('/images/' . $element->image->slug ) }}" alt="{{$element->name}}" >
+					                    	<img height="50" width="40" class="" src="{{URL::to('/images/' . $element->image->slug ) }}" alt="{{$element->name}}" >
 					                    @else
 					                    	<i class="fas fa-tag fa-2x"></i> @endif
 					                  		<a href="{{route('actors.show', $element->slug)}}">{{$element->name}}</a>

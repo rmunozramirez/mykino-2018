@@ -17,7 +17,7 @@ body {
     font-weight: 100;
     margin: 0;
     height: 100vh;
-    background: url("/images/overlay-carbon.png") repeat 0 0, radial-gradient(circle farthest-side at center center,#009cde,#444 125%);
+    background: url("/images/overlay-carbon.png") repeat 0 0;
     font-family: 'Josefin Sans', sans-serif !important;
     background-attachment: fixed;
     padding-bottom: 40px;
@@ -71,7 +71,7 @@ body {
 }
 
 .navbar {
-  background-color: rgba(0, 0, 0, .2) !important;
+  background-color: rgba(0, 0, 0, .55) !important;
 }
 
 .navbar ul {
@@ -105,6 +105,16 @@ body {
 }
 
 /* my changes */
+
+.sky-mega-menu li > div {
+    background: rgba(0,0,0,0.59);
+}
+
+.sky-mega-menu li > div::before {
+    border-bottom: 5px transparent;
+    border-right: 5px solid rgba(0, 0, 0, 0.59);
+    border-left: 5px solid rgba(0, 0, 0, 0.59);
+}
 
 /*--------------------------------------------------------------
 3. - Landing page
@@ -165,6 +175,26 @@ background: rgba(0, 0, 0, 0) radial-gradient(circle farthest-side at center bott
 
 .half_height {
   height: 50vh;
+}
+
+/*** pagination ****/
+
+.page-item.disabled .page-link {
+  background-color: #000 !important;
+  border-color: #000 !important;
+  border-radius: 0 !important;
+}
+
+.page-link {
+  border-radius: 0 !important;
+  color: #fff !important;
+  background-color: #000 !important;
+  border: 1px solid #000 !important;
+}
+
+.page-item.active .page-link {
+    background-color: #007bff !important;
+    border-color: #007bff !important;
 }
 
 /* HOVER */
@@ -252,9 +282,24 @@ img .actor-image {
   text-align: center;
   width: 100%;
   z-index: 650;
+  text-transform: uppercase;
 }
 
-/* hover effect*/
+/* Show film */
+
+.card {
+  border: none;
+  border-radius: 0 !important;
+  box-shadow: 0 2px 2px 0 rgba(0,0,0,0.16), 0 0 0 1px rgba(0,0,0,0.08);
+    
+}
+
+.very-small {
+  font-size: 1rem;
+  line-height: 50px;
+}
+
+
 
 /*--------------------------------------------------------------
 3. - Admin section
@@ -421,7 +466,9 @@ img .actor-image {
 .films-footer {
   position: absolute;
   width: 100%;
-  top: calc(100vh - 220px ) !important;
+  top: calc(100vh - 356px ) !important;
+  padding-top: 20px;
+  background-color: rgba(0, 0, 0, 0.55);
 }
 
 .glass .card {
@@ -442,16 +489,32 @@ img .actor-image {
 .row-1 {
   width: 100vw !important;
 }
+.sky-tabs > label {
+  border: 1px solid #ededed;
+}
+
+.sky-tabs > ul > li {
+    padding: 20px 0;
+}
+
+table img {
+  margin-right: 20px !important;
+}
+
+.table th:first-child, .table td:first-child, .card-header {
+    padding-left: 0.75rem;
+
+}
 
 /*************** VIDEO ************************/
 
 #last-film {
-  position: relative; 
+  position: fixed; 
   padding-bottom:  0px; /* 56.25%;ratio 16x9 */
   height: 0; 
   overflow: hidden; 
-  width: auto;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
 
 }
 
@@ -466,6 +529,27 @@ img .actor-image {
 #last-film .ratio4x3 {
   padding-bottom: 75%;
 }
+
+#trailer{
+  position: relative; 
+  padding-bottom: 56.25%; /* ratio 16x9 */
+  height: 0; 
+  overflow: hidden; 
+  width: 100%;
+  height: auto;
+}
+#trailer iframe {
+  position: absolute; 
+  top: 0; 
+  left: 0; 
+  width: 100%; 
+  height: 100%; 
+}
+/* ratio 4x3 */
+#trailer .ratio4x3 {
+  padding-bottom: 75%;
+}
+
 
 #marca {
   z-index: 200;

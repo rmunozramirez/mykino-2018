@@ -12,10 +12,10 @@
 		                    <table class="table table-striped table-bordered table-hover dataTables-example" >
 					           <thead>
 					              <tr>
-					                 <th>Category</th>
-					                 <th>Description</th>
-					                 <th>Films</th>
-					                 <th>Created at</th>
+					                 <th>Category  <i class="fa fa-sort"></i></th>
+					                 <th>Description  <i class="fa fa-sort"></i></th>
+					                 <th>Films  <i class="fa fa-sort"></i></th>
+					                 <th>Created at  <i class="fa fa-sort"></i></th>
 					              </tr>
 					           </thead>
 					           <tbody>

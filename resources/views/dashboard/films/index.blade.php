@@ -12,13 +12,14 @@
 		                    <table class="table table-striped table-bordered table-hover dataTables-example" >
 				         	<thead>
 					            <tr>
-					                <th>Film</th>
-					                <th>Category</th>
-					                <th>Language</th> 
-					                <th>FSK</th>
-					                <th>Year</th>
-					                <th>Created at</th>
-					                <th>Trailer</th>
+					                <th>Film <i class="fa fa-sort"></i></th>
+					                <th>Actors <i class="fa fa-sort"></i></th>
+					                <th>Category <i class="fa fa-sort"></i></th>
+					                <th>Language <i class="fa fa-sort"></i></th> 
+					                <th>FSK <i class="fa fa-sort"></i></th>
+					                <th>Year <i class="fa fa-sort"></i></th>
+					                <th>Created at <i class="fa fa-sort"></i></th>
+					                <th>Trailer <i class="fa fa-sort"></i></th>
 					            </tr>
 					         </thead>
 				         	<tbody>
@@ -26,7 +27,8 @@
 					            <tr>
 					               <td>
 					                  <img class="film-thumbnail" height="80" src="{{URL::to('/images/' . $element->image->slug ) }}" alt="{{$element->name}}" ><a href="{{route('films.show', $element->slug)}}">{{$element->name}}</a>
-					             </td>
+					             	</td>
+					             	<td> {{ count($element->actors) }}</td>
 					               <td><a href="{{route('categories.show', $element->category->slug)}}">{{$element->category->name}}</a></td>
 					               <td><a href="{{route('language.show', $element->language->slug)}}"><img height="74" src="{{$element->language->image ? URL::to('/images/' . $element->language->image) : URL::to('/images/language.png')}}" alt="{{$element->name}}"  title="{{$element->language->language}}"></a></td>
 					               <td>

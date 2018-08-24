@@ -32,13 +32,10 @@ mix.styles([
 
 
 mix.scripts([
-
-    'resources/assets/js/libs/admin.min.js',
-    'resources/assets/js/libs/parsley.min.js',
-     'resources/assets/js/libs/select2.min.js',   
-    'resources/assets/js/libs/summernote-bs4.js',     
+    
     'resources/assets/js/libs/toastr.min.js',
-    'resources/assets/js/jquery.js', 
+    'resources/assets/js/jquery.js',
+    'resources/assets/js/datatables.min.js',
 
 ], 'public/js/libs.js');
 

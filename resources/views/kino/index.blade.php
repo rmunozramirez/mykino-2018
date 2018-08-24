@@ -1,50 +1,36 @@
 @extends('layouts.app')
 @section ('title',  "| $page_name")
 
-
-
 @section('content')
 
-  <section id="content"> 
+  @include('partials._out_nav')
 
-    <div id="last-film">
-
-      @include('partials._out_nav')
-      
-      <div id="marca" class="text-white my-4 ml-4 text-center">
-          <h2 class="">My Kino</h2>
-          <h3>My collection of {{count($films)}} films</h3>
-      </div>
-      <iframe width="560" height="315" src="{{ $element->trailer }}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-
+  <div class="container">
+    <div class="row flex-center">
+      <div class="col-md-12 page-header text-center my-3">
+          <h1>My Kino</h1>
+          <h3>A collection of {{count($films)}} films</h3>
+      </div>          
     </div>
+  </div><!-- /.row -->   
+    <div class="row flex-center ">
 
-    <div class="films-footer">
-    <div class="row flex-center row-1 film-footer">
+        @foreach ($films as $film)
+        <div class="the_thumbnail">
+             <img class="image" src="{{URL::to('/images/' . $film->image->slug ) }}" alt="{{$film->name}}" >
+              <div class="overlay">
+                <a href="{{route('kino.show', $film->slug)}}">
+                    <div class="text small">{{$film->name}}</div>
+                </a>
+              </div>
+          </div>
 
-      <!-- Three columns of text below the carousel -->
-      @foreach ($films as $film)
-      <div class="the_thumbnail">
-           <img class="image" src="{{URL::to('/images/' . $film->image->slug ) }}" alt="{{$film->name}}" >
-            <div class="overlay">
-              <a href="{{route('kino.show', $film->slug)}}">
-                  <div class="text small">{{$film->name}}</div>
-              </a>
-            </div>
-        </div>
-       
-      @endforeach     
-    </div><!-- /.row --> 
-    </div><!-- /.row --> 
-
-    <div class="row flex-center row-1">
-
-        {{ $films->links() }}
-
-    </div>
-          
-  </section>
-
+        @endforeach
+        <div class="row flex-center row-1 my-3">
+          {{ $films->links() }}
+        </div>   
+  
+    </div><!-- /.row -->   
 
 
 @endsection

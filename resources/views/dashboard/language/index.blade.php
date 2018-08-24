@@ -12,9 +12,9 @@
 		                    <table class="table table-striped table-bordered table-hover dataTables-example" >
 					          	<thead>
 					              	<tr>
-					                 	<th>Language</th>
-					                 	<th>Number of films</th>
-					                 	<th>Created at</th>
+					                 	<th>Language <i class="fa fa-sort"></i></th>
+					                 	<th>Number of films <i class="fa fa-sort"></i></th>
+					                 	<th>Created at <i class="fa fa-sort"></i></th>
 					              	</tr>
 					           	</thead>
 					           	<tbody>

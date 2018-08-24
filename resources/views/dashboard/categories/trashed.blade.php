@@ -17,9 +17,9 @@
 		                    <table class="table table-striped table-bordered table-hover dataTables-example" >
 					           <thead>
 					              <tr>
-					                 <th>Category</th>
-					                 <th>Description</th>
-					                 <th>Films</th>
+					                 <th>Category  <i class="fa fa-sort"></th>
+					                 <th>Description  <i class="fa fa-sort"></th>
+					                 <th>Films  <i class="fa fa-sort"></th>
 					              </tr>
 					           </thead>
 					           <tbody>

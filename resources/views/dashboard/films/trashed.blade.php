@@ -17,13 +17,13 @@
 		                    <table class="table table-striped table-bordered table-hover dataTables-example" >
 				         	<thead>
 					            <tr>
-					                <th>Film</th>
-					                <th>Category</th>
-					                <th>Language</th> 
-					                <th>FSK</th>
-					                <th>Year</th>
-					                <th>Deleted</th>
-					                <th>Trailer</th>
+					                <th>Film <i class="fa fa-sort"></th>
+					                <th>Category <i class="fa fa-sort"></th>
+					                <th>Language <i class="fa fa-sort"></th> 
+					                <th>FSK <i class="fa fa-sort"></th>
+					                <th>Year <i class="fa fa-sort"></th>
+					                <th>Deleted <i class="fa fa-sort"></th>
+					                <th>Trailer <i class="fa fa-sort"></th>
 					            </tr>
 					         </thead>
 				         	<tbody>
