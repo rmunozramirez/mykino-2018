@@ -1,5 +1,5 @@
-<nav class="navbar navbar-expand-md navbar-light navbar-laravel">
-    <div class="container">
+<nav class="navbar navbar-expand-md">
+
         <a class="navbar-brand" href="{{ url('/') }}">
             My Kino
         </a>
@@ -14,7 +14,7 @@
             </ul>
 
             <!-- Right Side Of Navbar -->
-            <ul class="navbar-nav ml-auto">
+            <ul class="navbar-nav ml-auto pull-right">
                 <!-- Authentication Links -->
                 @guest
                 <li><a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a></li>
@@ -43,7 +43,7 @@
             </ul>
 
         </div>
-    </div>
+
 </nav>
 
 

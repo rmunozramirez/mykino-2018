@@ -20,10 +20,12 @@ class LanguageController extends Controller
     public function index()
     {
         
-        $languages = Language::all();
-        $total_films = Film::all();
+        $languages = Language::orderBy('name', 'asc')->withCount('films')->get();
+        $all_ = Language::all();
+        $page_name = 'language';
+        $index = 'yes';
 
-        return view('admin.language.index', compact('languages', 'total_films'));
+        return view('dashboard.language.index', compact('languages', 'all_', 'page_name', 'index'));
     }
 
     /**
@@ -33,8 +35,12 @@ class LanguageController extends Controller
      */
     public function create()
     {
-        $language = Language::all();
-        return view('admin.language.create', compact('language'));
+
+        $all_ = Language::all();
+        $page_name =  'language';
+        $index = 'create';
+
+        return view('dashboard.language.create', compact('all_', 'page_name', 'index'));
     }
 
     /**
@@ -54,7 +60,7 @@ class LanguageController extends Controller
         is_null($last_img) ? $img_id = 1 : $img_id =  $last_img->id + 1;
         
         $language = Language::create([
-            'language'      =>  $request->language,
+            'name'      =>  $request->language,
             'slug'          =>  str_slug($request->language, '-'),
             'image'         =>  $name,
             'image_id'      =>  $last_img->id + 1,
@@ -81,44 +87,82 @@ class LanguageController extends Controller
      */
     public function show($slug)
     {
-      $language = Language::withCount('films')->where('slug', $slug)->first();
+        
+        $element = Language::withCount('films')->where('slug', $slug)->first();
+        $page_name = 'language';
+        $all_ = Language::all();
+        $index = 'show';
 
-        $films = Film::where('language_id', $language->id)->get();
-       
-        return view('admin.language.show', compact('language', 'films'));
+        return view('dashboard.language.show', compact('element', 'page_name', 'all_', 'index'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
+
+    public function edit($slug)
     {
-        //
+
+        $language = Language::where('slug', $slug)->first();
+
+        return view('dashboard.language.edit', compact('language'));
+
+    }
+ 
+    public function update(LanguageRequest $request, $slug)
+    {
+
+        $input = $request->all();
+        $input['slug'] = str_slug($request->category, '-');
+
+        if ( $file = $request->file('image')) {
+            $name = time() . '-' . $file->getClientOriginalName();
+            $file->move('images', $name);
+            $image = Image::create(['image' =>  $name]);
+            $input['image_id'] = $image->id;
+        }
+
+        Language::find($slug)->update($input);
+
+        Session::flash('success', 'Language successfully updated!');
+
+        return redirect()->route('language.show', $language->slug);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
+    public function destroy($slug)
     {
-        //
+        $language = Language::find($slug);
+        $language->films()->detach();
+        $language->delete();
+
+        Session::flash('success', 'Language was deleted successfully');
+        return redirect()->route('language.index');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
+    public function trashed()
     {
-        //
+        $all_tr = Language::onlyTrashed()->get();
+        $all_ = Language::all();
+        $page_name = 'language';
+        $index = 'trash';
+
+        return view('dashboard.language.trashed', compact('all_tr', 'page_name', 'all_', 'index'));
     }
+
+    public function restore($slug)
+    {
+        $language = Language::withTrashed()->where('slug', $slug)->first();
+        $language->restore();
+
+        Session::flash('success', 'Language successfully restored!');
+        return redirect()->route('language.index');
+    }
+
+    public function kill($slug)
+    {
+        $language = Language::withTrashed()->where('slug', $slug)->first();
+        $language->forceDelete();
+
+        Session::flash('success', 'Language pemanently deleted!');
+        return redirect()->route('language.index');
+    }
+
+
 }

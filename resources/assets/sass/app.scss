@@ -14,7 +14,6 @@
 --------------------------------------------------------------*/
 
 body {
-    background-color: red;
     font-weight: 100;
     margin: 0;
     height: 100vh;
@@ -23,7 +22,6 @@ body {
     background-attachment: fixed;
     padding-bottom: 40px;
 }
-
 
 /*--------------------------------------------------------------
 2. - Laravel inherited
@@ -47,6 +45,7 @@ body {
     right: 10px;
     top: 18px;
     z-index: 300;
+    width: 30%;
 }
 
 .content {
@@ -71,12 +70,51 @@ body {
     margin-bottom: 30px;
 }
 
-.navbar-laravel {
-  background-color: #fff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+.navbar {
+  background-color: rgba(0, 0, 0, .55) !important;
+}
+
+.navbar ul {
+  display: block;
+  width: 100%;
+}
+
+// .navbar ul li,
+.nav-link {
+  display: inline;
+}
+.navbar ul li a, .navbar a {
+  color: #fff;
+  margin: 0 20px;
+}
+
+.sky-mega-menu li:hover > a {
+  background: none;
+}
+
+.sky-mega-menu li:hover, .sky-mega-menu li.current, .navbar .grid-container2 ul  {
+  background: #050935;
+}
+
+.open > .dropdown-menu {
+  display: block;
+}
+
+.dropdown-menu.show, .show {
+  display: inline !important;
 }
 
 /* my changes */
+
+.sky-mega-menu li > div {
+    background: rgba(0,0,0,0.59);
+}
+
+.sky-mega-menu li > div::before {
+    border-bottom: 5px transparent;
+    border-right: 5px solid rgba(0, 0, 0, 0.59);
+    border-left: 5px solid rgba(0, 0, 0, 0.59);
+}
 
 /*--------------------------------------------------------------
 3. - Landing page
@@ -118,7 +156,7 @@ background: rgba(0, 0, 0, 0) radial-gradient(circle farthest-side at center bott
     position: fixed;
     z-index: 200;
     height: 100vh;
-    background-color: rgba(0, 0, 0, 0.75);
+    background-color: rgba(0, 0, 0, 0.70);
     width: 100%;
     background-attachment: fixed;
 }
@@ -126,7 +164,6 @@ background: rgba(0, 0, 0, 0) radial-gradient(circle farthest-side at center bott
 .titulo .title {
     color: #fff;
 }
-
 
 .title h1 {
         font-size: 60px;
@@ -138,6 +175,26 @@ background: rgba(0, 0, 0, 0) radial-gradient(circle farthest-side at center bott
 
 .half_height {
   height: 50vh;
+}
+
+/*** pagination ****/
+
+.page-item.disabled .page-link {
+  background-color: #000 !important;
+  border-color: #000 !important;
+  border-radius: 0 !important;
+}
+
+.page-link {
+  border-radius: 0 !important;
+  color: #fff !important;
+  background-color: #000 !important;
+  border: 1px solid #000 !important;
+}
+
+.page-item.active .page-link {
+    background-color: #007bff !important;
+    border-color: #007bff !important;
 }
 
 /* HOVER */
@@ -177,19 +234,18 @@ img .actor-image {
   -ms-transform: translate(-50%, -50%)
 }
 
-
-/*---*/
+/*-- -*/
 
 .the_thumbnail {
   position: relative;
   width: 130px;
   margin: 2px;
-  height: 320px
+  height: 200px
 }
 
-.the_film {
+.the_film, .item {
   position: relative;
-  width: 24%;
+  // width: 24%;
   margin: 2px;
   height: 280px
 }
@@ -201,16 +257,18 @@ img .actor-image {
   left: 0;
   right: 0;
   height: 100%;
-  max-width: calc( 100% - 4px);
+  max-width: 100%;
   opacity: 0;
   transition: .5s ease;
   background-color: #000;
-  margin: 2px;
+  z-index: 600;
 }
 
+.item:hover .overlay,
 .the_thumbnail:hover .overlay,
 .the_film:hover .overlay {
-  opacity: 0.6;
+  opacity: 0.8;
+  z-index: 600;
 }
 
 .text {
@@ -223,9 +281,25 @@ img .actor-image {
   -ms-transform: translate(-50%, -50%);
   text-align: center;
   width: 100%;
+  z-index: 650;
+  text-transform: uppercase;
 }
 
-/* hover effect*/
+/* Show film */
+
+.card {
+  border: none;
+  border-radius: 0 !important;
+  box-shadow: 0 2px 2px 0 rgba(0,0,0,0.16), 0 0 0 1px rgba(0,0,0,0.08);
+    
+}
+
+.very-small {
+  font-size: 1rem;
+  line-height: 50px;
+}
+
+
 
 /*--------------------------------------------------------------
 3. - Admin section
@@ -269,7 +343,7 @@ img .actor-image {
 }
 
 .table td {
-    vertical-align: middle;
+    vertical-align: middle !important;
 }
 
 .separator {
@@ -379,10 +453,106 @@ img .actor-image {
   padding: 0;
 }
 
-ul a {
-  color: #495057 !important;
+.dashboard ul a {
+  color: #495057;
 }
 
 .pull-right {
   float: right !important;
+}
+
+/* Kino View */
+
+.films-footer {
+  position: absolute;
+  width: 100%;
+  top: calc(100vh - 356px ) !important;
+  padding-top: 20px;
+  background-color: rgba(0, 0, 0, 0.55);
+}
+
+.glass .card {
+  background-color: rgba(0, 0, 0, 0.25);
+
+}
+.glass .card h2,
+.glass .card a,
+.glass .card ul a,
+.glass .card {
+  color: #fff;
+}
+
+.glass .card ul a:hover {
+  color: initial;
+}
+
+.row-1 {
+  width: 100vw !important;
+}
+.sky-tabs > label {
+  border: 1px solid #ededed;
+}
+
+.sky-tabs > ul > li {
+    padding: 20px 0;
+}
+
+table img {
+  margin-right: 20px !important;
+}
+
+.table th:first-child, .table td:first-child, .card-header {
+    padding-left: 0.75rem;
+
+}
+
+/*************** VIDEO ************************/
+
+#last-film {
+  position: fixed; 
+  padding-bottom:  0px; /* 56.25%;ratio 16x9 */
+  height: 0; 
+  overflow: hidden; 
+  width: 100%;
+  height: 100%;
+
+}
+
+#last-film iframe {
+  position: absolute; 
+  top: 0; 
+  left: 0; 
+  width: 100%; 
+  height: 100%; 
+}
+/* ratio 4x3 */
+#last-film .ratio4x3 {
+  padding-bottom: 75%;
+}
+
+#trailer{
+  position: relative; 
+  padding-bottom: 56.25%; /* ratio 16x9 */
+  height: 0; 
+  overflow: hidden; 
+  width: 100%;
+  height: auto;
+}
+#trailer iframe {
+  position: absolute; 
+  top: 0; 
+  left: 0; 
+  width: 100%; 
+  height: 100%; 
+}
+/* ratio 4x3 */
+#trailer .ratio4x3 {
+  padding-bottom: 75%;
+}
+
+
+#marca {
+  z-index: 200;
+  position: fixed;
+  width: 100%;
 }

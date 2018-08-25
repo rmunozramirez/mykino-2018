@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Language extends Model
 {
@@ -10,11 +11,14 @@ class Language extends Model
 
 	protected $fillable = [
 
-	    'language',
+	    'name',
 	    'image',
         'slug',
 
 	];
+
+    use SoftDeletes;
+    protected $dates = ['deleted_at'];
 
     public function films()
     {

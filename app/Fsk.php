@@ -3,18 +3,23 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Fsk extends Model
 {
 
 	protected $fillable = [
 
-		'fsk',
+		'name',
 		'image_id',
         'slug',
 		
 	];
 
+
+    use SoftDeletes;
+    protected $dates = ['deleted_at'];
+    
     public function films()
     {
         return $this->hasMany('App\Film');

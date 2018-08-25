@@ -21,11 +21,13 @@ class CreateFilmsTable extends Migration
             $table->string('slug')->unique();
             $table->string('trailer')->nullable();
             $table->date('year')->nullable();
-            $table->time('duration')->nullable;
+            $table->time('duration')->nullable();
             $table->integer('fsk_id')->unsigned();        
             $table->integer('language_id')->unsigned();        
             $table->integer('category_id')->unsigned();   
-            $table->timestamps();
+            $table->timestamp('created_at')->useCurrent();
+            $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
+            $table->softDeletes();
         });
     }
 

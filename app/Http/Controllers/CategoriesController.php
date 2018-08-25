@@ -12,29 +12,24 @@ use Session;
 
 class CategoriesController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
-        
-        $categories = Category::orderBy('category', 'asc')->withCount('films')->paginate(12);
-        $total_categories = Category::all();
+        $categories = Category::orderBy('name', 'asc')->withCount('films')->get();
+        $all_ = Category::all();
+        $page_name = 'categories';
+        $index = 'yes';
 
-        return view('admin.categories.index', compact('categories', 'total_categories'));
+        return view('dashboard.categories.index', compact('index', 'all_', 'page_name', 'categories'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        $categories = Category::all();
-        return view('admin.categories.create', compact('categories'));
+        $all_ = Category::all();
+        $page_name =  'categories';
+        $index = 'create';
+
+        return view('dashboard.categories.create', compact('all_', 'page_name', 'index'));
     }
 
     /**
@@ -55,7 +50,7 @@ class CategoriesController extends Controller
         is_null($last_img) ? $img_id = 1 : $img_id =  $last_img->id + 1;
        
         $category = Category::create([
-            'category'      =>  $request->category,
+            'name'      =>  $request->category,
             'description'   =>  $request->description,
             'slug'          =>  str_slug($request->category, '-'),
             'image_id'      =>  $img_id,
@@ -73,7 +68,6 @@ class CategoriesController extends Controller
         Session::flash('success', 'Category successfully created!');
      
         return redirect()->route('categories.index');
-
     }
 
     /**   
@@ -85,11 +79,12 @@ class CategoriesController extends Controller
     public function show($slug)
     {
  
-        $category = Category::withCount('films')->where('slug', $slug)->first();
+        $element = Category::withCount('films')->where('slug', $slug)->first();
+        $page_name = 'categories';
+        $all_ = Category::all();
+        $index = 'show';
 
-        $films = Film::where('category_id', $category->id)->get();
-
-        return view('admin.categories.show', compact('category', 'films'));
+        return view('dashboard.categories.show', compact('element', 'page_name', 'all_', 'index'));
 
     }
 
@@ -102,9 +97,12 @@ class CategoriesController extends Controller
     public function edit($slug)
     {
 
-        $category = Category::where('slug', $slug)->first();
+        $element = Category::where('slug', $slug)->first();
+        $all_ = Category::all();
+        $page_name = 'categories';
+        $index = 'edit';
 
-        return view('admin.categories.edit', compact('category'));
+        return view('dashboard.categories.edit', compact('element', 'all_', 'page_name', 'index'));
 
     }
 
@@ -119,7 +117,7 @@ class CategoriesController extends Controller
     {
 
         $input = $request->all();
-        $input['slug'] = str_slug($request->category, '-');
+        $input['slug'] = str_slug($request->name, '-');
 
         if ( $file = $request->file('image')) {
             $name = time() . '-' . $file->getClientOriginalName();
@@ -128,7 +126,8 @@ class CategoriesController extends Controller
             $input['image_id'] = $image->id;
         }
 
-        Category::find($slug)->update($input);
+        $category = Category::where('slug', $slug)->first();
+        $category->fill($input)->save();
 
         Session::flash('success', 'Category successfully updated!');
      
@@ -149,9 +148,37 @@ class CategoriesController extends Controller
 
        $category->delete();
 
-       Session::flash('deleted_user', 'The users has been deleted');
-
-        returnview('admin.categories.index');
-
+        Session::flash('success', 'Category was deleted successfully');
+        return redirect()->route('categories.index');
     }
+
+    public function trashed()
+    {
+        $all_tr = Category::onlyTrashed()->get();
+        $all_ = Category::all();
+        $page_name = 'categories';
+        $index = 'trash';
+
+        return view('dashboard.categories.trashed', compact('all_tr', 'page_name', 'all_', 'index'));
+    }
+
+    public function restore($slug)
+    {
+        $category = Category::withTrashed()->where('slug', $slug)->first();
+        $category->restore();
+
+        Session::flash('success', 'Category successfully restored!');
+        return redirect()->route('categories.index');
+    }
+
+    public function kill($slug)
+    {
+        $category = Category::withTrashed()->where('slug', $slug)->first();
+        $category->forceDelete();
+
+        Session::flash('success', 'Category pemanently deleted!');
+        return redirect()->route('categories.index');
+    }
+
+
 }

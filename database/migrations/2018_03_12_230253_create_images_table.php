@@ -14,12 +14,16 @@ class CreateImagesTable extends Migration
     public function up()
     {
         Schema::create('images', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('image');
-            $table->string('film_id')->index()->default();
-            $table->string('actor_id')->index()->default();
-            $table->string('category_id')->index()->default();
-            $table->timestamps();
+
+            $table->increments('id');  
+            $table->string('image_name');
+            $table->string('slug')->unique();  
+            $table->string('alt')->nullable();
+            $table->string('about')->nullable();   
+            $table->timestamp('created_at')->useCurrent();
+            $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
+            $table->softDeletes();
+
         });
     }
 

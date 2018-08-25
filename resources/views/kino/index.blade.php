@@ -1,32 +1,36 @@
-@extends('home')
-
-@include('partials._inner_nav')
+@extends('layouts.app')
+@section ('title',  "| $page_name")
 
 @section('content')
 
-    <section id="content" class="flex-center"> 
+  @include('partials._out_nav')
 
-        <div class="row flex-center">
+  <div class="container">
+    <div class="row flex-center">
+      <div class="col-md-12 page-header text-center my-3">
+          <h1>My Kino</h1>
+          <h3>A collection of {{count($films)}} films</h3>
+      </div>          
+    </div>
+  </div><!-- /.row -->   
+    <div class="row flex-center ">
 
-            <!-- Three columns of text below the carousel -->
-            @foreach ($films as $film)
-            <div class="the_thumbnail">
-                 <img class="image" src="{{URL::to('/images/' . $film->image->image ) }}" alt="{{$film->name}}" >
-                  <div class="middle">
-                    <a href="{{route('films.show', $film->slug)}}">
-                        <div class="text">{{$film->name}}</div>
-                    </a>
-                  </div>
+        @foreach ($films as $film)
+        <div class="the_thumbnail">
+             <img class="image" src="{{URL::to('/images/' . $film->image->slug ) }}" alt="{{$film->name}}" >
+              <div class="overlay">
+                <a href="{{route('kino.show', $film->slug)}}">
+                    <div class="text small">{{$film->name}}</div>
+                </a>
               </div>
-             
-            @endforeach     
-
-      <div class="text-center">
-              {{ $films->links() }}
           </div>
-        </div><!-- /.row -->   
-    </section>
 
+        @endforeach
+        <div class="row flex-center row-1 my-3">
+          {{ $films->links() }}
+        </div>   
+  
+    </div><!-- /.row -->   
 
 
 @endsection

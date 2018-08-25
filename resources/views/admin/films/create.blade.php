@@ -17,7 +17,7 @@
         <div class="card-header">           
       <div class="row">  
         <div class="col-md-10 page-logo">  
-          <h2> <i class="fas fa-film"></i>  Add Films </h2>
+          <h2> <i class="fas fa-film"></i>Add Film</h2>
         </div>  
         <div class="col-md-2 "> 
           <a class="btn btn-outline-success page-btns" href="{{route('films.index')}}">{{count($films)}} Films</a>
@@ -26,7 +26,6 @@
     </div> 
    <div class="card-body">
       <div class="inside">       
-
         {!!Form::open(array('route' => 'films.store', 'files' => true)) !!}   
 
         <div class="pt-4">        
@@ -92,18 +91,16 @@
             {!!Form::textarea('description', null, array('id' => 'summernote', 'class' => 'form-control', 'rows' => 6))!!}                       
         </div>
 
-        <div class="pt-4">    
+
+
+    </div>
+    </div>
+
+    <div class="card-footer py-4">  
+
             {!!Form::submit('Add New Film', array('class' => 'btn btn-success btn-block')) !!}
-            {!!Form::close() !!}       
-        </div>
+            {!!Form::close() !!}                
 
-    </div>
-    </div>
-
-    <div class="card-footer pt-3">  
-            <div class="col-lg-12 pt-3 ">
-
-             </div>
     </div>
 </div>
 

@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Film extends Model
 {
@@ -18,9 +19,12 @@ class Film extends Model
 			'fsk_id',
 			'language_id',
 			'category_id' 
-
 	];
 
+
+    use SoftDeletes;
+    protected $dates = ['deleted_at'];
+    
     public function category()
     {
         return $this->belongsTo('App\Category');
@@ -43,6 +47,6 @@ class Film extends Model
 
     public function image()
     {
-        return $this->hasOne('App\Image', 'film_id', 'id');
+        return $this->belongsTo('App\Image');
     }
 }

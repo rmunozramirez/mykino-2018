@@ -14,7 +14,7 @@ class LanguagesTableSeeder extends Seeder
 
         App\Language::create ([
 
-        	'language' 	=> 	'English',
+        	'name' 	=> 	'English',
         	'slug'		=>	'english',
         	'image'		=>	'english.svg'
         ]);
@@ -22,7 +22,7 @@ class LanguagesTableSeeder extends Seeder
        
         App\Language::create ([
 
-        	'language' 	=> 	'German',
+        	'name' 	=> 	'German',
         	'slug'		=>	'german',
         	'image'		=>	'german.svg'
         ]);
@@ -30,7 +30,7 @@ class LanguagesTableSeeder extends Seeder
        
         App\Language::create ([
 
-        	'language' 	=> 	'Spanish',
+        	'name' 	=> 	'Spanish',
         	'slug'		=>	'spanish',
         	'image'		=>	'spanish.svg'
         ]);
@@ -38,7 +38,7 @@ class LanguagesTableSeeder extends Seeder
        
         App\Language::create ([
 
-        	'language' 	=> 	'French',
+        	'name' 	=> 	'French',
         	'slug'		=>	'french',
         	'image'		=>	'french.svg'
         ]);
@@ -46,7 +46,7 @@ class LanguagesTableSeeder extends Seeder
        
         App\Language::create ([
 
-        	'language' 	=> 	'Italian',
+        	'name' 	=> 	'Italian',
         	'slug'		=>	'italian',
         	'image'		=>	'italian.svg'
         ]);
@@ -54,7 +54,7 @@ class LanguagesTableSeeder extends Seeder
        
         App\Language::create ([
 
-        	'language' 	=> 	'Chinese',
+        	'name' 	=> 	'Chinese',
         	'slug'		=>	'chinese',
         	'image'		=>	'chinese.svg'
         ]);

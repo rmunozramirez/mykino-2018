@@ -17,9 +17,11 @@ class CreateActorsTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->integer('image_id')->unsigned()->index();
+            $table->integer('gender_id')->index();
             $table->string('slug')->unique();
-            $table->enum('genre', ['masculine', 'femenine']);
-            $table->timestamps();
+            $table->timestamp('created_at')->useCurrent();
+            $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
+            $table->softDeletes();
         });
     }
 

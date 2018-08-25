@@ -37,7 +37,10 @@
             
          </div>
         <div class="col-md-8">
-          <video id="player-obj" controls="" src="{!! $film->trailer !!}" frameborder="0" allowfullscreen></video>
+          <!-- video id="player-obj" controls="" src="{!! $film->trailer !!}" frameborder="0" allowfullscreen></video --> 
+           <video width="100%" height="360" controls>
+            <source src="{{ asset('films/xanadu.mp4') }}" type="video/mp4">
+          </video> 
         </div>
       </div>
               

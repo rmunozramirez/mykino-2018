@@ -4,18 +4,14 @@
     <!-- Head  -->
     @include('partials._header')  
 
-
 <body>
-    <div id="app">
-        @include('partials._inner_nav')
 
-        <main class="container py-5 mb-4">
+    <main>
 
-                @yield('content')
+        @yield('content')
 
-        </main>
+    </main>
 
-    </div>
 
 
     <!-- Scripts -->

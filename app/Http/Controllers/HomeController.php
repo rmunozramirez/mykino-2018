@@ -29,10 +29,16 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $films = Film::all();
-        $carousel = Film::orderBy('created_at', 'desc')->take(18)->get();
 
-        return view('kino.landing', compact('films', 'carousel'));
+        $page_name = 'Home page'; 
+        $films = Film::orderBy('created_at', 'desc')->paginate(10);
+        $all_ = Film::all();
+        $index = 'front';
+
+        $element = Film::where('name', 'My Name Is Khan')->first();
+
+
+        return view('kino.landing', compact('page_name', 'films', 'all_', 'index', 'element'));
     }
     /**
      * Show the application dashboard.
@@ -48,7 +54,8 @@ class HomeController extends Controller
         $actors  = Actor::paginate(10); 
         $total_actors  = Actor::all(); 
         $languages = Language::withCount('films')->get(); 
-        $fsks  = Fsk::all(); 
+        $fsks  = Fsk::withCount('films')->get();
+        $page_name = 'dashboard';
 
         //Statistics
         $newest_films = Film::orderBy('year', 'desc')->take(5)->get();
@@ -58,6 +65,6 @@ class HomeController extends Controller
 
         //total
 
-        return view('admin.dashboard', compact('films', 'categories', 'languages', 'actors', 'newest_films', 'oldest_films', 'longest_films', 'shortest_films', 'total_categories', 'total_actors', 'total_films' ));
+        return view('dashboard.index', compact('films', 'categories', 'languages', 'actors', 'newest_films', 'oldest_films', 'longest_films', 'shortest_films', 'total_categories', 'total_actors', 'total_films', 'fsks', 'page_name'));
     }
 }

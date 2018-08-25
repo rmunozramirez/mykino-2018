@@ -15,7 +15,9 @@ class UsersTableSeeder extends Seeder
 
         	'name' 		=> 	'Rafael Muñoz',
         	'email'		=>	'rafaelmunoznl@yahoo.com',
-        	'password'	=>	bcrypt('Password')
+        	'password'	=>	bcrypt('Password'),
+            'role_id'   =>  4,
+            'image_id'  =>  5,
 
         ]);
     }
