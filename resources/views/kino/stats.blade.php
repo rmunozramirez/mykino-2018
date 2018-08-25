@@ -9,7 +9,7 @@
       <div id="contenido">
          <!-- Tab panels -->
          <div class="card-header py-3">
-            <h2>Statistics
+            <h2>All Films
             </h2>
          </div>
          <div class="card-body py-3">
@@ -34,41 +34,37 @@
                         <!-- Tab panes -->
                         <ul>
                            <li class="sky-tab-content-1">
-                              <div class="row">
-                                 <div class="col-md-12">
-                                    <div class="ibox-content">
-                                       <div class="table-responsive">
-                                          <table class="table table-striped table-bordered table-hover dataTables-example" >
-                                             <thead>
-                                                <tr>
-                                                   <th>Film <i class="fa fa-sort"></th>
-                                                   <th>Category <i class="fa fa-sort"></th>
-                                                   <th>Language <i class="fa fa-sort"></th>
-                                                   <th>FSK <i class="fa fa-sort"></th>
-                                                   <th>Year <i class="fa fa-sort"></th>
-                                                   <th>Trailer <i class="fa fa-sort"></th>
-                                                </tr>
-                                             </thead>
-                                             <tbody>
-                                                @foreach ($films as $element)
-                                                <tr>
-                                                   <td>
-                                                      <img class="film-thumbnail" height="80" src="{{URL::to('/images/' . $element->image->slug ) }}" alt="{{$element->name}}" ><a href="{{route('kino.show', $element->slug)}}">{{$element->name}}</a>
-                                                   </td>
-                                                   <td><a href="{{route('kino.category', $element->category->slug)}}">{{$element->category->name}}</a></td>
-                                                   <td><a href="{{route('language.show', $element->language->slug)}}"><img height="74" src="{{$element->language->image ? URL::to('/images/' . $element->language->image) : URL::to('/images/language.png')}}" alt="{{$element->name}}"  title="{{$element->language->language}}"></a></td>
-                                                   <td>
-                                                      <a href="{{route('fsk.show', $element->fsk->slug)}}">
-                                                      <img height="50" src="{{$element->fsk->image ? URL::to('/images/' . $element->fsk->image) : URL::to('/images/language.png')}}" alt="{{$element->name}}" title="{{$element->fsk->fsk}}"></a>
-                                                   </td>
-                                                   <td><a href="{{route('films.year', date('Y', strtotime($element->year)))}}">{{date('Y', strtotime($element->year))}}</a></td>
-                                                   <td><a href="{{ $element->trailer }}"><img class="play" height="50" src="{{URL::to('/images/play.png')}}" alt="{{$element->name}}" title="{{$element->name}}"></a></td>
-                                                </tr>
-                                                @endforeach
-                                             </tbody>
-                                          </table>
-                                       </div>
-                                    </div>
+                              <div class="ibox-content">
+                                 <div class="table-responsive">
+                                    <table class="table table-striped table-bordered table-hover dataTables-example" >
+                                       <thead>
+                                          <tr>
+                                             <th>Film <i class="fa fa-sort"></th>
+                                             <th>Category <i class="fa fa-sort"></th>
+                                             <th>Language <i class="fa fa-sort"></th>
+                                             <th>FSK <i class="fa fa-sort"></th>
+                                             <th>Year <i class="fa fa-sort"></th>
+                                             <th>Trailer <i class="fa fa-sort"></th>
+                                          </tr>
+                                       </thead>
+                                       <tbody>
+                                          @foreach ($films as $element)
+                                          <tr>
+                                             <td>
+                                                <img class="film-thumbnail" height="80" src="{{URL::to('/images/' . $element->image->slug ) }}" alt="{{$element->name}}" ><a href="{{route('kino.show', $element->slug)}}">{{$element->name}}</a>
+                                             </td>
+                                             <td><a href="{{route('kino.category', $element->category->slug)}}">{{$element->category->name}}</a></td>
+                                             <td><a href="{{route('language.show', $element->language->slug)}}"><img height="74" src="{{$element->language->image ? URL::to('/images/' . $element->language->image) : URL::to('/images/language.png')}}" alt="{{$element->name}}"  title="{{$element->language->language}}"></a></td>
+                                             <td>
+                                                <a href="{{route('fsk.show', $element->fsk->slug)}}">
+                                                <img height="50" src="{{$element->fsk->image ? URL::to('/images/' . $element->fsk->image) : URL::to('/images/language.png')}}" alt="{{$element->name}}" title="{{$element->fsk->fsk}}"></a>
+                                             </td>
+                                             <td><a href="{{route('films.year', date('Y', strtotime($element->year)))}}">{{date('Y', strtotime($element->year))}}</a></td>
+                                             <td><a href="{{ $element->trailer }}"><img class="play" height="50" src="{{URL::to('/images/play.png')}}" alt="{{$element->name}}" title="{{$element->name}}"></a></td>
+                                          </tr>
+                                          @endforeach
+                                       </tbody>
+                                    </table>
                                  </div>
                               </div>
                            </li>
