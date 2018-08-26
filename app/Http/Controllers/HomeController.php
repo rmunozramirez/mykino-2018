@@ -35,7 +35,7 @@ class HomeController extends Controller
         $all_ = Film::all();
         $index = 'front';
 
-        $element = Film::where('name', 'My Name Is Khan')->first();
+        $element = Film::get()->last();
 
 
         return view('kino.landing', compact('page_name', 'films', 'all_', 'index', 'element'));

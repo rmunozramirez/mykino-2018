@@ -11,6 +11,8 @@ Route::group(['middleware' => 'auth'], function() {
 //Just authenticated users could enter in Kino
 	Route::get('/kino', 'KinoController@index')->name('kino.index');
 	Route::get('/kino/statistics', 'KinoController@stats')->name('kino.stats');
+	Route::get('/kino/actors', 'KinoController@actors')->name('kino.actors');	
+	Route::get('/kino/actor/{slug}', 'KinoController@actor')->name('kino.actor');
 	Route::get('/kino/categories', 'KinoController@categories')->name('kino.categories');
 	Route::get('/kino/category/{slug}', 'KinoController@category')->name('kino.category');
 	Route::get('/kino/ages', 'KinoController@ages')->name('kino.ages');
@@ -18,7 +20,6 @@ Route::group(['middleware' => 'auth'], function() {
 	Route::get('/kino/languages', 'KinoController@languages')->name('kino.languages');
 	Route::get('/kino/language/{slug}', 'KinoController@language')->name('kino.language');
 	Route::get('/kino/year/{slug}', 'KinoController@year')->name('kino.year');
-
 	Route::get('/kino/{slug}', 'KinoController@show')->name('kino.show')->where('slug', '[\w\d\-\_]+');
 	
 });

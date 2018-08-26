@@ -10,10 +10,10 @@
          <div class="card-header py-3">
             <h2>{{ $element->name }}
                <span class="very-small pull-right">
-               <a class="separator" href="{{route('fsk.show', $element->fsk->slug)}}">{{$element->fsk->name}}</a>
-               <a class="separator" href="{{route('language.show', $element->language->slug)}}">{{$element->language->name}} </a>
-               <a class="separator" href="{{route('categories.show', $element->category->slug)}}">{!! $element->category->name !!} </a>
-               <a class="separator" href="{{route('films.year', date('Y', strtotime($element->year)))}}">{{date('Y', strtotime($element->year))}}</a>
+               <a class="separator" href="{{route('kino.age', $element->fsk->slug)}}">{{$element->fsk->name}}</a>
+               <a class="separator" href="{{route('kino.language', $element->language->slug)}}">{{$element->language->name}} </a>
+               <a class="separator" href="{{route('kino.category', $element->category->slug)}}">{!! $element->category->name !!} </a>
+               <a class="separator" href="{{route('kino.year', date('Y', strtotime($element->year)))}}">{{date('Y', strtotime($element->year))}}</a>
                {!! $element->duration !!} 
                </span>
             </h2>
@@ -48,7 +48,6 @@
                                           <tr>
                                              <th>Actor</th>
                                              <th>Films</th>
-                                             <th>Created at</th>
                                           </tr>
                                        </thead>
                                        <tbody>
@@ -59,10 +58,9 @@
                                                 <img height="50" class="" src="{{URL::to('/images/' . $actor->image->slug ) }}" alt="{{$actor->name}}" >
                                                 @else
                                                 <i class="fas fa-tag fa-2x"></i> @endif
-                                                <a href="{{route('actors.show', $actor->slug)}}">{{$actor->name}}</a>
+                                                <a href="{{route('kino.actor', $actor->slug)}}">{{$actor->name}}</a>
                                              </td>
                                              <td>{{ count($actor->films) }}</td>
-                                             <td>{{ $actor->created_at->format('D j M Y')}}</td>
                                           </tr>
                                           @endforeach 
                                        </tbody>

@@ -14,22 +14,45 @@ use App\Fsk;
 class KinoController extends Controller
 {
 
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
 
-        $films = Film::orderBy('name', 'asc')->paginate(22);
+        $films = Film::orderBy('name', 'asc')->paginate(50);
         $all_ = Film::all();
         $page_name = 'films';
         $index = 'front';
 
-        $element = Film::where('name', 'My Name Is Khan')->first();
-
         return view('kino.index', compact('films', 'all_', 'page_name', 'index', 'element'));
+    }
+
+    public function actors()
+    {
+
+        $actors = Actor::orderBy('name', 'asc')->paginate(50);
+        $all_ = Actor::all();
+        $page_name = 'actors';
+        $index = 'front';
+
+        return view('kino.actors.index
+            ', compact('actors', 'all_', 'page_name', 'index', 'element'));
+    }
+
+    public function actor($slug)
+    {
+
+        $element = Actor::withCount('films')->where('slug', $slug)->first();
+        $page_name = 'actor';
+        $all_ = Actor::all();
+        $index = 'show';
+
+        $prev = $element->id - 1;
+        $actor_prev = Actor::find($prev);
+
+        $next = $element->id + 1;  
+        $actor_next = Actor::find($next);
+        return view('kino.actors.show', compact('element', 'page_name', 'all_', 'index', 'actor_next', 'actor_prev'));
+
     }
 
     public function stats()

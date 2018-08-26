@@ -10,7 +10,7 @@
                     <a href="{{route('films.index')}}">{{count($total_films)}}  <br /> @if(count($total_films) > 1) Films @else Film @endif</a>
                 </h1>
                 <div class="stat-percent font-bold text-success">68% <i class="fa fa-bolt"></i></div>
-                <small>Bearbeitet bis heute {{date('d.m.Y')}}</small>
+                <small>Last film {{date('d.m.Y')}}</small>
             </div>
         </div>
     </div>
@@ -53,6 +53,21 @@
             <div class="ibox-content">
                 <h1 class="no-margins">
                     <a href="{{route('language.index')}}">{{count($languages)}} <br /> @if(count($languages) > 1) Languages @else Language @endif</a>
+                </h1>
+                <div class="stat-percent font-bold text-danger">38% <i class="fa fa-level-down"></i></div>
+                <small>In first month</small>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-3">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <span class="label label-danger pull-right">Low value</span>
+                <h5>Age Clasifications</h5>
+            </div>
+            <div class="ibox-content">
+                <h1 class="no-margins">
+                    <a href="{{route('language.index')}}">{{count($fsks)}} <br /> Age @if(count($fsks) > 1) Classifications @else Classification @endif</a>
                 </h1>
                 <div class="stat-percent font-bold text-danger">38% <i class="fa fa-level-down"></i></div>
                 <small>In first month</small>

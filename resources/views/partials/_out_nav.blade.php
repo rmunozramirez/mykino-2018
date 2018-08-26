@@ -9,6 +9,8 @@
 
           <li class="nav-item active"><a class="nav-link js-scroll-trigger" href="{{route('kino.index')}}"> Filme</a></li>
 
+          <li class="nav-item active"><a class="nav-link js-scroll-trigger" href="{{route('kino.actors')}}"> Actors</a></li>
+
           <li aria-haspopup="true">
               <a href="{{route('kino.stats')}}">Statistics</a>
               <div class="grid-container3">

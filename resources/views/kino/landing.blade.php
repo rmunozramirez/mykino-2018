@@ -11,7 +11,7 @@
       
       <div id="marca" class="text-white my-4 ml-4 text-center">
           <h2 class="">My Kino</h2>
-          <h3>My collection of {{count($films)}} films</h3>
+          <h3>My collection of {{count($all_)}} films</h3>
       </div>
       <iframe width="560" height="315" src="{{ $element->trailer }}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
     </div>
