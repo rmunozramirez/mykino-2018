@@ -52,7 +52,7 @@ class ActorsController extends Controller
     {
 
         $file = $request->file('image_name');
-        $name = $file->getClientOriginalName() . '-' . time();
+        $name = time() . '-' . $file->getClientOriginalName();
         $file->move('images', $name);
         
         $last_img = Image::orderBy('id', 'desc')->first(); 

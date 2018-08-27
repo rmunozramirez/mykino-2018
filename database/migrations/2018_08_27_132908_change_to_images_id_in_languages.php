@@ -13,7 +13,11 @@ class ChangeToImagesIdInLanguages extends Migration
      */
     public function up()
     {
-        //
+        Schema::table('languages', function($table)
+        {
+            $table->integer('image_id')->unsigned()->after('name');
+            $table->dropColumn('image');
+        });
     }
 
     /**
@@ -23,6 +27,9 @@ class ChangeToImagesIdInLanguages extends Migration
      */
     public function down()
     {
-        //
+        Schema::table('languages', function($table) {
+            $table->dropColumn('image_id');
+            $table->string('image')->unique();
+        });
     }
 }

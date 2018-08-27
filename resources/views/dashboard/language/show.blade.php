@@ -6,10 +6,17 @@
 <div class="wrapper wrapper-content animated fadeInUp">		
     <div class="row wrapper border-bottom white-bg">
 		<div class="inside">
-            <h2><img height="50" src="{{$element->image ? URL::to('/images/' . $element->image) : URL::to('/images/language.png')}}" alt="{{$element->name}}" title="{{$element->language}}"> {!! $element->name !!} language - 
+            <h2>
+          @if( $element->image )
+              <img height="50" src="{{$element->image ? URL::to('/images/' . $element->image->slug) : URL::to('/images/language.png')}}" alt="{{$element->name}}" title="{{$element->language}}">
+            @else
+              <i class="fa fa-language fa-2x"></i> @endif
+
+               {!! $element->name !!} language - 
               {{ $element->films_count }}  @if($element->films_count > 1) films @else film @endif
 	            <span class="small pull-right">
 	            	<i class="fa fa-chevron-left"></i> <a class="small-link" href="{{route('language.index')}}"> Back to Language</a>
+                <i class="fa fa-pencil"></i><a type="button" href="{{route('language.edit', $element->slug)}}"> Edit</a>
 	        </h2>
       <div id="contenido"  class="card">
         <div class="row">

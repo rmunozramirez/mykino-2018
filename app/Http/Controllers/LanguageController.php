@@ -99,9 +99,12 @@ class LanguageController extends Controller
     public function edit($slug)
     {
 
-        $language = Language::where('slug', $slug)->first();
+        $element = Language::where('slug', $slug)->first();
+        $all_ = Language::all();
+        $page_name = 'language';
+        $index = 'edit';
 
-        return view('dashboard.language.edit', compact('language'));
+          return view('dashboard.language.edit', compact('element', 'all_', 'page_name', 'index'));
 
     }
  
@@ -109,16 +112,30 @@ class LanguageController extends Controller
     {
 
         $input = $request->all();
-        $input['slug'] = str_slug($request->category, '-');
+        $input['slug'] = str_slug($request->name, '-');        
+        $language = Language::where('slug', $slug)->first();
 
-        if ( $file = $request->file('image')) {
+        if ( $file = $request->file('image_name')) {
+            $image = Image::find($language->image_id);
+           
+            if ($image) {
+                $image->forceDelete();
+            }
+
             $name = time() . '-' . $file->getClientOriginalName();
             $file->move('images', $name);
-            $image = Image::create(['image' =>  $name]);
+
+            $image = Image::create([
+                'image_name'    =>  $request->name,
+                'slug'          =>  $name,
+                'alt'           =>  $request->alt,
+                'about'         =>  $request->about,
+            ]);
+
             $input['image_id'] = $image->id;
         }
 
-        Language::find($slug)->update($input);
+        $language->fill($input)->save();
 
         Session::flash('success', 'Language successfully updated!');
 

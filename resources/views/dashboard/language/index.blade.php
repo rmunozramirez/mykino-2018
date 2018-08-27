@@ -22,10 +22,10 @@
 					              	<tr>
 					                 	<td>
 					                  	@if( $language->image )
-					                    	<img height="50" src="{{$language->image ? URL::to('/images/' . $language->image) : URL::to('/images/language.png')}}" alt="{{$language->category}}" title="{{$language->name}}">
+					                    	<img height="50" src="{{$language->image ? URL::to('/images/' . $language->image->slug) : URL::to('/images/language.png')}}" alt="{{$language->name}}" title="{{$language->language}}">
 					                    @else
-					                    	<i class="fas fa-tag fa-2x"></i> @endif
-					                  		<a href="{{route('language.show', $language->slug)}}">{{$language->name}}</a>
+					                    	<i class="fa fa-language fa-3x"></i> @endif
+					                  		<a href="{{route('language.show', $language->slug)}}"> {{$language->name}}</a>
 					                	</td>
 					                 	<td>{{ $language->films_count}}</td>
 				               			<td>{{ $language->created_at->format('D j M Y') }}</td>					                 
