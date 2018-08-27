@@ -36,5 +36,9 @@ class Image extends Model
     {
         return $this->hasOne('App\User');
     }
+    public function language()
+    {
+        return $this->hasOne('App\Language');
+    }
     
 }

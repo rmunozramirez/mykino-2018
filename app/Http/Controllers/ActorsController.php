@@ -51,8 +51,8 @@ class ActorsController extends Controller
     public function store(ActorsRequest $request)
     {
 
-        $file = $request->file('image');
-        $name = time() . '-' . $file->getClientOriginalName();
+        $file = $request->file('image_name');
+        $name = $file->getClientOriginalName() . '-' . time();
         $file->move('images', $name);
         
         $last_img = Image::orderBy('id', 'desc')->first(); 
@@ -69,15 +69,15 @@ class ActorsController extends Controller
         $image = Image::create([
             'image_name'  =>  $request->name,
             'slug'  =>  $name,
-            'alt'   =>  $request->name,
-            'about' =>  $request->name,
+            'alt'   =>  $request->alt,
+            'about' =>  $request->about,
         ]);
 
         $actor->save();
 
         Session::flash('success', 'Actor successfully created!');
      
-        return redirect()->route('actors.index');
+        return redirect()->route('actors.show', $actor->slug);
     }
 
     /**
@@ -116,15 +116,7 @@ class ActorsController extends Controller
         $page_name = 'actors';
         $index = 'edit';
 
-        $films = Film::all();
-            $films2 = array();
-            foreach ($films as $film) {
-                $films2[$film->id] = $film->name;
-        } 
-
-        $films = Film::orderBy('name', 'asc')->pluck('name', 'id')->all();
-
-          return view('dashboard.actors.edit', compact('element', 'films', 'films2', 'all_', 'page_name', 'index'));
+          return view('dashboard.actors.edit', compact('element', 'all_', 'page_name', 'index'));
     }
 
     /**
@@ -136,23 +128,31 @@ class ActorsController extends Controller
      */
     public function update(ActorsRequest $request, $slug)
     {
-       
-        $actor_id = Actor::where('slug', $slug)->first();
-        $input = $request->all();
-        $input['slug'] = str_slug($request->name, '-');
 
-        if ( $file = $request->file('image')) {
+        $input = $request->all();
+        $input['slug'] = str_slug($request->name, '-');        
+        $actor = Actor::where('slug', $slug)->first();
+
+        if ( $file = $request->file('image_name')) {
+            $image = Image::find($actor->image_id);
+           
+            if ($image) {
+                $image->forceDelete();
+            }
+
             $name = time() . '-' . $file->getClientOriginalName();
             $file->move('images', $name);
 
-            $image = Image::where('actor_id', $actor_id->id)->first();
-            $image['image'] =  $name;
-            Image::where('actor_id', $actor_id->id)->first()->fill($image)->save();
+            $image = Image::create([
+                'image_name'    =>  $file->getClientOriginalName(),
+                'slug'          =>  $name,
+                'alt'           =>  $request->alt,
+                'about'         =>  $request->about,
+            ]);
 
             $input['image_id'] = $image->id;
         }
 
-        $actor = Actor::where('slug', $slug)->first();
         $actor->fill($input)->save();
 
         Session::flash('success', 'Actor successfully updated!');

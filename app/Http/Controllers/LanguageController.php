@@ -51,7 +51,7 @@ class LanguageController extends Controller
      */
     public function store(LanguageRequest $request)
     {
-        $file = $request->file('image');
+        $file = $request->file('image_name');
         $name = time() . '-' . $file->getClientOriginalName();
         $file->move('images', $name);
 
@@ -62,16 +62,15 @@ class LanguageController extends Controller
         $language = Language::create([
             'name'      =>  $request->language,
             'slug'          =>  str_slug($request->language, '-'),
-            'image'         =>  $name,
             'image_id'      =>  $last_img->id + 1,
         ]);        
 
-        $image = Image::create([
-            'image'             =>  $name,
-            'imageable_type'    => 'Language',
-            'imageable_id'      =>  $language->id
+       $image = Image::create([
+            'image_name'  =>  $request->name,
+            'slug'  =>  $name,
+            'alt'   =>  $request->alt,
+            'about' =>  $request->about,
         ]);
-
         $language->save();
 
         Session::flash('success', 'Successfully created post!');

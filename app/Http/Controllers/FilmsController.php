@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\FilmsRequest;
-use Illuminate\Support\Facades\DB;
 use App\Film;
 use App\Image;
 use App\Category;
@@ -70,8 +69,9 @@ class FilmsController extends Controller
     public function store(FilmsRequest $request)
     {
 
-        $file = $request->file('image');
-        $name = time() . '-' . $file->getClientOriginalName();
+        $file = $request->file('image_name');
+
+        $name = $file->getClientOriginalName() . '-' . time();
         $file->move('images', $name);
 
         $last_img = Image::orderBy('id', 'desc')->first(); 
@@ -96,8 +96,8 @@ class FilmsController extends Controller
        $image = Image::create([
             'image_name'  =>  $request->name,
             'slug'  =>  $name,
-            'alt'   =>  $request->name,
-            'about' =>  $request->name,
+            'alt'   =>  $request->alt,
+            'about' =>  $request->about,
         ]);
 
         $film->actors()->sync($request->actors, false);
@@ -134,7 +134,6 @@ class FilmsController extends Controller
     public function edit($slug)
     {
 
-        //find the film in the database
         $element = Film::where('slug', $slug)->first(); 
         $films = Film::all();
         $categories = Category::orderBy('name', 'asc')->pluck('name', 'id')->all();
@@ -143,15 +142,9 @@ class FilmsController extends Controller
         $page_name = 'films';
         $index = 'edit';
         $all_ = Film::all();
-        $actors = Actor::all();
-            $actors2 = array();
-            foreach ($actors as $actor) {
-                $actors2[$actor->id] = $actor->name;
-        }   
-
         $actors = Actor::orderBy('name', 'asc')->pluck('name', 'id')->all();
 
-          return view('dashboard.films.edit', compact('element', 'films', 'actors', 'categories', 'fsk', 'languages', 'actors', 'page_name', 'index', 'all_'));
+          return view('dashboard.films.edit', compact('element', 'films', 'actors', 'categories', 'fsk', 'languages', 'page_name', 'index', 'all_'));
 
     }
 
@@ -169,34 +162,31 @@ class FilmsController extends Controller
         $input['slug'] = str_slug($request->name, '-');   
         $film = Film::where('slug', $slug)->first();      
 
-
         if ( $file = $request->file('image_name')) {
-
-            $name = time() . '-' . $file->getClientOriginalName();
-            $image = Image::find($film->image->id);
-
+            $image = Image::find($film->image_id);
+           
             if ($image) {
                 $image->forceDelete();
             }
 
+            $name = time() . '-' . $file->getClientOriginalName();
             $file->move('images', $name);
+
             $image = Image::create([
-                'id'            =>  $image->id,
-                'image_name'    =>  $image->image_name,
-                'slug'          =>  $image->slug,
-                'alt'           =>  $image->image_name,
-                'about'         =>  $image->image_name,
-            ]);            
+                'image_name'    =>  $file->getClientOriginalName(),
+                'slug'          =>  $name,
+                'alt'           =>  $request->alt,
+                'about'         =>  $request->about,
+            ]);
+
+            $input['image_id'] = $image->id;
+
         }
 
-        $image = Image::find($film->image->id);
-        $film->image_id = $image->id;
-        $film->save();        
+        $film->fill($input)->save();        
 
         Session::flash('success', 'Film successfully updated!');
-     
         return redirect()->route('films.show', $film->slug);
-
     }
 
     public function destroy($slug)

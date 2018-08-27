@@ -27,12 +27,16 @@ mix.styles([
     'resources/assets/css/libs/sky-mega-menu-black.css',
     'resources/assets/css/libs/sky-tabs.css',
     'resources/assets/css/libs/animate.css',
+    'resources/assets/css/libs/bootstrap.min.css',
 
 ], 'public/css/libs.css');
 
 
 mix.scripts([
     
+    'resources/assets/js/libs/jquery.min.js',  
+    'resources/assets/js/libs/jquery-ui.min.js',
+    'resources/assets/js/libs/bootstrap.bundle.min.js',  
     'resources/assets/js/libs/toastr.min.js',
     'resources/assets/js/jquery.js',
     'resources/assets/js/datatables.min.js',

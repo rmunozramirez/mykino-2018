@@ -1,5 +1,5 @@
 @extends('dashboard.index')
-@section ('title', "| $element->name")
+@section ('title', "| Actor: $element->name")
 @section('content')
 
 <!-- Profile panel  -->
@@ -12,20 +12,7 @@
           <i class="fa fa-pencil"></i><a type="button" href="{{route('actors.edit', $element->slug)}}"> Edit</a>
         </span>
       </h2>
-			<div id="contenido"  class="card"> 
-          <div  class="row navigator mb-5">
-            <div  class="col-md-6">
-                @if($actor_prev)
-                <h4><a type="button" href="{{ route('actors.show', $actor_prev->slug) }}"><i class="fa fa-chevron-circle-left fa-2x"></i> {{ $actor_prev->name }}</a></h4>
-                @endif
-              </div>
-              <div  class="col-md-6">
-                @if($actor_next)
-                <h4><a class="pull-right" href="{{ route('actors.show', $actor_next->slug) }}"> {{ $actor_next->name }} <i class="fa fa-chevron-circle-right fa-2x"></i></a></h4>
-                @endif
-              </div>
-          </div>
-
+			<div id="contenido"  class="card">
           <div class="row py-3">
              <div class="col-md-4">
                 <img class="img-responsive" src="{{URL::to('/images/' . $element->image->slug  ) }}" alt="{{$element->name}}" >

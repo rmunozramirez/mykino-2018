@@ -1,5 +1,5 @@
 @extends('dashboard.index')
-@section ('title', "| $element->title | Edit")
+@section ('title', "| $element->name | Edit")
 @section('content')
 <section id="content">
     <div class="wrapper wrapper-content animated fadeInUp">
@@ -24,14 +24,29 @@
 							        {!! Form::model($element, ['method'=>'PATCH', 'action'=> ['FilmsController@update', $element->slug ],'files'=>true]) !!}
 
 							        <div class="pt-3 row">       
-							            <div class="col-md-3"> 
+							            <div class="col-md-4"> 
 					                        <img class="img-responsive"  src="{{URL::to('/images/' . $element->image->slug ) }}" alt="{{$element->name}}" >
 
-					                        {!!Form::label('image_name', 'Change the Featured Image') !!}
-					                        {!!Form::file('image_name') !!}
+						                    <div class="pt-4">
+
+							                    <div id="FileUpload">
+												    <input type="file" name="image_name" size="24" id="BrowserHidden" onchange="getElementById('FileField').value = getElementById('BrowserHidden').value;" />
+												    <div id="BrowserVisible"><input type="text" id="FileField" /></div>
+												</div>
+
+							                    <div class="pt-3">
+
+							                        {!!Form::label('alt', 'Edit alternative Text', array('class' => 'form-spacing-top'))!!}
+						                            {!!Form::text('alt', null, array('class' => 'form-control', 'required' => '', 'maxlength' => '55'))!!}
+						                        </div>
+						                        <div class="pt-3">
+							                        {!!Form::label('about', 'Edit image description', array('class' => 'form-spacing-top'))!!}
+						                            {!!Form::text('about', null, array('class' => 'form-control', 'required' => '', 'maxlength' => '55'))!!}
+						                        </div>
+						                    </div>
 							            </div>
 
-							            <div class="col-md-9"> 
+							            <div class="col-md-8"> 
 
 					                        <div class="pt-4">        
 					                            {!!Form::label('name', 'Edit film name', array('class' => 'form-spacing-top'))!!}
@@ -77,13 +92,13 @@
 							                        {!!Form::select('fsk_id', array('' => 'Choose Age', '1' => 'Approved for 0', '2' => 'Approved for 6', '3' => 'Approved for 12', '4' => 'Approved for 16', '5' => 'Approved for 18'), null, array('class' => 'form-control'))!!}
 							                    </div>    
 							                </div>
-
+<!-- 
 							                <div class="pt-3 row">       
 							                    <div class="col-md-12"> 
 							                        {!! Form::label('actor', 'Actors:') !!}
 							                        {!! Form::select('actor_id', $actors, null, array('multiple' => 'multiple', 'class' => 'form-control select2-multi'))!!}
 							                    </div>    
-							                </div>
+							                </div> -->
 
 							                <div class="pt-3 row">       
 							                    <div class="col-md-12">        
@@ -96,7 +111,7 @@
 
 							    </div>
 							    <div class="card-footer">        
-						            <div class="col-md-9 col-md-offset-3">    
+						            <div class="col-md-8 col-md-offset-4">    
 						                {!!Form::submit('Edit Film', array('class' => 'btn btn-success btn-block')) !!}
 						                {!!Form::close() !!}       
 						            </div>    

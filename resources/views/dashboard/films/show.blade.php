@@ -1,5 +1,5 @@
 @extends('dashboard.index')
-@section ('title', "| $element->name")
+@section ('title', "| Film: $element->name")
 @section('content')
 
 <!-- Profile panel  -->
@@ -26,7 +26,7 @@
         </div>
         <div class="row py-5">
           <div class="col-md-3">
-            <img class="img-responsive" src="{{URL::to('/images/' . $element->image->slug ) }}" alt="{{$element->name}}" >
+            <img name="{{$element->name}}" class="img-responsive" src="{{URL::to('/images/' . $element->image->slug ) }}" alt="{{$element->name}}" >
           </div>
           <div class="col-md-9">
              <div class="sky-tabs sky-tabs-amount-3 sky-tabs-pos-top-justify sky-tabs-anim-fade sky-tabs-response-to-icons" >

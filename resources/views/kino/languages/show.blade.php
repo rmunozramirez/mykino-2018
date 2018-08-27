@@ -1,9 +1,10 @@
 
-
 @extends('layouts.app')
 @section ('title',  "| $page_name")
-@include('partials._out_nav')
+
 @section('content')
+@include('partials._out_nav')
+
 <div class="container py-5">
    <div class="card">
       <div id="contenido">

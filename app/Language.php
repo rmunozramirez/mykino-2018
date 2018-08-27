@@ -7,8 +7,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Language extends Model
 {
- 
-
 	protected $fillable = [
 
 	    'name',
@@ -24,9 +22,8 @@ class Language extends Model
     {
         return $this->hasMany('App\Film');
     }
-
-    public function images()
+    public function image()
     {
-        return $this->morphMany('App\Image', 'imageable');
+        return $this->belongsTo('App\Image');
     }
 }

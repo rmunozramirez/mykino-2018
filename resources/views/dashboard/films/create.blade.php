@@ -67,17 +67,26 @@
 				            </div>    
 				        </div>
 
-				        <div class="pt-3 row">       
-				            <div class="col-md-6 pt-3 "> 
-				            {!!Form::label('image', 'Upload a Featured Image') !!}
-				            {!!Form::file('image') !!}
-				            </div>
+				        <div class="pt-5 row">       
+				            <div class="col-md-4"> 
+				            	{!!Form::label('image_name', 'Upload Image')!!}
+			                    <div id="FileUpload">
+								    <input type="file" name="image_name" size="24" id="BrowserHidden" onchange="getElementById('FileField').value = getElementById('BrowserHidden').value;" />
+								    <div id="BrowserVisible"><input type="text" id="FileField" /></div>
+								</div>
+							</div>
 
-				            <div class="col-md-6"> 
-				                {!! Form::label('actor', 'Actors:') !!}
-				                {!! Form::select('actor_id', $actors, null, array('multiple' => 'multiple', 'class' => 'form-control select2-multi'))!!}
-				            </div>    
-				        </div>
+				            <div class="col-md-4"> 
+
+		                        {!!Form::label('alt', 'Edit alternative Text', array('class' => 'form-spacing-top'))!!}
+	                            {!!Form::text('alt', null, array('class' => 'form-control', 'required' => '', 'maxlength' => '55'))!!}
+	                        </div>
+				            <div class="col-md-4">
+		                        {!!Form::label('about', 'Edit image description', array('class' => 'form-spacing-top'))!!}
+	                            {!!Form::text('about', null, array('class' => 'form-control', 'required' => '', 'maxlength' => '55'))!!}
+	                        </div>
+	                    </div>   
+
 						<div class="row">
 					        <div class="col-md-12 pt-4">       
 					            {!!Form::label('description', 'Film description:', array('class' => 'form-spacing-top'))!!}

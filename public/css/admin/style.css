@@ -9259,3 +9259,42 @@ aside .sky-mega-menu li {
 #video .inside .ratio4x3 {
   padding-bottom: 75%;
 }
+
+/**** UPload button ***/
+#FileUpload {
+    position:relative;
+    margin: 0 0 20px;
+}
+
+#BrowserVisible {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 1;
+    background:url(/images/upload-btn.jpg) 100% 1px no-repeat;
+    width:370px;
+    height:30px;
+} 
+
+#FileField {
+    width:250px;
+    margin-right: 85px;
+    padding: 6px;
+    font-size: 13px;
+    /*background: #fff url('http://i.stack.imgur.com/CGQD7.gif') top left repeat-x;*/
+    border: 1px solid #d5d5d5;
+    color: #333;
+    border-radius: 0x !important;
+}
+
+#BrowserHidden {
+    position:relative;
+    width:370px;
+    height:30px;
+    text-align: right;
+    -moz-opacity:0;
+    filter:alpha(opacity: 0);
+    opacity: 0;
+    z-index: 2;
+  
+}
