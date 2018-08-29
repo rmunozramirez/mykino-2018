@@ -52,7 +52,8 @@ class ActorsController extends Controller
     {
 
         $file = $request->file('image_name');
-        $name = time() . '-' . $file->getClientOriginalName();
+        $name = explode(".", $file->getClientOriginalName());
+        $name = $name[0] . '-' . time() . '.' . $name[1];
         $file->move('images', $name);
         
         $last_img = Image::orderBy('id', 'desc')->first(); 
@@ -140,11 +141,12 @@ class ActorsController extends Controller
                 $image->forceDelete();
             }
 
-            $name = time() . '-' . $file->getClientOriginalName();
+            $name = explode(".", $file->getClientOriginalName());
+            $name = $name[0] . '-' . time() . '.' . $name[1];
             $file->move('images', $name);
 
             $image = Image::create([
-                'image_name'    =>  $file->getClientOriginalName(),
+                'image_name'  =>  $request->name,
                 'slug'          =>  $name,
                 'alt'           =>  $request->alt,
                 'about'         =>  $request->about,

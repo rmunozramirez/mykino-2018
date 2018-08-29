@@ -1,29 +1,31 @@
-<nav class="navbar navbar-expand-md navbar-dark sticky-top" id="mainNav">
+<nav class="navbar navbar-expand-md navbar-dark" id="mainNav">
   <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           <i class="fa fa-bars"></i>
         </button>
   <div class="collapse navbar-collapse" id="navbarResponsive">
+
       <ul class="sky-mega-menu sky-mega-menu-top sky-mega-menu-response-to-icons">
+          <div class="pull-right">
+            <li class="nav-item active"><a class="nav-link js-scroll-trigger" href="{{ url('/') }}"><img height="30" src="{{URL::to('/images/mykino.png' ) }}" alt="My Kino"> My {{count($all_)}} films</a></li>
 
-          <li class="nav-item active"><a class="nav-link js-scroll-trigger" href="{{ url('/') }}"><img height="30" src="{{URL::to('/images/mykino.png' ) }}" alt="My Kino"> Startseite</a></li>-mega-menu-response-to-icons">
 
-          <li class="nav-item active"><a class="nav-link js-scroll-trigger" href="{{route('kino.index')}}"> Filme</a></li>
+            <li class="nav-item active"><a class="nav-link js-scroll-trigger" href="{{route('kino.index')}}"> Filme</a></li>
 
-          <li class="nav-item active"><a class="nav-link js-scroll-trigger" href="{{route('kino.actors')}}"> Actors</a></li>
+            <li class="nav-item active"><a class="nav-link js-scroll-trigger" href="{{route('kino.actors')}}"> Actors</a></li>
 
-          <li aria-haspopup="true">
-              <a href="{{route('kino.stats')}}">Statistics</a>
-              <div class="grid-container3">
-                  <ul>
-                      <li><a href="{{route('kino.categories')}}">Categories</a></li>
-                      <li><a href="{{route('kino.ages')}}">Age Classifications</a></li>
-                      <li><a href="{{route('kino.languages')}}">Languages</a></li>
-                  </ul>
-              </div>
-          </li>
+            <li aria-haspopup="true">
+                <a href="{{route('kino.stats')}}">Statistics</a>
+                <div class="grid-container3">
+                    <ul>
+                        <li><a href="{{route('kino.categories')}}">Categories</a></li>
+                        <li><a href="{{route('kino.ages')}}">Age Classifications</a></li>
+                        <li><a href="{{route('kino.languages')}}">Languages</a></li>
+                    </ul>
+                </div>
+            </li>
 
           <!--/ about -->
-          <div class="pull-right">
+
               @guest
                   <li><a class="nav-link js-scroll-trigger nav-link" href="{{ route('login') }}">{{ __('Login') }}</a></li>
               @else

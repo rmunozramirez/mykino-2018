@@ -21,7 +21,7 @@
             <a class="separator" href="{{route('language.show', $element->language->slug)}}">{{$element->language->name}} </a>
             <a class="separator" href="{{route('categories.show', $element->category->slug)}}">{!! $element->category->name !!} </a>
             <a class="separator" href="{{route('films.year', date('Y', strtotime($element->year)))}}">{{date('Y', strtotime($element->year))}}</a>
-            {!! $element->duration !!} 
+            {!! $element->duration !!}
           </div> 
         </div>
         <div class="row py-5">

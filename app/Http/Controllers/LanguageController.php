@@ -52,7 +52,8 @@ class LanguageController extends Controller
     public function store(LanguageRequest $request)
     {
         $file = $request->file('image_name');
-        $name = time() . '-' . $file->getClientOriginalName();
+        $name = explode(".", $file->getClientOriginalName());
+        $name = $name[0] . '-' . time() . '.' . $name[1];
         $file->move('images', $name);
 
         $last_img = Image::orderBy('id', 'desc')->first(); 
@@ -122,7 +123,8 @@ class LanguageController extends Controller
                 $image->forceDelete();
             }
 
-            $name = time() . '-' . $file->getClientOriginalName();
+            $name = explode(".", $file->getClientOriginalName());
+            $name = $name[0] . '-' . time() . '.' . $name[1];
             $file->move('images', $name);
 
             $image = Image::create([

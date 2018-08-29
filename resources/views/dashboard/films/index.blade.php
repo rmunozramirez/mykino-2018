@@ -30,7 +30,7 @@
 					             	</td>
 					             	<td> {{ count($element->actors) }}</td>
 					               <td><a href="{{route('categories.show', $element->category->slug)}}">{{$element->category->name}}</a></td>
-					               <td><a href="{{route('language.show', $element->language->slug)}}"><img height="74" src="{{$element->language->image ? URL::to('/images/' . $element->language->image) : URL::to('/images/language.png')}}" alt="{{$element->name}}"  title="{{$element->language->language}}"></a></td>
+					               <td><a href="{{route('language.show', $element->language->slug)}}"><img height="74" src="{{$element->language->image ? URL::to('/images/' . $element->language->image->slug) : URL::to('/images/language.png')}}" alt="{{$element->name}}"  title="{{$element->language->language}}"></a></td>
 					               <td>
 					                    <a href="{{route('fsk.show', $element->fsk->slug)}}">
 					                      <img height="50" src="{{$element->fsk->image ? URL::to('/images/' . $element->fsk->image) : URL::to('/images/language.png')}}" alt="{{$element->name}}" title="{{$element->fsk->fsk}}"></a></td>

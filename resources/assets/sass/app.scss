@@ -466,9 +466,55 @@ img .actor-image {
 .films-footer {
   position: absolute;
   width: 100%;
-  top: calc(100vh - 356px ) !important;
+  // top: calc(100vh - 356px ) !important;
+  top: calc(100vh - 150px ) !important;
   padding-top: 20px;
-  background-color: rgba(0, 0, 0, 0.55);
+  background-color: rgba(0, 0, 0, 0.45);
+  background: url("/images/overlay-carbon.png") repeat 0 0;
+  border-top: 1px solid #222;
+}
+
+.film-footer {
+  position: absolute;
+  width: 100%;
+  top: calc(100vh - 150px ) !important;
+  padding-top: 20px;
+  border-top: 1px solid #222;
+}
+
+.films-footer h2 {
+  line-height: 100px;
+  font-size: 60px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+.films-footer h3 {
+  font-size: 40px;
+  margin-bottom: 30px;
+  line-height: 60px;
+}
+.films-footer h4 {
+  font-size: 30px;
+  font-weight: 600;
+  margin-bottom: 30px;
+  line-height: 60px;
+}
+
+.best-films .category a {
+  border-right: 1px solid #777;
+  display: inline-block;
+  margin-right: 10px;
+  padding-right: 10px;
+  font-size: 12px;
+  color: #fff;
+}
+.best-films .category a:last-child {
+  border-right: none;
+}
+
+.footer {
+  background: #ffff;
+  padding: 20px 0;
 }
 
 .glass .card {
@@ -488,6 +534,7 @@ img .actor-image {
 
 .row-1 {
   width: 100vw !important;
+  height: 150px;
 }
 .sky-tabs > label {
   border: 1px solid #ededed;

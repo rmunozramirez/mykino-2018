@@ -31,14 +31,16 @@ class HomeController extends Controller
     {
 
         $page_name = 'Home page'; 
-        $films = Film::orderBy('created_at', 'desc')->paginate(10);
+        $films = Film::orderBy('created_at', 'desc')->paginate(40);
         $all_ = Film::all();
         $index = 'front';
+        $total_categories = Category::withCount('films')->get();
+        $total_ages = Fsk::withCount('films')->get();
 
         $element = Film::get()->last();
 
 
-        return view('kino.landing', compact('page_name', 'films', 'all_', 'index', 'element'));
+        return view('kino.landing', compact('page_name', 'films', 'all_', 'index', 'element', 'total_categories', 'total_ages'));
     }
     /**
      * Show the application dashboard.

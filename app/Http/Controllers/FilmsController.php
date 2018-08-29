@@ -70,8 +70,8 @@ class FilmsController extends Controller
     {
 
         $file = $request->file('image_name');
-
-        $name = $file->getClientOriginalName() . '-' . time();
+        $name = explode(".", $file->getClientOriginalName());
+        $name = $name[0] . '-' . time() . '.' . $name[1];
         $file->move('images', $name);
 
         $last_img = Image::orderBy('id', 'desc')->first(); 
@@ -164,16 +164,17 @@ class FilmsController extends Controller
 
         if ( $file = $request->file('image_name')) {
             $image = Image::find($film->image_id);
-           
+
             if ($image) {
                 $image->forceDelete();
             }
 
-            $name = time() . '-' . $file->getClientOriginalName();
+            $name = explode(".", $file->getClientOriginalName());
+            $name = $name[0] . '-' . time() . '.' . $name[1];
             $file->move('images', $name);
 
             $image = Image::create([
-                'image_name'    =>  $file->getClientOriginalName(),
+                'image_name'  =>  $request->name,
                 'slug'          =>  $name,
                 'alt'           =>  $request->alt,
                 'about'         =>  $request->about,
