@@ -43,15 +43,22 @@
       </div><!-- /.container -->
       <div class="text-white best-films ">
         <div class="container py-5">
-
-          <div class="row pt-2">
+          <div class="categories text-center">
+            <h4 class="pt-5">Categories</h4>
+            <div class="category">
+            @foreach ($total_categories as $category)
+              <a href="{{route('kino.category', $category->slug)}}">{!! $category->name !!}</a>
+            @endforeach  
+              </div>
+          </div>
+          <div class="row pt-5">
             <div class="col-md-6">
               <div class="ages text-center">
                 <h4 class="">Age classification</h4>
                 <div class="category">
                 @foreach ($total_ages as $fsk)
-                   <a href="{{route('kino.age', $fsk->slug)}}">
-                    <img class="film-thumbnail" height="50" src="{{$fsk->image ? URL::to('/images/' . $fsk->image) : URL::to('/images/language.png')}}" alt="{{$fsk->name}}" >
+                   <a href="{{route('kino.age', $fsk->slug)}}">{{$fsk->name}}
+                    <!-- <img class="film-thumbnail" height="25" src="{{$fsk->image ? URL::to('/images/' . $fsk->image) : URL::to('/images/language.png')}}" alt="" > -->
                     </a>
                 @endforeach  
                   </div>
@@ -62,24 +69,14 @@
                 <h4 class="">Languages</h4>
                 <div class="category">
                 @foreach ($total_languages as $language)
-                   <a href="{{route('kino.language', $language->slug)}}">
-                    <img height="50" src="{{$language->image ? URL::to('/images/' . $language->image->slug) : URL::to('/images/language.png')}}" alt="{{$language->category}}" title="{{$language->name}}">
+                   <a href="{{route('kino.language', $language->slug)}}">{{$language->name}}
+                    <!-- <img height="25" src="{{$language->image ? URL::to('/images/' . $language->image->slug) : URL::to('/images/language.png')}}" alt="{{$language->name}}" title=""> -->
                     </a>
                 @endforeach  
                   </div>
               </div>
             </div>
           </div>
-
-          <div class="categories text-center">
-            <h4 class="pt-5">Categories</h4>
-            <div class="category">
-            @foreach ($total_categories as $category)
-              <a href="{{route('kino.category', $category->slug)}}">{!! $category->name !!}</a>
-            @endforeach  
-              </div>
-          </div>
-
         </div>
       </div>
 

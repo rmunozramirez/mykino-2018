@@ -17,8 +17,7 @@
               </span>
             </h2>
          </div>
-         <div class="card-body py-3">
-            <div class="inside">
+         <div class="card-body">
                <div class="row">
                  <div class="col-md-12">
                     <div class="ibox-content">
@@ -40,9 +39,9 @@
                                       <img class="film-thumbnail" height="80" src="{{URL::to('/images/' . $element->image->slug ) }}" alt="{{$element->name}}" ><a href="{{route('kino.show', $element->slug)}}">{{$element->name}}</a>
                                     </td>
                                    <td><a href="{{route('kino.age', $element->fsk->slug)}}">
-                                          <img class="film-thumbnail" height="80" src="{{$element->fsk->image ? URL::to('/images/' . $element->fsk->image) : URL::to('/images/language.png')}}" alt="{{$element->fsk}}" >
+                                          <img class="film-thumbnail" height="50" src="{{$element->fsk->image ? URL::to('/images/' . $element->fsk->image) : URL::to('/images/language.png')}}" alt="{{$element->fsk}}" >
                                       </a></td>
-                                   <td><a href="{{route('kino.language', $element->language->slug)}}"><img height="74" src="{{$element->language->image ? URL::to('/images/' . $element->language->image) : URL::to('/images/language.png')}}" alt="{{$element->name}}"  title="{{$element->language->language}}"></a></td>
+                                   <td><a href="{{route('kino.language', $element->language->slug)}}"><img height="50" src="{{$element->language->image ? URL::to('/images/' . $element->language->image->slug) : URL::to('/images/language.png')}}" alt="{{$element->name}}"  title="{{$element->language->language}}"></a></td>
                                    
                                    <td><a href="{{route('kino.year', date('Y', strtotime($element->year)))}}">{{date('Y', strtotime($element->year))}}</a></td>
                                    <td><a href="{{ $element->trailer }}"><img class="play" height="50" src="{{URL::to('/images/play.png')}}" alt="{{$element->name}}" title="{{$element->name}}"></a></td>
@@ -54,7 +53,6 @@
                     </div>
                   </div>
                 </div>
-               </div>
             </div>
          </div>
       </div>

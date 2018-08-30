@@ -18,7 +18,7 @@ class KinoController extends Controller
     public function index()
     {
 
-        $films = Film::orderBy('name', 'asc')->paginate(44);
+        $films = Film::orderBy('name', 'asc')->paginate(22);
         $all_ = Film::all();
         $page_name = 'films';
         $index = 'front';
@@ -29,7 +29,7 @@ class KinoController extends Controller
     public function actors()
     {
 
-        $actors = Actor::orderBy('name', 'asc')->paginate(44);
+        $actors = Actor::withCount('films')->orderBy('films_count', 'desc')->paginate(22);
         $all_ = Actor::all();
         $page_name = 'actors';
         $index = 'front';

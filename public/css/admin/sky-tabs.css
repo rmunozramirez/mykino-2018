@@ -17,10 +17,14 @@
 }
 .sky-tabs {
 	position: relative;
-	font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+	font-family: 'Josefin Sans', sans-serif
 	font-size: 0;
 	text-align: left;
 	color: #666;
+}
+.sky-tabs p{
+	font-size: 18px;
+	font-weight: 300;
 }
 .sky-tabs > input {
 	position: absolute;
@@ -148,7 +152,7 @@
 	width: 50%;
 }
 .sky-tabs-pos-top-justify.sky-tabs-amount-3 > label {
-	width: 33.33%;
+	width: 32%; /*33.33%;*/
 }
 .sky-tabs-pos-top-justify.sky-tabs-amount-4 > label {
 	width: 25%;

@@ -22,7 +22,7 @@
 					              @foreach ($categories as $category)
 					              <tr>
 					                 <td>
-					                    <a href="{{route('categories.show', $category->slug)}}"><i class="fa fa-tag fa-2x"></i>
+					                    <a href="{{route('categories.show', $category->slug)}}">
 					                  {{$category->name}}</a>
 					                </td>
 					                 <td>{!! str_limit($category->description, 100, '...') !!}</td>

@@ -1,11 +1,10 @@
+
 @extends('layouts.app')
 @section ('title',  "| $page_name")
-
 @section('content')
-
-  @include('partials._out_nav')
-
-  <div class="container">
+<div id="film-section">
+   @include('partials._out_nav')
+   <div class="container">
     <div class="row flex-center">
       <div class="col-md-12 page-header text-center my-3">
           <h1>My Kino</h1>

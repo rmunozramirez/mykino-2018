@@ -24,12 +24,12 @@
             @else
             <li>
                 <i class="text-center fa fa-user-circle fa-4x"></i><br />
-                <h3>Kein Profile vorhanden</h3>
+                <h3>No profiles available</h3>
             </li>
             @endif
             <!-- frontend -->
             <li>
-                <a href="{{route('home')}}"><i class="fa fa-home"></i>Startseite</a>
+                <a href="{{route('home')}}"><i class="fa fa-home"></i>Home</a>
             </li>
             <!--/ dashboard -->
               
@@ -44,7 +44,7 @@
                 <a href="{{route('films.index')}}"><i class="fa fa-film"></i>Films</a>
                 <div class="grid-container3">
                     <ul>
-                        <li><a href="{{route('films.create')}}"><i class="fa fa-plus"></i>Neue hinzufügen</a></li>
+                        <li><a href="{{route('films.create')}}"><i class="fa fa-plus"></i>Add new</a></li>
                     </ul>
                 </div>
             </li>
@@ -55,7 +55,7 @@
                 <a href="{{route('actors.index')}}"><i class="fa fa-group"></i>Actors</a>
                 <div class="grid-container3">
                     <ul>
-                        <li><a href="{{route('actors.create')}}"><i class="fa fa-plus"></i>Neue hinzufügen</a></li>
+                        <li><a href="{{route('actors.create')}}"><i class="fa fa-plus"></i>Add new</a></li>
                     </ul>
                 </div>
             </li>
@@ -66,7 +66,7 @@
                 <a href="{{route('categories.index')}}"><i class="fa fa-tags"></i>Categories</a>
                 <div class="grid-container3">
                     <ul>
-                        <li><a href="{{route('categories.create')}}"><i class="fa fa-plus"></i>Neue hinzufügen</a></li>
+                        <li><a href="{{route('categories.create')}}"><i class="fa fa-plus"></i>Add new</a></li>
                     </ul>
                 </div>
             </li>
@@ -74,7 +74,7 @@
 
             <!-- FSK -->
             <li aria-haspopup="true">
-                <a href="{{route('fsk.index')}}"><i class="fa fa-eye"></i>FSK</a>
+                <a href="{{route('fsk.index')}}"><i class="fa fa-eye"></i>Age Classification</a>
             </li>
             <!--/ FSK -->
 
@@ -83,7 +83,7 @@
                 <a href="{{route('language.index')}}"><i class="fa fa-language"></i>Languages</a>
                 <div class="grid-container3">
                     <ul>
-                        <li><a href="{{route('language.create')}}"><i class="fa fa-plus"></i>Neue hinzufügen</a></li>
+                        <li><a href="{{route('language.create')}}"><i class="fa fa-plus"></i>Add new</a></li>
                     </ul>
                 </div>
             </li>

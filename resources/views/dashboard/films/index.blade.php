@@ -30,13 +30,13 @@
 					             	</td>
 					             	<td> {{ count($element->actors) }}</td>
 					               <td><a href="{{route('categories.show', $element->category->slug)}}">{{$element->category->name}}</a></td>
-					               <td><a href="{{route('language.show', $element->language->slug)}}"><img height="74" src="{{$element->language->image ? URL::to('/images/' . $element->language->image->slug) : URL::to('/images/language.png')}}" alt="{{$element->name}}"  title="{{$element->language->language}}"></a></td>
+					               <td><a href="{{route('language.show', $element->language->slug)}}"><img height="50" src="{{$element->language->image ? URL::to('/images/' . $element->language->image->slug) : URL::to('/images/language.png')}}" alt="{{$element->name}}"  title="{{$element->language->language}}"></a></td>
 					               <td>
 					                    <a href="{{route('fsk.show', $element->fsk->slug)}}">
-					                      <img height="50" src="{{$element->fsk->image ? URL::to('/images/' . $element->fsk->image) : URL::to('/images/language.png')}}" alt="{{$element->name}}" title="{{$element->fsk->fsk}}"></a></td>
+					                      <img height="40" src="{{$element->fsk->image ? URL::to('/images/' . $element->fsk->image) : URL::to('/images/language.png')}}" alt="{{$element->name}}" title="{{$element->fsk->fsk}}"></a></td>
 					               <td><a href="{{route('films.year', date('Y', strtotime($element->year)))}}">{{date('Y', strtotime($element->year))}}</a></td>
 					               <td>{{$element->created_at->format('D j M Y')}}</td>
-					               <td><a href="{{ $element->trailer }}"><img class="play" height="50" src="{{URL::to('/images/play.png')}}" alt="{{$element->name}}" title="{{$element->name}}"></a></td>
+					               <td><a href="{{ $element->trailer }}"><img class="play" height="40" src="{{URL::to('/images/play.png')}}" alt="{{$element->name}}" title="{{$element->name}}"></a></td>
 					            </tr>
 				            @endforeach
 				         	</tbody>

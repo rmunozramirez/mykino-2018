@@ -16,12 +16,17 @@
 			<div id="contenido"  class="card">
           <!-- Tab panels -->
         <div class="row py-3"> 
-          <div class="col-md-12">
+          <div class="col-md-10">
             <a class="separator" href="{{route('fsk.show', $element->fsk->slug)}}">{{$element->fsk->name}}</a>
             <a class="separator" href="{{route('language.show', $element->language->slug)}}">{{$element->language->name}} </a>
             <a class="separator" href="{{route('categories.show', $element->category->slug)}}">{!! $element->category->name !!} </a>
             <a class="separator" href="{{route('films.year', date('Y', strtotime($element->year)))}}">{{date('Y', strtotime($element->year))}}</a>
             {!! $element->duration !!}
+          </div>
+          <div class="col-md-2">
+            {!! Form::open(['route' => ['films.destroy', $element->slug], 'method' => 'DELETE']) !!}
+            {!! Form::submit('Delete', ['class' => 'btn btn-block btn-danger btn-xs']) !!}
+            {!! Form::close() !!}
           </div> 
         </div>
         <div class="row py-5">
@@ -83,17 +88,6 @@
              </div>
           </div>
       </div>
-			<div class="card-footer">
-				<div class="inside">
-					<div class="row">
-						<div class="col-md-9 col-md-offset-3">
-			        {!! Form::open(['route' => ['films.destroy', $element->slug], 'method' => 'DELETE']) !!}
-							{!! Form::submit('Delete', ['class' => 'btn btn-block btn-danger btn-sm']) !!}
-							{!! Form::close() !!}
-						</div>
-					</div>
-				</div>
-			</div>
 		</div>
 	</div>
 </div>
