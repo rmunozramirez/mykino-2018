@@ -8,15 +8,16 @@
    <iframe width="560" height="315" src="{{ $element->films[0]->trailer }}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 </div>
 <div class="film-footer">
-   <div class="container py-5">
+   <div class="container">
       <div class="card">
          <div id="contenido">
             <!-- Tab panels -->
             <div class="card-header py-3">
-               <h3><img height="50" src="{{$element->image ? URL::to('/images/' . $element->image) : URL::to('/images/language.png')}}" alt="{{$element->name}}" title="{{$element->language}}"> {!! $element->name !!} category - 
+               <h3>{!! $element->name !!} - 
                   {{ $element->films_count }}  @if($element->films_count > 1) films @else film @endif
                   <span class="very-small pull-right">
-                  <i class="fa fa-chevron-left"></i> <a href="{{route('kino.actors')}}"> Back to actors</a>
+                  <i class="fa fa-chevron-left"></i> <a href="{{route('kino.actors')}}"> Back to {{ count($all_)}} actors</a>
+                  
                   </span>
                </h3>
             </div>

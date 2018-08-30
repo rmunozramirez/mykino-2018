@@ -8,8 +8,7 @@
   <div class="container">
     <div class="row flex-center">
       <div class="col-md-12 page-header text-center my-3">
-          <h1>Actors</h1>
-          <h3>A collection of {{count($all_)}} films</h3>
+          <h1>{{count($all_)}} actors</h1>
       </div>          
     </div>
   </div><!-- /.row -->   

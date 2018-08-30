@@ -17,22 +17,22 @@ h6 {
   font-weight: 100;
 }
 h1 {
-  font-size: 30px;
+  font-size: 32px;
 }
 h2 {
-  font-size: 24px;
+  font-size: 26px;
 }
 h3 {
-  font-size: 16px;
+  font-size: 18px;
 }
 h4 {
-  font-size: 14px;
+  font-size: 16px;
 }
 h5 {
-  font-size: 12px;
+  font-size: 14px;
 }
 h6 {
-  font-size: 10px;
+  font-size: 12px;
 }
 h3,
 h4,
@@ -1072,7 +1072,7 @@ button.dim:active:before {
 .label {
   background-color: #d1dade;
   color: #5e5e5e;
-  font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-family: 'Josefin Sans', sans-serif;
   font-weight: 600;
   padding: 3px 8px;
   text-shadow: none;
@@ -1084,7 +1084,7 @@ button.dim:active:before {
 .badge {
   background-color: #d1dade;
   color: #5e5e5e;
-  font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-family: 'Josefin Sans', sans-serif;
   font-size: 11px;
   font-weight: 600;
   padding-bottom: 4px;
@@ -1172,7 +1172,7 @@ button.dim:active:before {
   line-height: 20px;
   font-size: 12px;
   color: white;
-  font-family: Trebuchet, Arial, sans-serif;
+  font-family: 'Josefin Sans', sans-serif;
   font-weight: bold;
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
@@ -1635,7 +1635,7 @@ a.list-group-item.active:focus {
 /* DATATABLES */
 
 table img, h2 img {
-  margin-right: 15px;
+  margin-right: 10px !important;
 }
 
 table.dataTable thead .sorting,
@@ -3501,9 +3501,9 @@ body.tour-open .animated {
   border-bottom: 1px solid #e7eaec;
 }
 body {
-  font-family: "open sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: 'Josefin Sans', sans-serif;
   background: url("/images/overlay-carbon.png") repeat 0 0, radial-gradient(circle farthest-side at center center, #009cde, #444 125%);
-  font-size: 13px;
+  font-size: 15px;
   color: #676a6c;
   overflow-x: hidden;
   background-attachment: fixed;
@@ -7225,7 +7225,7 @@ body.body-small .vote-icon {
 }
 body.landing-page {
   color: #676a6c;
-  font-family: 'Open Sans', helvetica, arial, sans-serif;
+  font-family: 'Josefin Sans', sans-serif;
   background-color: #fff;
 }
 .landing-page {
@@ -7307,7 +7307,7 @@ body.landing-page {
 }
 .landing-page .navbar-default .nav li a {
   color: #fff;
-  font-family: 'Open Sans', helvetica, arial, sans-serif;
+  font-family: 'Josefin Sans', sans-serif;
   font-weight: 700;
   letter-spacing: 1px;
   text-transform: uppercase;
@@ -8514,7 +8514,7 @@ body.skin-3 {
   background: transparent;
 }
 body.md-skin {
-  font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: 'Josefin Sans', sans-serif;
   background-color: #ffffff;
 }
 .md-skin .nav-header {
@@ -9297,4 +9297,8 @@ aside .sky-mega-menu li {
     opacity: 0;
     z-index: 2;
   
+}
+
+.form-inline .form-control {
+    margin-left: 10px;
 }

@@ -10477,17 +10477,24 @@ img .actor-image {
   width: 100%;
   top: calc(100vh - 150px) !important;
   padding-top: 20px;
-  background-color: rgba(0, 0, 0, 0.45);
   background: url("/images/overlay-carbon.png") repeat 0 0;
+  background-color: rgba(0, 0, 0, 0.45);
   border-top: 1px solid #222;
 }
 
 .film-footer {
   position: absolute;
   width: 100%;
-  top: calc(100vh - 150px) !important;
-  padding-top: 20px;
-  border-top: 1px solid #222;
+  top: 100vh !important;
+  background-color: rgba(0, 0, 0, 0.45);
+}
+
+.film-footer .card-header {
+  margin-top: -75px;
+  background: #fff;
+  border-top: 1px solid rgba(0, 0, 0, 0.125);
+  border-left: 1px solid rgba(0, 0, 0, 0.125);
+  border-right: 1px solid rgba(0, 0, 0, 0.125);
 }
 
 .films-footer h2 {
@@ -10506,7 +10513,6 @@ img .actor-image {
 .films-footer h4 {
   font-size: 30px;
   font-weight: 600;
-  margin-bottom: 30px;
   line-height: 60px;
 }
 
@@ -10524,7 +10530,8 @@ img .actor-image {
 }
 
 .footer {
-  background: #ffff;
+  background: url("/images/overlay-carbon.png") repeat 0 0;
+  background-color: #fff;
   padding: 20px 0;
 }
 

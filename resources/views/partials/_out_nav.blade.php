@@ -6,7 +6,7 @@
 
       <ul class="sky-mega-menu sky-mega-menu-top sky-mega-menu-response-to-icons">
           <div class="pull-right">
-            <li class="nav-item active"><a class="nav-link js-scroll-trigger" href="{{ url('/') }}"><img height="30" src="{{URL::to('/images/mykino.png' ) }}" alt="My Kino"> My {{count($all_)}} films</a></li>
+            <li class="nav-item active"><a class="nav-link js-scroll-trigger" href="{{ url('/') }}"><img height="30" src="{{URL::to('/images/mykino.png' ) }}" alt="My Kino"> My kino</a></li>
 
 
             <li class="nav-item active"><a class="nav-link js-scroll-trigger" href="{{route('kino.index')}}"> Filme</a></li>

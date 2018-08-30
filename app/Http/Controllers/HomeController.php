@@ -36,11 +36,12 @@ class HomeController extends Controller
         $index = 'front';
         $total_categories = Category::withCount('films')->get();
         $total_ages = Fsk::withCount('films')->get();
+        $total_languages = Language::withCount('films')->get();
 
         $element = Film::get()->last();
 
 
-        return view('kino.landing', compact('page_name', 'films', 'all_', 'index', 'element', 'total_categories', 'total_ages'));
+        return view('kino.landing', compact('page_name', 'films', 'all_', 'index', 'element', 'total_categories', 'total_ages', 'total_languages'));
     }
     /**
      * Show the application dashboard.
