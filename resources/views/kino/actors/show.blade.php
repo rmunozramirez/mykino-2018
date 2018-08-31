@@ -1,5 +1,4 @@
 
-
 @extends('layouts.app')
 @section ('title',  "| $page_name")
 @section('content')
@@ -17,7 +16,6 @@
                   {{ $element->films_count }}  @if($element->films_count > 1) films @else film @endif
                   <span class="very-small pull-right">
                   <i class="fa fa-chevron-left"></i> <a href="{{route('kino.actors')}}"> Back to {{ count($all_)}} actors</a>
-                  
                   </span>
                </h3>
             </div>
@@ -78,6 +76,5 @@
       </div>
    </div>
 </div>
-
 @endsection
 

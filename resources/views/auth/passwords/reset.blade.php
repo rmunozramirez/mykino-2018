@@ -1,11 +1,12 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
+   @include('partials._out_nav')
+<div id="login">
+    <div class="justify-content-center">
+        <div class="col-md-6 offset-md-3">
             <div class="card">
-                <div class="card-header">{{ __('Reset Password') }}</div>
+                <div class="card-header"><img height="30" src="{{URL::to('/images/mykino.png' ) }}" alt="My Kino"> My kino - {{ __('Reset Password') }}</div>
 
                 <div class="card-body mt-4 mb-4">
                     <form method="POST" action="{{ route('password.request') }}">

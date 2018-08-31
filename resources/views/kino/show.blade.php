@@ -33,7 +33,7 @@
                            <input type="radio" name="sky-tabs" checked id="sky-tab1" class="sky-tab-content-1">
                            <label for="sky-tab1"><span><span><i class="fa fa-film"></i> Synopsis</span></span></label>
                            <input type="radio" name="sky-tabs" id="sky-tab2" class="sky-tab-content-2">
-                           <label for="sky-tab2"><span><span><i class="fa fa-users"></i> Actors</span></span></label>
+                           <label for="sky-tab2"><span><span><i class="fa fa-users"></i> {{ count($element->actors) }} @if(count($element->actors) > 1) Actors @else Actor @endif </span></span></label>
 
                            <!-- Tab panes -->
                            <ul>

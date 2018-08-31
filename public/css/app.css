@@ -10009,6 +10009,23 @@ body {
 }
 
 /*--------------------------------------------------------------
+Login - Register 
+--------------------------------------------------------------*/
+
+#login .card {
+  position: relative;
+  top: 20%;
+  -webkit-transform: translateY(20%);
+  transform: translateY(20%);
+}
+
+#login .card-header {
+  background: url("/images/overlay-carbon.png") repeat 0 0, radial-gradient(circle farthest-side at right center, #009cde, #444 125%);
+  color: #fff;
+  font-size: 1.25rem;
+}
+
+/*--------------------------------------------------------------
 2. - Laravel inherited
 --------------------------------------------------------------*/
 
